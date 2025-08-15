@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EmotiSense - Emotion Analysis AI | onelastai.com</title>
+  
+  <%= csrf_meta_tags if defined?(csrf_meta_tags) %>
+  <%= csp_meta_tag if defined?(csp_meta_tag) %>
+  
+  <!-- Custom EmotiSense Styles -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Courier New', 'Monaco', 'Menlo', 'Consolas', monospace;
+      background: linear-gradient(135deg, #1a0d2e 0%, #2d1b4e 50%, #0f0f23 100%);
+      color: #e8b4ff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* Terminal scanlines effect */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        transparent 50%, 
+        rgba(232, 180, 255, 0.03) 50%
+      );
+      background-size: 100% 4px;
+      pointer-events: none;
+      z-index: 1000;
+      animation: scanlines 0.1s linear infinite;
+    }
+    
+    @keyframes scanlines {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(4px); }
+    }
+    
+    /* Hide global menu for terminal interface */
+    .global-menu-bar {
+      display: none !important;
+    }
+    
+    /* Hero Section Container */
+    .hero-container {
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    /* Left Sidebar */
+    .left-sidebar {
+      width: 250px;
+      background: rgba(26, 13, 46, 0.9);
+      border-right: 2px solid #e8b4ff;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    
+    /* Right Sidebar */
+    .right-sidebar {
+      width: 250px;
+      background: rgba(26, 13, 46, 0.9);
+      border-left: 2px solid #e8b4ff;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    
+    /* Main Hero Content */
+    .hero-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      background: radial-gradient(ellipse at center, rgba(232, 180, 255, 0.1) 0%, rgba(0, 0, 0, 0.3) 70%);
+      position: relative;
+    }
+    
+    .hero-main::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e8b4ff" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+      opacity: 0.2;
+      animation: gridMove 20s linear infinite;
+    }
+    
+    @keyframes gridMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(10px, 10px); }
+    }
+    
+    /* Hero Content */
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .agent-logo {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 20px #e8b4ff;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+    }
+    
+    .agent-title {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: #e8b4ff;
+      text-shadow: 0 0 10px #e8b4ff;
+    }
+    
+    .agent-tagline {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #c77dff;
+      opacity: 0.9;
+    }
+    
+    .agent-description {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      color: #a8dadc;
+      opacity: 0.8;
+    }
+    
+    /* Stats Grid */
+    .agent-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+    
+    .stat-item {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(232, 180, 255, 0.1);
+      border: 1px solid #e8b4ff;
+      border-radius: 8px;
+      min-width: 120px;
+    }
+    
+    .stat-value {
+      display: block;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #e8b4ff;
+      text-shadow: 0 0 8px #e8b4ff;
+    }
+    
+    .stat-label {
+      display: block;
+      font-size: 0.9rem;
+      color: #c77dff;
+      margin-top: 0.5rem;
+    }
+    
+    /* Sidebar Menu Items */
+    .menu-section {
+      background: rgba(232, 180, 255, 0.1);
+      border: 1px solid #e8b4ff;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .menu-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #e8b4ff;
+      padding: 0.75rem;
+      cursor: pointer;
+      background: rgba(45, 27, 78, 0.3);
+      border-bottom: 1px solid rgba(232, 180, 255, 0.2);
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+    
+    .menu-title:hover {
+      background: rgba(232, 180, 255, 0.2);
+      color: #fff;
+    }
+    
+    .menu-arrow {
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .menu-section.active .menu-arrow {
+      transform: rotate(90deg);
+    }
+    
+    .menu-items {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background: rgba(26, 13, 46, 0.5);
+    }
+    
+    .menu-section.active .menu-items {
+      max-height: 300px;
+      padding: 0.5rem;
+    }
+    
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: rgba(45, 27, 78, 0.4);
+      border: 1px solid rgba(232, 180, 255, 0.2);
+      border-radius: 4px;
+      color: #c77dff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+    }
+    
+    .menu-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .menu-item:hover {
+      background: rgba(232, 180, 255, 0.3);
+      border-color: #e8b4ff;
+      color: #e8b4ff;
+      transform: translateX(3px);
+    }
+    
+    .menu-item .menu-arrow {
+      margin-left: auto;
+      font-size: 0.7rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .menu-item:hover .menu-arrow {
+      transform: translateX(2px);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-container {
+        flex-direction: column;
+      }
+      
+      .left-sidebar,
+      .right-sidebar {
+        width: 100%;
+        order: 2;
+      }
+      
+      .hero-main {
+        order: 1;
+        min-height: 60vh;
+      }
+      
+      .agent-stats {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+    }
+
+    /* Top Header Menu Bar - Linux Command Style */
+    .top-menu-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: rgba(0, 0, 0, 0.95);
+      border-bottom: 2px solid #00ff00;
+      display: flex;
+      align-items: center;
+      z-index: 2000;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      box-shadow: 0 2px 10px rgba(0, 255, 0, 0.3);
+    }
+
+    .terminal-prompt {
+      color: #ffff00;
+      padding: 0 10px;
+      font-weight: bold;
+    }
+
+    .menu-bar-items {
+      display: flex;
+      flex: 1;
+      align-items: center;
+    }
+
+    .top-menu-item {
+      color: #00ff00;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: lowercase;
+      border-right: 1px solid #333;
+      text-decoration: none;
+    }
+
+    .top-menu-item:hover {
+      background: rgba(0, 255, 0, 0.1);
+      color: #33ff33;
+      text-shadow: 0 0 5px #00ff00;
+    }
+
+    .system-info {
+      color: #666;
+      font-size: 0.7rem;
+      padding: 0 15px;
+      margin-left: auto;
+      border-left: 1px solid #333;
+    }
+
+    /* Adjust hero container for fixed header */
+    .hero-container {
+      margin-top: 40px;
+      min-height: calc(100vh - 40px);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Top Linux-Style Menu Bar -->
+  <div class="top-menu-bar">
+    <div class="terminal-prompt">EmotiSense@terminal:~$</div>
+    <div class="menu-bar-items">
+      <a href="/emotisense" class="top-menu-item">home</a>
+      <a href="/emotisense/emotion_chat" class="top-menu-item">emotion_chat</a>
+      <a href="/emotisense/mood_journal" class="top-menu-item">mood_journal</a>
+      <a href="/emotisense/emotion_dashboard" class="top-menu-item">emotion_dashboard</a>
+      <a href="/emotisense/wellness_center" class="top-menu-item">wellness_center</a>
+      <a href="/emotisense/empathy_training" class="top-menu-item">empathy_training</a>
+    </div>
+    <div class="system-info">CPU: 45% | MEM: 2.1GB | UPTIME: 0:42:18</div>
+  </div>
+
+  <div class="hero-container">
+    <!-- Left Sidebar -->
+    <div class="left-sidebar">
+      <div class="menu-section" data-section="features">
+        <div class="menu-title" onclick="toggleDropdown('features')">
+          📁 Features <span class="menu-arrow">▶</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            📝 Text Analysis <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            🎤 Voice Analysis <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            📷 Image Analysis <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            🎥 Live Camera <span class="menu-arrow">→</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="menu-section" data-section="models">
+        <div class="menu-title" onclick="toggleDropdown('models')">
+          🧠 AI Models <span class="menu-arrow">▶</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            🎭 Emotion Detection <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            💭 Sentiment Analysis <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            🧪 Neural Networks <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            📊 Plutchik Wheel <span class="menu-arrow">→</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="menu-section" data-section="datasets">
+        <div class="menu-title" onclick="toggleDropdown('datasets')">
+          💾 Datasets <span class="menu-arrow">▶</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            📤 Upload Data <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            🔄 Preprocess <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            📥 Download <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            📋 Manage Sets <span class="menu-arrow">→</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Hero Content -->
+    <div class="hero-main">
+      <div class="hero-content">
+        <div class="agent-logo">🎭</div>
+        <h1 class="agent-title">EmotiSense</h1>
+        <p class="agent-tagline">Advanced AI-powered emotion analysis and sentiment detection</p>
+        <p class="agent-description">
+          Advanced multi-modal emotion detection system with real-time analysis, sentiment tracking, and comprehensive emotional intelligence.
+        </p>
+        
+        <div class="agent-stats">
+          <div class="stat-item">
+            <span class="stat-value">0</span>
+            <span class="stat-label">Analyses</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">0.0</span>
+            <span class="stat-label">Accuracy</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">< 2s</span>
+            <span class="stat-label">Response Time</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Right Sidebar -->
+    <div class="right-sidebar">
+      <div class="menu-section" data-section="tools">
+        <div class="menu-title" onclick="toggleDropdown('tools')">
+          🔧 Tools <span class="menu-arrow">→</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            📊 Analytics <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            📈 Reports <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            💾 Export <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            🔍 Search <span class="menu-arrow">→</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="menu-section" data-section="actions">
+        <div class="menu-title" onclick="toggleDropdown('actions')">
+          ⚡ Quick Actions <span class="menu-arrow">▶</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            📄 New Analysis <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            🔄 Reload Models <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            📋 Templates <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            🎯 Quick Test <span class="menu-arrow">→</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="menu-section" data-section="settings">
+        <div class="menu-title" onclick="toggleDropdown('settings')">
+          ⚙️ Settings <span class="menu-arrow">▶</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item">
+            🎨 Theme <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            🔧 Preferences <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            🔐 Security <span class="menu-arrow">→</span>
+          </div>
+          <div class="menu-item">
+            📱 API Keys <span class="menu-arrow">→</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Existing sidebar dropdown functionality
+    function toggleDropdown(sectionId) {
+      // Get the clicked section
+      const clickedSection = document.querySelector(`[data-section="${sectionId}"]`);
+      
+      // Close all other sections
+      const allSections = document.querySelectorAll('.menu-section');
+      allSections.forEach(section => {
+        if (section !== clickedSection) {
+          section.classList.remove('active');
+        }
+      });
+      
+      // Toggle the clicked section
+      clickedSection.classList.toggle('active');
+    }
+
+    // Close dropdowns when clicking outside (sidebar only)
+    document.addEventListener('click', function(event) {
+      // Close sidebar menus
+      if (!event.target.closest('.menu-section')) {
+        const allSections = document.querySelectorAll('.menu-section');
+        allSections.forEach(section => {
+          section.classList.remove('active');
+        });
+      }
+      if (!event.target.closest('.top-menu-item')) {
+        const allTopMenus = document.querySelectorAll('.top-menu-item');
+        allTopMenus.forEach(menu => {
+          menu.classList.remove('active');
+        });
+      }
+    });
+
+    // Update system info periodically
+    function updateSystemInfo() {
+      const systemInfo = document.querySelector('.system-info');
+      const now = new Date();
+      const uptime = Math.floor((now.getTime() - (new Date().getTime() - 2538000)) / 1000);
+      const hours = Math.floor(uptime / 3600);
+      const minutes = Math.floor((uptime % 3600) / 60);
+      const seconds = uptime % 60;
+      
+      const cpu = Math.floor(Math.random() * 20 + 30); // 30-50%
+      const mem = (Math.random() * 0.5 + 1.8).toFixed(1); // 1.8-2.3GB
+      
+      systemInfo.textContent = `CPU: ${cpu}% | MEM: ${mem}GB | UPTIME: ${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    // Add hover effects for menu items
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('click', function(e) {
+        e.stopPropagation();
+        console.log('Menu item clicked:', this.textContent.trim());
+      });
+    });
+    
+    // Initialize
+    window.addEventListener('load', function() {
+      console.log('EmotiSense Terminal v3.0.1 initialized');
+      console.log('$ ./emotisense --start');
+      updateSystemInfo();
+      setInterval(updateSystemInfo, 5000); // Update every 5 seconds
+    });
+  </script>
+</body>
+</html>

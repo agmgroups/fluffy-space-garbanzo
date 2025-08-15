@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - OneLastAI</title>
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .hero-section {
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.15) 0%, rgba(0, 0, 0, 0.3) 70%);
+      border-bottom: 2px solid #00d4ff;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 20px #00d4ff;
+      background: linear-gradient(45deg, #00d4ff, #0099cc, #66d9ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .content-section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: 15px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .faq-question {
+      background: rgba(0, 212, 255, 0.1);
+      padding: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: #00d4ff;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background: rgba(0, 212, 255, 0.2);
+    }
+
+    .faq-answer {
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      color: #b8b8b8;
+      line-height: 1.6;
+    }
+
+    .faq-answer.active {
+      padding: 1.5rem;
+      max-height: 500px;
+    }
+
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .search-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(0, 212, 255, 0.3);
+      border-radius: 15px;
+      padding: 1rem 1.5rem;
+      color: #ffffff;
+      font-size: 1.1rem;
+      width: 100%;
+      margin-bottom: 3rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .search-box:focus {
+      outline: none;
+      border-color: #00d4ff;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    }
+
+    .category-tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .category-tab {
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid #00d4ff;
+      border-radius: 25px;
+      padding: 0.75rem 1.5rem;
+      color: #00d4ff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .category-tab.active,
+    .category-tab:hover {
+      background: #00d4ff;
+      color: #000;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="hero-section">
+    <h1 class="hero-title">FAQ</h1>
+    <p class="hero-tagline">Frequently Asked Questions</p>
+  </section>
+
+  <section class="content-section">
+    <input type="text" class="search-box" placeholder="🔍 Search FAQ..." id="search-input">
+    
+    <div class="category-tabs">
+      <div class="category-tab active" data-category="all">All</div>
+      <div class="category-tab" data-category="general">General</div>
+      <div class="category-tab" data-category="agents">AI Agents</div>
+      <div class="category-tab" data-category="billing">Billing</div>
+      <div class="category-tab" data-category="technical">Technical</div>
+    </div>
+
+    <div class="faq-container">
+      <div class="faq-item" data-category="general">
+        <div class="faq-question">
+          What is OneLastAI?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          OneLastAI is a comprehensive platform hosting 24+ specialized AI agents designed for various tasks including content creation, data analysis, automation, and more. Each agent is trained for specific use cases to provide optimal performance.
+        </div>
+      </div>
+
+      <div class="faq-item" data-category="agents">
+        <div class="faq-question">
+          How many AI agents are available?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          We currently offer 24+ specialized AI agents, including NeoChat, EmotiSense, CineGen, ContentCrafter, Memora, NetScope, and many others. Each agent is designed for specific tasks and domains.
+        </div>
+      </div>
+
+      <div class="faq-item" data-category="billing">
+        <div class="faq-question">
+          What are the pricing plans?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          We offer flexible pricing plans including Free, Pro, and Enterprise tiers. The Free plan includes basic access to agents, while Pro and Enterprise plans offer unlimited usage, priority support, and advanced features.
+        </div>
+      </div>
+
+      <div class="faq-item" data-category="technical">
+        <div class="faq-question">
+          Is there an API available?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Yes! We provide a comprehensive REST API that allows you to integrate our AI agents into your applications. Full documentation is available in our API Docs section.
+        </div>
+      </div>
+
+      <div class="faq-item" data-category="general">
+        <div class="faq-question">
+          How secure is my data?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          We take security seriously. All data is encrypted in transit and at rest, we comply with GDPR and other privacy regulations, and we never use your data to train our models without explicit consent.
+        </div>
+      </div>
+
+      <div class="faq-item" data-category="agents">
+        <div class="faq-question">
+          Can I create custom AI agents?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Yes! Enterprise customers can work with our team to develop custom AI agents tailored to their specific needs and workflows. Contact our sales team for more information.
+        </div>
+      </div>
+
+      <div class="faq-item" data-category="technical">
+        <div class="faq-question">
+          What's the uptime guarantee?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          We guarantee 99.9% uptime for our services. If we fall below this threshold, you may be eligible for service credits. Check our Service Level Agreement for details.
+        </div>
+      </div>
+
+      <div class="faq-item" data-category="billing">
+        <div class="faq-question">
+          Can I cancel my subscription anytime?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          Yes, you can cancel your subscription at any time from your billing dashboard. You'll continue to have access to paid features until the end of your current billing period.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // FAQ toggle functionality
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          const faqItem = question.parentElement;
+          const answer = faqItem.querySelector('.faq-answer');
+          
+          // Close other open FAQs
+          document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) {
+              item.classList.remove('active');
+              item.querySelector('.faq-answer').classList.remove('active');
+            }
+          });
+          
+          // Toggle current FAQ
+          faqItem.classList.toggle('active');
+          answer.classList.toggle('active');
+        });
+      });
+
+      // Category filtering
+      const categoryTabs = document.querySelectorAll('.category-tab');
+      const faqItems = document.querySelectorAll('.faq-item');
+
+      categoryTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const category = tab.dataset.category;
+          
+          // Update active tab
+          categoryTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          
+          // Filter FAQ items
+          faqItems.forEach(item => {
+            if (category === 'all' || item.dataset.category === category) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Search functionality
+      const searchInput = document.getElementById('search-input');
+      searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        
+        faqItems.forEach(item => {
+          const question = item.querySelector('.faq-question').textContent.toLowerCase();
+          const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+          
+          if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

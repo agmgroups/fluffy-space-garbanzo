@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - OneLastAI</title>
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .hero-section {
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.15) 0%, rgba(0, 0, 0, 0.3) 70%);
+      border-bottom: 2px solid #00d4ff;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 20px #00d4ff;
+      background: linear-gradient(45deg, #00d4ff, #0099cc, #66d9ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-tagline {
+      font-size: 1.5rem;
+      color: #e0e0e0;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .content-section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      color: #00d4ff;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .content-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      color: #00d4ff;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-content {
+      color: #b8b8b8;
+      line-height: 1.7;
+    }
+
+    .team-section {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 4rem 0;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .team-member {
+      text-align: center;
+      background: rgba(0, 212, 255, 0.1);
+      border: 1px solid #00d4ff;
+      border-radius: 15px;
+      padding: 2rem;
+    }
+
+    .member-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #00d4ff, #0099cc);
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    .member-name {
+      font-size: 1.2rem;
+      color: #00d4ff;
+      margin-bottom: 0.5rem;
+    }
+
+    .member-role {
+      color: #b8b8b8;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="hero-section">
+    <h1 class="hero-title">About OneLastAI</h1>
+    <p class="hero-tagline">Pioneering the Future of AI Agent Technology</p>
+  </section>
+
+  <section class="content-section">
+    <div class="content-grid">
+      <div class="content-card">
+        <h3 class="card-title">🚀 Our Mission</h3>
+        <div class="card-content">
+          To democratize artificial intelligence by creating specialized AI agents that enhance human productivity, creativity, and decision-making across every industry and use case.
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3 class="card-title">🎯 Our Vision</h3>
+        <div class="card-content">
+          A world where every individual and organization has access to intelligent, specialized AI agents that seamlessly integrate into their workflows and amplify human potential.
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3 class="card-title">⚡ Our Technology</h3>
+        <div class="card-content">
+          Built on cutting-edge machine learning models, our platform hosts 24+ specialized AI agents, each designed for specific domains and use cases, from creative content generation to technical analysis.
+        </div>
+      </div>
+    </div>
+
+    <div class="team-section">
+      <h2 class="section-title">Our Team</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="member-avatar">👨‍💻</div>
+          <div class="member-name">Alex Chen</div>
+          <div class="member-role">CEO & Co-Founder</div>
+        </div>
+        <div class="team-member">
+          <div class="member-avatar">👩‍🔬</div>
+          <div class="member-name">Sarah Williams</div>
+          <div class="member-role">CTO & Co-Founder</div>
+        </div>
+        <div class="team-member">
+          <div class="member-avatar">👨‍🎨</div>
+          <div class="member-name">Marcus Rodriguez</div>
+          <div class="member-role">Head of AI Research</div>
+        </div>
+        <div class="team-member">
+          <div class="member-avatar">👩‍💼</div>
+          <div class="member-name">Emily Thompson</div>
+          <div class="member-role">VP of Product</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <div class="content-card">
+        <h3 class="card-title">🌟 Why Choose Us</h3>
+        <div class="card-content">
+          <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 0.5rem;">✅ 24+ Specialized AI Agents</li>
+            <li style="margin-bottom: 0.5rem;">✅ Enterprise-Grade Security</li>
+            <li style="margin-bottom: 0.5rem;">✅ 99.9% Uptime Guarantee</li>
+            <li style="margin-bottom: 0.5rem;">✅ 24/7 Support</li>
+            <li style="margin-bottom: 0.5rem;">✅ Custom Agent Development</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h3 class="card-title">📈 Our Growth</h3>
+        <div class="card-content">
+          Since launching in 2024, we've grown to serve over 100,000+ users worldwide, processed millions of AI interactions, and continue to expand our agent network based on user feedback and emerging needs.
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

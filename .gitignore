@@ -353,3 +353,6 @@ prototype/
 test_data/
 sample_data/
 mock_data/
+
+/app/assets/builds/*
+!/app/assets/builds/.keep

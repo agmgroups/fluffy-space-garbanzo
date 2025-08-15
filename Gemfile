@@ -24,6 +24,11 @@ gem 'turbo-rails'
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem 'stimulus-rails'
 
+# Modern Frontend Stack for Railway.com-inspired design
+gem 'cssbundling-rails'                  # CSS bundling for modern workflows
+gem 'tailwindcss-rails', '~> 2.0'        # Modern utility-first CSS framework
+gem 'view_component', '~> 3.0'           # Reusable component system
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 

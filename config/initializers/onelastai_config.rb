@@ -4,24 +4,29 @@
 require_relative '../application_config'
 
 # Validate configuration in production
-if Rails.env.production?
-  OneLastAI::Configuration.validate!
-end
+OneLastAI::Configuration.validate! if Rails.env.production?
 
 # Set up Redis configuration
-if OneLastAI::Configuration.config.redis_url.present?
-  $redis = Redis.new(url: OneLastAI::Configuration.config.redis_url)
-end
+$redis = Redis.new(url: OneLastAI::Configuration.config.redis_url) if OneLastAI::Configuration.config.redis_url.present?
 
 # Configure Sentry for error monitoring
-if OneLastAI::Configuration.config.sentry_dsn.present?
-  Sentry.configure do |config|
-    config.dsn = OneLastAI::Configuration.config.sentry_dsn
-    config.breadcrumbs_logger = [:active_support_logger, :http_logger]
-    config.environment = Rails.env
-    config.release = OneLastAI::Configuration.config.app_version
-  end
-end
+# TODO: Re-enable when Sentry is properly configured
+# begin
+#   if OneLastAI::Configuration.config.sentry_dsn.present?
+#     require 'sentry-ruby'
+#     require 'sentry-rails'
+#
+#     Sentry.configure do |config|
+#       config.dsn = OneLastAI::Configuration.config.sentry_dsn
+#       config.breadcrumbs_logger = %i[active_support_logger http_logger]
+#       config.environment = Rails.env
+#       config.release = OneLastAI::Configuration.config.app_version
+#     end
+#   end
+# rescue LoadError
+#   # Sentry gems not available, skip configuration
+#   Rails.logger.warn "Sentry gems not available, skipping Sentry configuration"
+# end
 
 # Log configuration status
 Rails.logger.info "OneLastAI Configuration loaded for #{Rails.env} environment"

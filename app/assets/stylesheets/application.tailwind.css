@@ -1382,29 +1382,30 @@
 
 .partners-carousel-track {
     display: flex;
-    animation: slide-right-to-left 30s linear infinite;
-    gap: 2rem;
+    animation: slide-seamless 120s linear infinite;
+    gap: 1.5rem;
     width: max-content;
 }
 
-@keyframes slide-right-to-left {
+@keyframes slide-seamless {
     0% {
-        transform: translateX(100%);
+        transform: translateX(0);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-50%);
     }
 }
 
 .partner-card {
     position: relative;
-    padding: 2rem;
-    transition: all 0.3s ease;
+    padding: 1rem 1.5rem;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    background: #1a1a1a;
-    border: 2px solid transparent;
-    min-height: 150px;
-    min-width: 280px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 90px;
+    min-width: 320px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1412,36 +1413,57 @@
     flex-shrink: 0;
     filter: grayscale(100%);
     opacity: 0.7;
+    border-radius: 12px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .partner-card::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 0;
-    padding: 2px;
-    background: linear-gradient(45deg, #4a5568, #718096);
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: 12px;
+    background: linear-gradient(45deg, 
+        rgba(139, 92, 246, 0.3), 
+        rgba(236, 72, 153, 0.3), 
+        rgba(6, 182, 212, 0.3), 
+        rgba(16, 185, 129, 0.3));
     background-size: 300% 300%;
-    animation: border-flow-grayscale 3s ease infinite;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: exclude;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
+    animation: border-flow-glass 6s ease infinite;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
 .partner-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+    transform: translateY(-8px);
     filter: grayscale(0%);
     opacity: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 2px 8px rgba(139, 92, 246, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .partner-card:hover::before {
-    background: linear-gradient(45deg, #8b5cf6, #ec4899, #06b6d4, #10b981, #f59e0b);
-    animation: border-flow 2s ease infinite;
+    opacity: 1;
+}
+
+@keyframes border-flow-glass {
+    0%, 100% { 
+        background-position: 0% 50%;
+    }
+    50% { 
+        background-position: 100% 50%;
+    }
 }
 
 @keyframes border-flow-grayscale {
@@ -1454,8 +1476,8 @@
 }
 
 .partner-logo {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
     position: relative;
     z-index: 10;
     transition: all 0.3s ease;
@@ -1466,10 +1488,10 @@
 }
 
 .partner-name {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 600;
     color: #9ca3af;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     position: relative;
     z-index: 10;
     text-align: center;
@@ -1491,4 +1513,221 @@
 
 .partner-card:hover .partner-description {
     color: #9ca3af;
+}
+
+/* Cinematic Card Design System */
+.cinematic-section {
+    position: relative;
+    padding: 6rem 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+}
+
+.cinematic-header {
+    text-align: center;
+    margin-bottom: 5rem;
+    position: relative;
+}
+
+.cinematic-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #e2e8f0 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+@media (min-width: 1024px) {
+    .cinematic-title {
+        font-size: 4.5rem;
+    }
+}
+
+.cinematic-title::before {
+    content: attr(data-blur-text);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, #8b5cf6, #ec4899, #06b6d4, #10b981);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.15;
+    filter: blur(4px);
+    z-index: -1;
+}
+
+.cinematic-subtitle {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    max-width: 48rem;
+    margin: 0 auto;
+    line-height: 1.75;
+}
+
+.cinematic-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+    .cinematic-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .cinematic-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.cinematic-card {
+    position: relative;
+    background: #0f0f0f;
+    border: 1px solid #262626;
+    padding: 3rem 2rem;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.cinematic-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8b5cf6, #ec4899, #06b6d4, #10b981, #f59e0b);
+    background-size: 300% 100%;
+    animation: gradient-slide 6s linear infinite;
+}
+
+@keyframes gradient-slide {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+.cinematic-card:hover {
+    transform: translateY(-8px);
+    border-color: #404040;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.cinematic-card:hover::before {
+    animation-duration: 2s;
+}
+
+.card-header {
+    margin-bottom: 2rem;
+}
+
+.card-number {
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.card-main-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.card-description-text {
+    font-size: 1rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.card-feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card-feature-item {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.card-feature-item::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: #8b5cf6;
+    font-size: 0.75rem;
+}
+
+/* Cinematic Background Effects */
+.cinematic-bg-effect {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.floating-orb {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float-cinematic 20s ease-in-out infinite;
+}
+
+.orb-1 {
+    background: radial-gradient(circle, #8b5cf6, transparent);
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.orb-2 {
+    background: radial-gradient(circle, #ec4899, transparent);
+    top: 60%;
+    right: 10%;
+    animation-delay: 7s;
+}
+
+.orb-3 {
+    background: radial-gradient(circle, #06b6d4, transparent);
+    bottom: 20%;
+    left: 30%;
+    animation-delay: 14s;
+}
+
+@keyframes float-cinematic {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    33% { transform: translateY(-30px) scale(1.1); }
+    66% { transform: translateY(20px) scale(0.9); }
 }

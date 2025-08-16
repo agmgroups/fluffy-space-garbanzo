@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NeoChat - AI Conversation Terminal | onelastai.com</title>
+  <title>DataVision - AI Data Analytics Terminal | onelastai.com</title>
   
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -653,13 +653,13 @@
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="hero-content">
-      <div class="agent-logo">�</div>
+      <div class="agent-logo">📊</div>
       <h1 class="agent-title">DataVision</h1>
-      <p class="agent-tagline">Advanced data visualization and analytics platform</p>
+      <p class="agent-tagline">Advanced Data Analytics & Visualization AI</p>
       <p class="agent-description">
         I am DataVision, your expert in transforming complex data into stunning visualizations. 
-        I help create interactive charts, dashboards, and visual analytics that make data 
-        insights clear, actionable, and beautifully presented for any audience.
+        I create interactive charts, perform statistical analysis, build real-time dashboards, 
+        and generate insights that make your data tell compelling stories.
       </p>
       
       <div class="agent-stats">
@@ -682,8 +682,8 @@
   <!-- Terminal Section -->
   <section class="terminal-section">
     <div class="terminal-header">
-      <h2 class="terminal-title">🖥️ NeoChat Terminal Interface</h2>
-      <p class="terminal-subtitle">Type your questions or commands below and press Enter to chat with NeoChat</p>
+      <h2 class="terminal-title">� DataVision Analytics Terminal</h2>
+      <p class="terminal-subtitle">Enter commands or upload data to create stunning visualizations and insights</p>
     </div>
     
     <div class="terminal-container">
@@ -691,30 +691,37 @@
         <div class="terminal-button"></div>
         <div class="terminal-button yellow"></div>
         <div class="terminal-button green"></div>
-        <span class="terminal-title-text">neochat@onelastai.com:~$</span>
+        <span class="terminal-title-text">datavision@analytics.ai:~$</span>
       </div>
       
       <div class="terminal-output" id="terminal-output">
         <div class="welcome-message">
 ╔══════════════════════════════════════════════════════════════════╗
-║                       Welcome to DataVision                        ║
-║              Your AI Conversation Terminal                       ║
+║                       Welcome to DataVision                     ║
+║              Advanced Data Analytics Terminal                    ║
 ╚══════════════════════════════════════════════════════════════════╝
 
-<div class="system-info">System: NeoChat v1.0 | Status: Online | Agent ID: <%= @agent.id %>
+<div class="system-info">System: DataVision v2.0 | Status: Online | Agent ID: <%= @agent.id %>
 <%= Time.current.strftime("Date: %Y-%m-%d %H:%M:%S") %> | Session: Active</div>
 
-<span style="color: #00d4ff;">Welcome! I'm NeoChat, your intelligent AI assistant.</span>
+<span style="color: #00d4ff;">Welcome! I'm DataVision, your AI data visualization expert.</span>
 
-I can help you with:
-• 💭 Questions & Answers on any topic
-• 🛠 Problem solving and analysis  
-• 💡 Creative brainstorming and ideas
-• 📚 Information research and learning
-• 🎯 Suggestions and helpful advice
-• 💬 Friendly conversation
+🎯 **Specialized Capabilities:**
+• � Create interactive charts (15+ types)
+• � Advanced statistical analysis & insights
+• 🎛️ Build real-time dashboards
+• 🔍 Predictive modeling & forecasting
+• � Export to professional formats
+• 📋 Data preprocessing & cleaning
 
-Type your message below and let's start chatting!
+⚡ **Quick Commands:**
+• Type 'create chart' - Launch chart builder
+• Type 'analyze data' - Statistical analysis
+• Type 'build dashboard' - Dashboard generator
+• Type 'export options' - Format selection
+
+🚀 **Getting Started:**
+Upload your CSV/Excel files or describe your visualization needs!
 
         </div>
         
@@ -724,7 +731,7 @@ Type your message below and let's start chatting!
       </div>
       
       <div class="terminal-input-container">
-        <span class="terminal-prompt">neochat@terminal:~$ </span>
+        <span class="terminal-prompt">datavision@analytics:~$ </span>
         <input 
           type="text" 
           class="terminal-input" 
@@ -966,7 +973,7 @@ Type your message below and let's start chatting!
         this.showTyping(true);
         
         try {
-          const response = await fetch('/chat', {
+          const response = await fetch('/datavision/chat', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -979,11 +986,20 @@ Type your message below and let's start chatting!
           
           if (data.success) {
             this.addMessage('agent', data.response, data.timestamp);
+            
+            // Handle DataVision-specific features
+            if (data.chart_data) {
+              this.displayChartPreview(data.chart_data, data.visualization_type);
+            }
+            
+            if (data.suggested_actions && data.suggested_actions.length > 0) {
+              this.displaySuggestedActions(data.suggested_actions);
+            }
           } else {
             this.addMessage('error', data.error || 'Sorry, there was an error processing your message.');
           }
         } catch (error) {
-          console.error('Chat error:', error);
+          console.error('DataVision error:', error);
           this.addMessage('error', 'Connection error. Please check your internet and try again.');
         } finally {
           this.setLoading(false);
@@ -1040,6 +1056,39 @@ Type your message below and let's start chatting!
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
+      }
+      
+      // DataVision-specific methods
+      displayChartPreview(chartData, visualizationType) {
+        const previewDiv = document.createElement('div');
+        previewDiv.className = 'chart-preview';
+        previewDiv.innerHTML = `
+          <div style="background: rgba(0, 212, 255, 0.1); border: 1px solid #00d4ff; border-radius: 8px; padding: 1rem; margin: 1rem 0;">
+            <h4 style="color: #00d4ff; margin: 0 0 0.5rem 0;">📊 ${visualizationType.replace('_', ' ').toUpperCase()} Preview</h4>
+            <pre style="color: #ffffff; font-size: 12px; margin: 0;">${JSON.stringify(chartData, null, 2)}</pre>
+          </div>
+        `;
+        this.output.appendChild(previewDiv);
+        this.scrollToBottom();
+      }
+      
+      displaySuggestedActions(actions) {
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'suggested-actions';
+        actionsDiv.innerHTML = `
+          <div style="background: rgba(0, 255, 0, 0.1); border: 1px solid #00ff00; border-radius: 8px; padding: 1rem; margin: 1rem 0;">
+            <h4 style="color: #00ff00; margin: 0 0 0.5rem 0;">💡 Suggested Actions:</h4>
+            ${actions.map(action => `<button onclick="window.terminal.executeAction('${action}')" style="background: #00d4ff; color: #000; border: none; padding: 0.25rem 0.5rem; margin: 0.25rem; border-radius: 4px; cursor: pointer;">${action}</button>`).join('')}
+          </div>
+        `;
+        this.output.appendChild(actionsDiv);
+        this.scrollToBottom();
+      }
+      
+      executeAction(action) {
+        this.addMessage('user', action);
+        this.input.value = action;
+        this.sendMessage();
       }
     }
     

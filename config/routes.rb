@@ -177,26 +177,63 @@ Rails.application.routes.draw do
   # DataVision routes
   get '/datavision', to: 'datavision#index'
   post '/datavision/chat', to: 'datavision#chat'
+  post '/datavision/create_chart', to: 'datavision#create_chart'
+  post '/datavision/analyze_dataset', to: 'datavision#analyze_dataset'
+  post '/datavision/generate_dashboard', to: 'datavision#generate_dashboard'
+  get '/datavision/status', to: 'datavision#status'
 
   # InfoSeek routes
   get '/infoseek', to: 'infoseek#index'
   post '/infoseek/chat', to: 'infoseek#chat'
+  post '/infoseek/deep_research', to: 'infoseek#deep_research'
+  post '/infoseek/fact_check', to: 'infoseek#fact_check'
+  post '/infoseek/research_assistant', to: 'infoseek#research_assistant'
+  post '/infoseek/trend_analysis', to: 'infoseek#trend_analysis'
+  get '/infoseek/status', to: 'infoseek#status'
 
   # DocuMind routes
   get '/documind', to: 'documind#index'
   post '/documind/chat', to: 'documind#chat'
+  post '/documind/analyze_document', to: 'documind#analyze_document'
+  post '/documind/extract_entities', to: 'documind#extract_entities'
+  post '/documind/generate_summary', to: 'documind#generate_summary'
+  post '/documind/classify_document', to: 'documind#classify_document'
+  post '/documind/translate_document', to: 'documind#translate_document'
+  get '/documind/status', to: 'documind#status'
 
   # CareBot routes
   get '/carebot', to: 'carebot#index'
   post '/carebot/chat', to: 'carebot#chat'
+  post '/carebot/symptom_checker', to: 'carebot#symptom_checker'
+  post '/carebot/wellness_plan', to: 'carebot#wellness_plan'
+  post '/carebot/medication_reminder', to: 'carebot#medication_reminder'
+  post '/carebot/mental_health_support', to: 'carebot#mental_health_support'
+  post '/carebot/fitness_tracker', to: 'carebot#fitness_tracker'
+  get '/carebot/status', to: 'carebot#status'
 
   # PersonaX routes
   get '/personax', to: 'personax#index'
   post '/personax/chat', to: 'personax#chat'
 
+  # PersonaX specialized personality endpoints
+  post '/personax/personality_analysis', to: 'personax#personality_analysis'
+  post '/personax/mbti_assessment', to: 'personax#mbti_assessment'
+  post '/personax/behavioral_insights', to: 'personax#behavioral_insights'
+  post '/personax/compatibility_check', to: 'personax#relationship_compatibility'
+  post '/personax/development_plan', to: 'personax#personal_development'
+  get '/personax/status', to: 'personax#status'
+
   # AuthWise routes
   get '/authwise', to: 'authwise#index'
   post '/authwise/chat', to: 'authwise#chat'
+
+  # AuthWise specialized security endpoints
+  post '/authwise/vulnerability_assessment', to: 'authwise#vulnerability_assessment'
+  post '/authwise/security_audit', to: 'authwise#security_audit'
+  post '/authwise/access_control_analysis', to: 'authwise#access_control_analysis'
+  post '/authwise/penetration_test_report', to: 'authwise#penetration_test_report'
+  get '/authwise/compliance_dashboard', to: 'authwise#compliance_dashboard'
+  get '/authwise/status', to: 'authwise#status'
 
   # IdeaForge routes
   get '/ideaforge', to: 'ideaforge#index'

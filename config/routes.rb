@@ -259,9 +259,16 @@ Rails.application.routes.draw do
   post '/login', to: 'pages#login_submit'
   get '/logout', to: 'pages#logout'
 
+  # CTA Section Routes
+  get '/get-started', to: 'pages#get_started'
+  get '/schedule-demo', to: 'pages#schedule_demo'
+  post '/schedule-demo', to: 'pages#schedule_demo_submit'
+  get '/start-free', to: 'pages#start_free'
+
   # User Dashboard & Account
   get '/dashboard', to: 'pages#dashboard'
   get '/my-agents', to: 'pages#my_agents'
+  get '/agents', to: 'pages#agents'
   get '/settings', to: 'pages#settings'
   post '/settings', to: 'pages#settings_update'
   get '/billing', to: 'pages#billing'
@@ -284,19 +291,19 @@ Rails.application.routes.draw do
     get '/forum/post/:id', to: 'community#show_post'
     post '/forum/reply', to: 'community#create_reply'
   end
-  
+
   # Documentation Routes
   get '/docs', to: 'docs#index'
   get '/docs/:section', to: 'docs#section'
   get '/docs/:section/:topic', to: 'docs#topic'
-  
-  # Learning Routes  
+
+  # Learning Routes
   get '/learn', to: 'learn#index'
   get '/learn/tutorials', to: 'learn#tutorials'
   get '/learn/tutorial/:id', to: 'learn#tutorial'
   get '/learn/paths', to: 'learn#paths'
   get '/learn/path/:id', to: 'learn#path'
-  
+
   # Press & Awards Routes
   get '/press', to: 'press#index'
   get '/press/:publication', to: 'press#show'
@@ -314,7 +321,7 @@ Rails.application.routes.draw do
   get '/infrastructure/tech-stack', to: 'infrastructure#tech_stack'
   get '/infrastructure/security', to: 'infrastructure#security'
   get '/infrastructure/deployment', to: 'infrastructure#deployment'
-  
+
   # Newsletter Routes
   get '/newsletter', to: 'pages#newsletter'
   post '/newsletter', to: 'pages#newsletter_subscribe'

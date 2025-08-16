@@ -539,6 +539,9 @@
 
     <%= yield %>
 
+    <!-- Conditional Footer - Hidden on Agent Pages -->
+    <%= render 'shared/footer' if show_footer? %>
+
     <!-- Global Menu JavaScript -->
     <script>
       function toggleDropdown(menuId) {

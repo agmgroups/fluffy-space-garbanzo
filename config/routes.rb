@@ -145,9 +145,34 @@ Rails.application.routes.draw do
 
   # Additional Agent Routes - Each with their own controller
 
+  # TradeSage routes (NEW Financial AI Agent)
+  get '/tradesage', to: 'tradesage#index'
+  post '/tradesage/chat', to: 'tradesage#chat'
+  post '/tradesage/analyze_stock', to: 'tradesage#analyze_stock'
+  post '/tradesage/portfolio_analysis', to: 'tradesage#portfolio_analysis'
+  post '/tradesage/market_sentiment', to: 'tradesage#market_sentiment'
+  post '/tradesage/risk_assessment', to: 'tradesage#risk_assessment'
+  post '/tradesage/generate_strategy', to: 'tradesage#generate_strategy'
+  post '/tradesage/market_news', to: 'tradesage#market_news'
+  post '/tradesage/technical_analysis', to: 'tradesage#technical_analysis'
+
+  # CodeMaster routes (NEW AI Agent)
+  get '/codemaster', to: 'codemaster#index'
+  post '/codemaster/chat', to: 'codemaster#chat'
+  post '/codemaster/analyze_code', to: 'codemaster#analyze_code'
+  post '/codemaster/generate_code', to: 'codemaster#generate_code'
+  post '/codemaster/debug_code', to: 'codemaster#debug_code'
+  post '/codemaster/optimize_code', to: 'codemaster#optimize_code'
+  post '/codemaster/code_review', to: 'codemaster#code_review'
+  post '/codemaster/explain_code', to: 'codemaster#explain_code'
+
   # AIBlogster routes
   get '/aiblogster', to: 'aiblogster#index'
   post '/aiblogster/chat', to: 'aiblogster#chat'
+  post '/aiblogster/generate_blog_post', to: 'aiblogster#generate_blog_post'
+  post '/aiblogster/analyze_content', to: 'aiblogster#analyze_content'
+  post '/aiblogster/optimize_seo', to: 'aiblogster#optimize_seo'
+  post '/aiblogster/generate_ideas', to: 'aiblogster#generate_ideas'
 
   # DataVision routes
   get '/datavision', to: 'datavision#index'
@@ -249,6 +274,51 @@ Rails.application.routes.draw do
   get '/templates', to: 'pages#templates'
   get '/support', to: 'pages#support'
   post '/support/ticket', to: 'pages#support_ticket'
+
+  # Community Routes
+  namespace :community do
+    get '/', to: 'community#index', as: :root
+    get '/forum', to: 'community#forum'
+    get '/forum/:category', to: 'community#forum_category'
+    post '/forum/post', to: 'community#create_post'
+    get '/forum/post/:id', to: 'community#show_post'
+    post '/forum/reply', to: 'community#create_reply'
+  end
+  
+  # Documentation Routes
+  get '/docs', to: 'docs#index'
+  get '/docs/:section', to: 'docs#section'
+  get '/docs/:section/:topic', to: 'docs#topic'
+  
+  # Learning Routes  
+  get '/learn', to: 'learn#index'
+  get '/learn/tutorials', to: 'learn#tutorials'
+  get '/learn/tutorial/:id', to: 'learn#tutorial'
+  get '/learn/paths', to: 'learn#paths'
+  get '/learn/path/:id', to: 'learn#path'
+  
+  # Press & Awards Routes
+  get '/press', to: 'press#index'
+  get '/press/:publication', to: 'press#show'
+  get '/awards', to: 'awards#index'
+  get '/awards/:award', to: 'awards#show'
+
+  # Features Routes
+  get '/features', to: 'features#index'
+  get '/features/conversational-ai', to: 'features#conversational_ai'
+  get '/features/content-media', to: 'features#content_media'
+  get '/features/intelligence-analytics', to: 'features#intelligence_analytics'
+
+  # Infrastructure Routes
+  get '/infrastructure', to: 'infrastructure#index'
+  get '/infrastructure/tech-stack', to: 'infrastructure#tech_stack'
+  get '/infrastructure/security', to: 'infrastructure#security'
+  get '/infrastructure/deployment', to: 'infrastructure#deployment'
+  
+  # Newsletter Routes
+  get '/newsletter', to: 'pages#newsletter'
+  post '/newsletter', to: 'pages#newsletter_subscribe'
+  post '/newsletter/subscribe', to: 'pages#newsletter_subscribe'
 
   # Legal & Policy Pages
   get '/privacy', to: 'pages#privacy'

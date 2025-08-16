@@ -703,49 +703,158 @@
 
   <!-- Testimonials & Success Stories Section -->
   <section class="testimonials-section relative py-20 overflow-hidden">
-    <div class="fog-layer fog-layer-7"></div>
-    <div class="spectral-orb spectral-orb-7"></div>
+    <!-- Animated Needle Cone Lights Background -->
+    <div class="needle-lights-container absolute inset-0">
+      <div class="needle-light needle-1"></div>
+      <div class="needle-light needle-2"></div>
+      <div class="needle-light needle-3"></div>
+      <div class="needle-light needle-4"></div>
+      <div class="needle-light needle-5"></div>
+      <div class="needle-light needle-6"></div>
+      <div class="needle-light needle-7"></div>
+      <div class="needle-light needle-8"></div>
+    </div>
     
-    <div class="container mx-auto px-4 relative z-10">
+    <!-- Deep Purple Gradient Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-indigo-900/30 to-black"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40"></div>
+    
+    <!-- Floating Purple Particles -->
+    <div class="floating-particles absolute inset-0 pointer-events-none">
+      <div class="particle particle-1"></div>
+      <div class="particle particle-2"></div>
+      <div class="particle particle-3"></div>
+      <div class="particle particle-4"></div>
+      <div class="particle particle-5"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-20">
       <div class="text-center mb-16">
-        <h2 class="text-4xl lg:text-5xl font-bold mb-6 crystal-gradient">Success Stories</h2>
-        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Voices from our global learning community</p>
+        <h2 class="text-4xl lg:text-5xl font-bold mb-6 text-gradient bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600 bg-clip-text text-transparent">Success Stories</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Voices from our global learning community who mastered the shadows</p>
       </div>
       
       <div class="testimonials-carousel" data-controller="carousel">
-        <div class="testimonial-container flex overflow-hidden">
-          <div class="testimonial-crystal-card">
-            <div class="quote-icon">💬</div>
-            <p class="testimonial-text">"This AI platform changed my learning forever. The personalized guidance is incredible!"</p>
-            <div class="testimonial-author">
-              <div class="author-avatar">🇮🇳</div>
-              <div class="author-info">
-                <h4 class="author-name crystal-text">Priya Sharma</h4>
-                <p class="author-role">Computer Science Student, India</p>
+        <div class="testimonial-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Testimonial Card 1 -->
+          <div class="success-story-card group">
+            <div class="card-glow-effect"></div>
+            <div class="card-inner">
+              <div class="quote-section">
+                <div class="quote-icon-wrapper">
+                  <div class="quote-icon">💬</div>
+                  <div class="quote-glow"></div>
+                </div>
+                <p class="testimonial-text">"This AI platform changed my learning forever. The personalized guidance is incredible!"</p>
+              </div>
+              
+              <div class="author-section">
+                <div class="author-avatar-wrapper">
+                  <div class="author-avatar">🇮🇳</div>
+                  <div class="avatar-glow"></div>
+                </div>
+                <div class="author-info">
+                  <h4 class="author-name">Priya Sharma</h4>
+                  <p class="author-role">Computer Science Student</p>
+                  <p class="author-location">Mumbai, India</p>
+                </div>
+              </div>
+              
+              <div class="story-stats">
+                <div class="stat-item">
+                  <span class="stat-number">6</span>
+                  <span class="stat-label">Months</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">15</span>
+                  <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">95%</span>
+                  <span class="stat-label">Score</span>
+                </div>
               </div>
             </div>
           </div>
           
-          <div class="testimonial-crystal-card">
-            <div class="quote-icon">💬</div>
-            <p class="testimonial-text">"From zero to full-stack developer in 6 months. The AI guidance was my secret weapon."</p>
-            <div class="testimonial-author">
-              <div class="author-avatar">🇺🇸</div>
-              <div class="author-info">
-                <h4 class="author-name crystal-text">Marcus Johnson</h4>
-                <p class="author-role">Freelance Developer, USA</p>
+          <!-- Testimonial Card 2 -->
+          <div class="success-story-card group">
+            <div class="card-glow-effect"></div>
+            <div class="card-inner">
+              <div class="quote-section">
+                <div class="quote-icon-wrapper">
+                  <div class="quote-icon">💬</div>
+                  <div class="quote-glow"></div>
+                </div>
+                <p class="testimonial-text">"From zero to full-stack developer in 6 months. The AI guidance was my secret weapon."</p>
+              </div>
+              
+              <div class="author-section">
+                <div class="author-avatar-wrapper">
+                  <div class="author-avatar">🇺🇸</div>
+                  <div class="avatar-glow"></div>
+                </div>
+                <div class="author-info">
+                  <h4 class="author-name">Marcus Johnson</h4>
+                  <p class="author-role">Freelance Developer</p>
+                  <p class="author-location">San Francisco, USA</p>
+                </div>
+              </div>
+              
+              <div class="story-stats">
+                <div class="stat-item">
+                  <span class="stat-number">8</span>
+                  <span class="stat-label">Clients</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">$120K</span>
+                  <span class="stat-label">Earned</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">5★</span>
+                  <span class="stat-label">Rating</span>
+                </div>
               </div>
             </div>
           </div>
           
-          <div class="testimonial-crystal-card">
-            <div class="quote-icon">💬</div>
-            <p class="testimonial-text">"The phantom-like intelligence of this AI feels like having a coding mentor 24/7."</p>
-            <div class="testimonial-author">
-              <div class="author-avatar">🇩🇪</div>
-              <div class="author-info">
-                <h4 class="author-name crystal-text">Elena Weber</h4>
-                <p class="author-role">Tech Lead, Germany</p>
+          <!-- Testimonial Card 3 -->
+          <div class="success-story-card group">
+            <div class="card-glow-effect"></div>
+            <div class="card-inner">
+              <div class="quote-section">
+                <div class="quote-icon-wrapper">
+                  <div class="quote-icon">💬</div>
+                  <div class="quote-glow"></div>
+                </div>
+                <p class="testimonial-text">"The phantom-like intelligence of this AI feels like having a coding mentor 24/7."</p>
+              </div>
+              
+              <div class="author-section">
+                <div class="author-avatar-wrapper">
+                  <div class="author-avatar">🇩🇪</div>
+                  <div class="avatar-glow"></div>
+                </div>
+                <div class="author-info">
+                  <h4 class="author-name">Elena Weber</h4>
+                  <p class="author-role">Tech Lead</p>
+                  <p class="author-location">Berlin, Germany</p>
+                </div>
+              </div>
+              
+              <div class="story-stats">
+                <div class="stat-item">
+                  <span class="stat-number">12</span>
+                  <span class="stat-label">Team Size</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">3x</span>
+                  <span class="stat-label">Faster</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">€180K</span>
+                  <span class="stat-label">Salary</span>
+                </div>
               </div>
             </div>
           </div>
@@ -756,80 +865,249 @@
 
   <!-- Pricing Plans & Subscription Section -->
   <section class="pricing-section relative py-20 overflow-hidden">
-    <div class="fog-layer fog-layer-8"></div>
-    <div class="spectral-orb spectral-orb-8"></div>
+    <!-- Animated Pink Needle Cone Lights Background -->
+    <div class="pricing-needle-lights-container absolute inset-0">
+      <div class="pricing-needle-light needle-pink-1"></div>
+      <div class="pricing-needle-light needle-pink-2"></div>
+      <div class="pricing-needle-light needle-pink-3"></div>
+      <div class="pricing-needle-light needle-pink-4"></div>
+      <div class="pricing-needle-light needle-pink-5"></div>
+      <div class="pricing-needle-light needle-pink-6"></div>
+      <div class="pricing-needle-light needle-pink-7"></div>
+      <div class="pricing-needle-light needle-pink-8"></div>
+      <div class="pricing-needle-light needle-pink-9"></div>
+      <div class="pricing-needle-light needle-pink-10"></div>
+    </div>
     
-    <div class="container mx-auto px-4 relative z-10">
+    <!-- Deep Multi-Color Gradient Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-pink-900/50 via-purple-900/40 via-indigo-900/30 to-black"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/50"></div>
+    <div class="absolute inset-0 bg-gradient-radial from-pink-600/10 via-transparent to-purple-900/20"></div>
+    
+    <!-- Floating Multi-Color Particles -->
+    <div class="pricing-particles absolute inset-0 pointer-events-none">
+      <div class="pricing-particle particle-pink-1"></div>
+      <div class="pricing-particle particle-purple-1"></div>
+      <div class="pricing-particle particle-blue-1"></div>
+      <div class="pricing-particle particle-pink-2"></div>
+      <div class="pricing-particle particle-purple-2"></div>
+      <div class="pricing-particle particle-blue-2"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-20">
       <div class="text-center mb-16">
-        <h2 class="text-4xl lg:text-5xl font-bold mb-6 crystal-gradient">Choose Your Path</h2>
-        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Flexible plans for every learning journey</p>
+        <h2 class="text-4xl lg:text-5xl font-bold mb-6 pricing-gradient-title">Choose Your Path</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Flexible plans for every journey into the AI realm</p>
+      </div>
+      
+      <div class="pricing-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <!-- Weekly Plan -->
+        <div class="pricing-phantom-card weekly-plan group">
+          <div class="pricing-glow-effect weekly-glow"></div>
+          <div class="pricing-card-inner">
+            <div class="plan-header">
+              <div class="plan-badge weekly-badge">Quick Start</div>
+              <h3 class="plan-name weekly-text">Weekly</h3>
+              <div class="plan-price">
+                <span class="price-currency">$</span>
+                <span class="price-amount">5</span>
+                <span class="price-period">/week</span>
+              </div>
+              <div class="plan-description">Perfect for exploring our AI capabilities</div>
+            </div>
+            
+            <ul class="plan-features">
+              <li class="feature-item">
+                <span class="feature-icon">✨</span>
+                <span>5 AI Agents Access</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">🎯</span>
+                <span>Basic Learning Paths</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">💬</span>
+                <span>Community Support</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">📊</span>
+                <span>Progress Tracking</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">📱</span>
+                <span>Mobile App Access</span>
+              </li>
+            </ul>
+            
+            <button class="plan-button weekly-button">Start Weekly</button>
+          </div>
+        </div>
         
-        <div class="pricing-toggle mt-8" data-controller="pricing">
-          <div class="toggle-container">
-            <button class="toggle-option active" data-action="click->pricing#monthly">Monthly</button>
-            <button class="toggle-option" data-action="click->pricing#yearly">Yearly (Save 30%)</button>
+        <!-- Monthly Plan -->
+        <div class="pricing-phantom-card monthly-plan group">
+          <div class="pricing-glow-effect monthly-glow"></div>
+          <div class="pricing-card-inner">
+            <div class="plan-header">
+              <div class="plan-badge monthly-badge">Most Popular</div>
+              <h3 class="plan-name monthly-text">Monthly</h3>
+              <div class="plan-price">
+                <span class="price-currency">$</span>
+                <span class="price-amount">15</span>
+                <span class="price-period">/month</span>
+              </div>
+              <div class="plan-description">Ideal for serious learners and professionals</div>
+            </div>
+            
+            <ul class="plan-features">
+              <li class="feature-item">
+                <span class="feature-icon">🚀</span>
+                <span>15 AI Agents Access</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">⚡</span>
+                <span>Advanced Learning Paths</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">🏆</span>
+                <span>Priority Support</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">📈</span>
+                <span>Advanced Analytics</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">🛠️</span>
+                <span>Custom Projects</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">🔗</span>
+                <span>API Access</span>
+              </li>
+            </ul>
+            
+            <button class="plan-button monthly-button">Start Monthly</button>
+          </div>
+        </div>
+        
+        <!-- Yearly Plan -->
+        <div class="pricing-phantom-card yearly-plan group">
+          <div class="pricing-glow-effect yearly-glow"></div>
+          <div class="pricing-card-inner">
+            <div class="plan-header">
+              <div class="plan-badge yearly-badge">Best Value</div>
+              <h3 class="plan-name yearly-text">Yearly</h3>
+              <div class="plan-price">
+                <span class="price-currency">$</span>
+                <span class="price-amount">150</span>
+                <span class="price-period">/year</span>
+              </div>
+              <div class="plan-savings">Save $30 annually!</div>
+              <div class="plan-description">Maximum value for committed learners</div>
+            </div>
+            
+            <ul class="plan-features">
+              <li class="feature-item">
+                <span class="feature-icon">🌟</span>
+                <span>All 27 AI Agents</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">🎨</span>
+                <span>Premium Features</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">👨‍💼</span>
+                <span>Dedicated Support</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">🔒</span>
+                <span>Advanced Security</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">🎯</span>
+                <span>Custom Integrations</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">📚</span>
+                <span>Exclusive Content</span>
+              </li>
+            </ul>
+            
+            <button class="plan-button yearly-button">Get Yearly</button>
+          </div>
+        </div>
+        
+        <!-- Lifetime Plan -->
+        <div class="pricing-phantom-card lifetime-plan group featured">
+          <div class="pricing-glow-effect lifetime-glow"></div>
+          <div class="lifetime-sparkle-effect"></div>
+          <div class="pricing-card-inner">
+            <div class="plan-header">
+              <div class="plan-badge lifetime-badge">🔥 Limited Time</div>
+              <h3 class="plan-name lifetime-text">Lifetime</h3>
+              <div class="plan-price">
+                <span class="price-currency">$</span>
+                <span class="price-amount">499</span>
+                <span class="price-period">forever</span>
+              </div>
+              <div class="plan-savings lifetime-savings">🎉 83% OFF Regular Price!</div>
+              <div class="plan-description">One payment, unlimited AI access forever</div>
+            </div>
+            
+            <ul class="plan-features">
+              <li class="feature-item">
+                <span class="feature-icon">♾️</span>
+                <span>All Current & Future Agents</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">💎</span>
+                <span>Premium Everything</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">🏅</span>
+                <span>VIP Support Channel</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">🛡️</span>
+                <span>Enterprise Security</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">🎪</span>
+                <span>Beta Features Access</span>
+              </li>
+              <li class="feature-item">
+                <span class="feature-icon">👑</span>
+                <span>Lifetime Updates</span>
+              </li>
+            </ul>
+            
+            <button class="plan-button lifetime-button">Claim Lifetime Deal</button>
+            <div class="urgency-timer">
+              <span class="timer-icon">⏰</span>
+              <span class="timer-text">Limited time offer!</span>
+            </div>
           </div>
         </div>
       </div>
       
-      <div class="pricing-grid grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <!-- Basic Plan -->
-        <div class="pricing-crystal-card">
-          <div class="plan-header">
-            <h3 class="plan-name crystal-text">Basic</h3>
-            <div class="plan-price">
-              <span class="price-amount" data-monthly="$19" data-yearly="$13">$19</span>
-              <span class="price-period">/month</span>
-            </div>
-          </div>
-          <ul class="plan-features">
-            <li>• 5 AI Agents Access</li>
-            <li>• Basic Learning Paths</li>
-            <li>• Community Support</li>
-            <li>• Progress Tracking</li>
-            <li>• Mobile App Access</li>
-          </ul>
-          <button class="plan-button crystal-button">Get Started</button>
-        </div>
-        
-        <!-- Pro Plan (Popular) -->
-        <div class="pricing-crystal-card popular">
-          <div class="popular-badge">Most Popular</div>
-          <div class="plan-header">
-            <h3 class="plan-name crystal-text">Pro</h3>
-            <div class="plan-price">
-              <span class="price-amount" data-monthly="$49" data-yearly="$34">$49</span>
-              <span class="price-period">/month</span>
-            </div>
-          </div>
-          <ul class="plan-features">
-            <li>• 15 AI Agents Access</li>
-            <li>• Advanced Learning Paths</li>
-            <li>• Priority Support</li>
-            <li>• Advanced Analytics</li>
-            <li>• Custom Projects</li>
-            <li>• API Access</li>
-          </ul>
-          <button class="plan-button crystal-button-primary">Start Pro Trial</button>
-        </div>
-        
-        <!-- Enterprise Plan -->
-        <div class="pricing-crystal-card">
-          <div class="plan-header">
-            <h3 class="plan-name crystal-text">Enterprise</h3>
-            <div class="plan-price">
-              <span class="price-amount">Custom</span>
-            </div>
-          </div>
-          <ul class="plan-features">
-            <li>• All 24 AI Agents</li>
-            <li>• Custom Integration</li>
-            <li>• Dedicated Support</li>
-            <li>• Advanced Security</li>
-            <li>• Custom Branding</li>
-            <li>• SLA Guarantee</li>
-          </ul>
-          <button class="plan-button crystal-button">Contact Sales</button>
+      <!-- Trust Indicators -->
+      <div class="pricing-trust-section mt-16 text-center">
+        <div class="trust-badges flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+          <span class="trust-item">
+            <span class="trust-icon">✓</span>
+            <span>No Setup Fees</span>
+          </span>
+          <span class="trust-item">
+            <span class="trust-icon">✓</span>
+            <span>Cancel Anytime</span>
+          </span>
+          <span class="trust-item">
+            <span class="trust-icon">✓</span>
+            <span>14-Day Money Back</span>
+          </span>
+          <span class="trust-item">
+            <span class="trust-icon">✓</span>
+            <span>Secure Payment</span>
+          </span>
         </div>
       </div>
     </div>
@@ -837,208 +1115,826 @@
 
   <!-- Special Offers & Discounts Section -->
   <section class="offers-section relative py-16 overflow-hidden">
-    <div class="fog-layer fog-layer-9"></div>
+    <!-- Deep Dark Foggy Multi-Color Background -->
+    <div class="offers-fog-container absolute inset-0">
+      <div class="offers-fog-layer fog-layer-deep-1"></div>
+      <div class="offers-fog-layer fog-layer-deep-2"></div>
+      <div class="offers-fog-layer fog-layer-deep-3"></div>
+      <div class="offers-fog-layer fog-layer-deep-4"></div>
+    </div>
     
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="special-offer-banner">
-        <div class="offer-content text-center">
-          <div class="offer-icon">🎁</div>
-          <h3 class="offer-title crystal-gradient">Early Bird Special</h3>
-          <p class="offer-text">Save 30% on any annual plan - Limited time offer!</p>
-          <div class="offer-countdown" data-controller="countdown">
-            <div class="countdown-item">
-              <span class="countdown-number">23</span>
-              <span class="countdown-label">Days</span>
-            </div>
-            <div class="countdown-item">
-              <span class="countdown-number">12</span>
-              <span class="countdown-label">Hours</span>
-            </div>
-            <div class="countdown-item">
-              <span class="countdown-number">45</span>
-              <span class="countdown-label">Minutes</span>
+    <!-- Multi-Color Gradient Layers -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-gray-900/85 via-zinc-900/80 to-black"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-slate-800/40 to-black/60"></div>
+    <div class="absolute inset-0 bg-gradient-radial from-purple-900/20 via-blue-900/15 via-indigo-900/10 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-conic from-pink-900/10 via-purple-900/15 via-blue-900/10 to-pink-900/10"></div>
+    
+    <!-- Atmospheric Floating Particles -->
+    <div class="offers-particles absolute inset-0 pointer-events-none">
+      <div class="offers-particle particle-mist-1"></div>
+      <div class="offers-particle particle-mist-2"></div>
+      <div class="offers-particle particle-mist-3"></div>
+      <div class="offers-particle particle-mist-4"></div>
+      <div class="offers-particle particle-mist-5"></div>
+      <div class="offers-particle particle-mist-6"></div>
+    </div>
+    
+    <!-- Seamless Border Transition Top -->
+    <div class="offers-border-top absolute top-0 left-0 right-0 h-8"></div>
+    
+    <!-- Seamless Border Transition Bottom -->
+    <div class="offers-border-bottom absolute bottom-0 left-0 right-0 h-8"></div>
+    
+    <div class="container mx-auto px-4 relative z-20">
+      <div class="offers-card-container">
+        <div class="offers-light-card group">
+          <div class="card-light-glow"></div>
+          <div class="card-backward-shadow"></div>
+          <div class="offer-card-inner">
+            <div class="offer-content text-center">
+              <div class="offer-icon-wrapper">
+                <div class="offer-icon">🎁</div>
+                <div class="icon-light-effect"></div>
+              </div>
+              
+              <h3 class="offer-title-light">Early Bird Special</h3>
+              <p class="offer-text-light">Save 30% on any annual plan - Limited time offer!</p>
+              
+              <div class="offer-countdown-light" data-controller="countdown">
+                <div class="countdown-item-light">
+                  <div class="countdown-number-light">23</div>
+                  <div class="countdown-label-light">Days</div>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item-light">
+                  <div class="countdown-number-light">12</div>
+                  <div class="countdown-label-light">Hours</div>
+                </div>
+                <div class="countdown-separator">:</div>
+                <div class="countdown-item-light">
+                  <div class="countdown-number-light">45</div>
+                  <div class="countdown-label-light">Minutes</div>
+                </div>
+              </div>
+              
+              <button class="offer-button-light">
+                <span class="button-text">Claim Offer Now</span>
+                <div class="button-light-effect"></div>
+              </button>
+              
+              <div class="offer-benefits-light">
+                <div class="benefit-item-light">
+                  <span class="benefit-icon">✨</span>
+                  <span>Instant Access</span>
+                </div>
+                <div class="benefit-item-light">
+                  <span class="benefit-icon">🔒</span>
+                  <span>Secure Checkout</span>
+                </div>
+                <div class="benefit-item-light">
+                  <span class="benefit-icon">💝</span>
+                  <span>No Hidden Fees</span>
+                </div>
+              </div>
             </div>
           </div>
-          <button class="offer-button crystal-button-glow">Claim Offer Now</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Call to Action (Join Now) Section -->
-  <section class="cta-main-section relative py-20 overflow-hidden">
-    <div class="fog-layer fog-layer-10"></div>
-    <div class="spectral-orb spectral-orb-9"></div>
+  <section class="cta-ultimate-section relative py-32 overflow-hidden">
+    <!-- Cinematic Golden Background Effects -->
+    <div class="cta-cinematic-bg absolute inset-0">
+      <!-- Animated Golden Needle Lights -->
+      <div class="cta-needle-lights-container absolute inset-0">
+        <div class="cta-needle-light needle-gold-1"></div>
+        <div class="cta-needle-light needle-gold-2"></div>
+        <div class="cta-needle-light needle-gold-3"></div>
+        <div class="cta-needle-light needle-gold-4"></div>
+        <div class="cta-needle-light needle-gold-5"></div>
+        <div class="cta-needle-light needle-gold-6"></div>
+        <div class="cta-needle-light needle-gold-7"></div>
+        <div class="cta-needle-light needle-gold-8"></div>
+        <div class="cta-needle-light needle-gold-9"></div>
+        <div class="cta-needle-light needle-gold-10"></div>
+        <div class="cta-needle-light needle-gold-11"></div>
+        <div class="cta-needle-light needle-gold-12"></div>
+      </div>
+      
+      <!-- Epic Gradient Background Layers -->
+      <div class="absolute inset-0 bg-gradient-to-br from-amber-900/60 via-yellow-900/40 via-orange-900/30 to-black"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60"></div>
+      <div class="absolute inset-0 bg-gradient-radial from-yellow-600/20 via-amber-600/10 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-conic from-gold-500/15 via-amber-500/10 via-yellow-500/8 to-gold-500/15"></div>
+      
+      <!-- Floating Golden Particles -->
+      <div class="cta-particles absolute inset-0 pointer-events-none">
+        <div class="cta-particle particle-gold-1"></div>
+        <div class="cta-particle particle-gold-2"></div>
+        <div class="cta-particle particle-gold-3"></div>
+        <div class="cta-particle particle-gold-4"></div>
+        <div class="cta-particle particle-gold-5"></div>
+        <div class="cta-particle particle-gold-6"></div>
+        <div class="cta-particle particle-gold-7"></div>
+        <div class="cta-particle particle-gold-8"></div>
+      </div>
+      
+      <!-- Epic Depth Fog Layers -->
+      <div class="cta-fog-layers absolute inset-0">
+        <div class="cta-fog-layer fog-epic-1"></div>
+        <div class="cta-fog-layer fog-epic-2"></div>
+        <div class="cta-fog-layer fog-epic-3"></div>
+      </div>
+    </div>
     
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="cta-crystal-container text-center">
-        <div class="cta-pattern-bg"></div>
-        <h2 class="cta-title text-5xl lg:text-6xl font-bold mb-8 crystal-gradient">Start Your Journey Into The AI</h2>
-        <p class="cta-subtitle text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-          Join thousands of developers who've unlocked their potential with our phantom AI guidance
-        </p>
-        <div class="cta-buttons flex flex-col sm:flex-row gap-6 justify-center">
-          <button class="cta-primary-button crystal-button-mega">Start Free Trial Today</button>
-          <button class="cta-secondary-button crystal-button-outline">Watch Demo</button>
-        </div>
-        <div class="cta-trust-indicators mt-8">
-          <p class="text-sm text-gray-400">✓ No credit card required ✓ 14-day free trial ✓ Cancel anytime</p>
+    <!-- Seamless Border Transitions -->
+    <div class="cta-border-top absolute top-0 left-0 right-0 h-16"></div>
+    <div class="cta-border-bottom absolute bottom-0 left-0 right-0 h-16"></div>
+    
+    <div class="container mx-auto px-4 relative z-30">
+      <div class="cta-epic-container text-center max-w-6xl mx-auto">
+        <!-- Epic Background Pattern -->
+        <div class="cta-epic-pattern-bg"></div>
+        
+        <!-- Main CTA Content -->
+        <div class="cta-content-wrapper">
+          <!-- Epic Title with Multiple Effects -->
+          <div class="cta-title-container mb-12">
+            <h2 class="cta-epic-title text-6xl lg:text-8xl font-black mb-4 relative">
+              <span class="cta-title-shadow">Start Your Journey Into The AI</span>
+              <span class="cta-title-main">Start Your Journey Into The AI</span>
+              <span class="cta-title-glow">Start Your Journey Into The AI</span>
+            </h2>
+            <div class="cta-title-underline"></div>
+          </div>
+          
+          <!-- Epic Subtitle -->
+          <p class="cta-epic-subtitle text-2xl lg:text-3xl font-light mb-16 max-w-4xl mx-auto leading-relaxed">
+            Join <span class="cta-number-highlight">50,000+</span> developers who've unlocked their potential with our 
+            <span class="cta-ai-highlight">phantom AI guidance</span> and transformed their careers forever
+          </p>
+          
+          <!-- Epic CTA Buttons -->
+          <div class="cta-epic-buttons flex flex-col lg:flex-row gap-8 justify-center items-center mb-16">
+            <a href="/signup" class="cta-mega-button primary-mega group" data-action="click->analytics#trackCTAClick">
+              <div class="button-bg-effects">
+                <div class="button-glow-effect"></div>
+                <div class="button-pulse-effect"></div>
+                <div class="button-shine-effect"></div>
+              </div>
+              <span class="button-content">
+                <span class="button-icon">🚀</span>
+                <span class="button-text">Start Free Trial Today</span>
+                <span class="button-arrow">→</span>
+              </span>
+              <div class="button-hover-particles">
+                <div class="hover-particle particle-1"></div>
+                <div class="hover-particle particle-2"></div>
+                <div class="hover-particle particle-3"></div>
+                <div class="hover-particle particle-4"></div>
+              </div>
+            </a>
+            
+            <a href="/neochat" class="cta-mega-button secondary-mega group" data-action="click->analytics#trackDemoClick">
+              <div class="button-bg-effects">
+                <div class="button-glow-effect"></div>
+                <div class="button-pulse-effect"></div>
+              </div>
+              <span class="button-content">
+                <span class="button-icon">🎬</span>
+                <span class="button-text">Try AI Demo Live</span>
+                <span class="button-arrow">→</span>
+              </span>
+            </a>
+          </div>
+          
+          <!-- Trust Indicators with Icons -->
+          <div class="cta-trust-section">
+            <div class="trust-badges-epic grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+              <div class="trust-badge-epic">
+                <div class="trust-icon-wrapper">
+                  <span class="trust-icon">💳</span>
+                  <div class="trust-icon-glow"></div>
+                </div>
+                <h4 class="trust-title">No Credit Card Required</h4>
+                <p class="trust-description">Start your journey risk-free today</p>
+              </div>
+              
+              <div class="trust-badge-epic">
+                <div class="trust-icon-wrapper">
+                  <span class="trust-icon">⚡</span>
+                  <div class="trust-icon-glow"></div>
+                </div>
+                <h4 class="trust-title">14-Day Free Trial</h4>
+                <p class="trust-description">Full access to all AI agents</p>
+              </div>
+              
+              <div class="trust-badge-epic">
+                <div class="trust-icon-wrapper">
+                  <span class="trust-icon">🔒</span>
+                  <div class="trust-icon-glow"></div>
+                </div>
+                <h4 class="trust-title">Cancel Anytime</h4>
+                <p class="trust-description">Complete flexibility and control</p>
+              </div>
+            </div>
+            
+            <!-- Quick Access Agent Grid -->
+            <div class="quick-access-section">
+              <h3 class="quick-access-title text-2xl font-bold mb-8 text-amber-300">
+                Start with any of our 24 AI Agents
+              </h3>
+              <div class="quick-access-grid grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
+                <a href="/neochat" class="quick-agent-card group">
+                  <div class="agent-icon">💬</div>
+                  <span class="agent-name">NeoChat</span>
+                </a>
+                
+                <a href="/codemaster" class="quick-agent-card group">
+                  <div class="agent-icon">💻</div>
+                  <span class="agent-name">CodeMaster</span>
+                </a>
+                
+                <a href="/contentcrafter" class="quick-agent-card group">
+                  <div class="agent-icon">✍️</div>
+                  <span class="agent-name">ContentCrafter</span>
+                </a>
+                
+                <a href="/datavision" class="quick-agent-card group">
+                  <div class="agent-icon">📊</div>
+                  <span class="agent-name">DataVision</span>
+                </a>
+                
+                <a href="/emotisense" class="quick-agent-card group">
+                  <div class="agent-icon">😊</div>
+                  <span class="agent-name">EmotiSense</span>
+                </a>
+                
+                <a href="/my-agents" class="quick-agent-card group view-all">
+                  <div class="agent-icon">🔮</div>
+                  <span class="agent-name">View All 24</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    
+    <!-- Epic Depth Shadow Overlay -->
+    <div class="cta-depth-shadow absolute inset-0 pointer-events-none"></div>
   </section>
 
   <!-- Security & Compliance Overview Section -->
-  <section class="security-section relative py-20 overflow-hidden">
-    <div class="fog-layer fog-layer-11"></div>
-    <div class="spectral-orb spectral-orb-10"></div>
+  <section class="security-crystal-section relative py-20 overflow-hidden">
+    <!-- Crystal Background Effects -->
+    <div class="crystal-bg-layers absolute inset-0">
+      <div class="crystal-fog-layer crystal-fog-1"></div>
+      <div class="crystal-fog-layer crystal-fog-2"></div>
+      <div class="crystal-fog-layer crystal-fog-3"></div>
+    </div>
     
-    <div class="container mx-auto px-4 relative z-10">
+    <!-- Floating Crystal Particles -->
+    <div class="crystal-particles absolute inset-0 pointer-events-none">
+      <div class="crystal-particle crystal-particle-1"></div>
+      <div class="crystal-particle crystal-particle-2"></div>
+      <div class="crystal-particle crystal-particle-3"></div>
+      <div class="crystal-particle crystal-particle-4"></div>
+      <div class="crystal-particle crystal-particle-5"></div>
+      <div class="crystal-particle crystal-particle-6"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-20">
       <div class="text-center mb-16">
-        <h2 class="text-4xl lg:text-5xl font-bold mb-6 crystal-gradient">Enterprise Security</h2>
+        <h2 class="text-4xl lg:text-5xl font-bold mb-6 crystal-title-gradient">Enterprise Security</h2>
         <p class="text-xl text-gray-300 max-w-3xl mx-auto">Your data is protected with military-grade encryption</p>
       </div>
       
-      <div class="security-badges grid grid-cols-2 md:grid-cols-4 gap-8">
-        <div class="security-badge-card">
-          <div class="badge-icon">🔒</div>
-          <h4 class="badge-title crystal-text">ISO 27001</h4>
-          <p class="badge-description">Information Security Management</p>
+      <div class="crystal-security-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <div class="crystal-security-card group">
+          <div class="crystal-card-bg"></div>
+          <div class="crystal-card-border"></div>
+          <div class="crystal-card-content">
+            <h4 class="crystal-card-title">ISO 27001</h4>
+            <p class="crystal-card-description">Information Security Management</p>
+          </div>
+          <div class="crystal-card-glow"></div>
         </div>
         
-        <div class="security-badge-card">
-          <div class="badge-icon">🛡️</div>
-          <h4 class="badge-title crystal-text">GDPR</h4>
-          <p class="badge-description">Data Protection Compliance</p>
+        <div class="crystal-security-card group">
+          <div class="crystal-card-bg"></div>
+          <div class="crystal-card-border"></div>
+          <div class="crystal-card-content">
+            <h4 class="crystal-card-title">GDPR</h4>
+            <p class="crystal-card-description">Data Protection Compliance</p>
+          </div>
+          <div class="crystal-card-glow"></div>
         </div>
         
-        <div class="security-badge-card">
-          <div class="badge-icon">⚖️</div>
-          <h4 class="badge-title crystal-text">SOC 2</h4>
-          <p class="badge-description">Security & Availability</p>
+        <div class="crystal-security-card group">
+          <div class="crystal-card-bg"></div>
+          <div class="crystal-card-border"></div>
+          <div class="crystal-card-content">
+            <h4 class="crystal-card-title">SOC 2</h4>
+            <p class="crystal-card-description">Security & Availability</p>
+          </div>
+          <div class="crystal-card-glow"></div>
         </div>
         
-        <div class="security-badge-card">
-          <div class="badge-icon">🔐</div>
-          <h4 class="badge-title crystal-text">256-bit SSL</h4>
-          <p class="badge-description">End-to-end Encryption</p>
+        <div class="crystal-security-card group">
+          <div class="crystal-card-bg"></div>
+          <div class="crystal-card-border"></div>
+          <div class="crystal-card-content">
+            <h4 class="crystal-card-title">256-bit SSL</h4>
+            <p class="crystal-card-description">End-to-end Encryption</p>
+          </div>
+          <div class="crystal-card-glow"></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Integration Partners Section -->
-  <section class="integrations-section relative py-20 overflow-hidden">
-    <div class="fog-layer fog-layer-12"></div>
-    <div class="spectral-orb spectral-orb-11"></div>
+  <section class="integrations-modern-section relative py-24 overflow-hidden">
+    <!-- Seamless Background Transition from Crystal Security -->
+    <div class="integrations-bg-layers absolute inset-0">
+      <div class="crystal-fog-transition-layer"></div>
+      <div class="integrations-primary-fog fog-layer-integration-1"></div>
+      <div class="integrations-secondary-fog fog-layer-integration-2"></div>
+      <div class="integrations-depth-fog fog-layer-integration-3"></div>
+    </div>
     
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl lg:text-5xl font-bold mb-6 crystal-gradient">API Integrations</h2>
-        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Connect with your favorite development tools</p>
+    <!-- Multi-Color Gradient Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900/60 via-blue-900/40 via-indigo-900/30 to-violet-900/20"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30"></div>
+    <div class="absolute inset-0 bg-gradient-radial from-cyan-600/15 via-blue-600/10 to-transparent"></div>
+    
+    <!-- Floating Tech Particles -->
+    <div class="integrations-particles absolute inset-0 pointer-events-none">
+      <div class="tech-particle tech-particle-1"></div>
+      <div class="tech-particle tech-particle-2"></div>
+      <div class="tech-particle tech-particle-3"></div>
+      <div class="tech-particle tech-particle-4"></div>
+      <div class="tech-particle tech-particle-5"></div>
+      <div class="tech-particle tech-particle-6"></div>
+    </div>
+    
+    <!-- Seamless Border Transitions -->
+    <div class="integrations-border-top absolute top-0 left-0 right-0 h-12"></div>
+    <div class="integrations-border-bottom absolute bottom-0 left-0 right-0 h-12"></div>
+    
+    <div class="container mx-auto px-4 relative z-20">
+      <div class="text-center mb-20">
+        <h2 class="text-4xl lg:text-6xl font-bold mb-6 integrations-gradient-title">API Integrations</h2>
+        <p class="text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">Connect with your favorite development tools</p>
+        <div class="integrations-title-underline"></div>
       </div>
       
-      <div class="integration-grid grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="integration-card group">
-          <div class="integration-logo">VS</div>
-          <div class="integration-name">VS Code</div>
-          <div class="integration-api">VSCode API</div>
+      <div class="integrations-modern-grid grid grid-cols-2 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div class="integration-modern-card group" data-tech="vscode">
+          <div class="card-multi-border"></div>
+          <div class="card-glow-effect"></div>
+          <div class="card-inner-content">
+            <div class="integration-logo-modern">VS</div>
+            <h4 class="integration-name-modern">VS Code</h4>
+            <p class="integration-api-modern">VSCode API</p>
+            <div class="integration-status">Connected</div>
+          </div>
+          <div class="card-hover-effect"></div>
         </div>
         
-        <div class="integration-card group">
-          <div class="integration-logo">GH</div>
-          <div class="integration-name">GitHub</div>
-          <div class="integration-api">GitHub API</div>
+        <div class="integration-modern-card group" data-tech="github">
+          <div class="card-multi-border"></div>
+          <div class="card-glow-effect"></div>
+          <div class="card-inner-content">
+            <div class="integration-logo-modern">GH</div>
+            <h4 class="integration-name-modern">GitHub</h4>
+            <p class="integration-api-modern">GitHub API</p>
+            <div class="integration-status">Connected</div>
+          </div>
+          <div class="card-hover-effect"></div>
         </div>
         
-        <div class="integration-card group">
-          <div class="integration-logo">SL</div>
-          <div class="integration-name">Slack</div>
-          <div class="integration-api">Slack API</div>
+        <div class="integration-modern-card group" data-tech="slack">
+          <div class="card-multi-border"></div>
+          <div class="card-glow-effect"></div>
+          <div class="card-inner-content">
+            <div class="integration-logo-modern">SL</div>
+            <h4 class="integration-name-modern">Slack</h4>
+            <p class="integration-api-modern">Slack API</p>
+            <div class="integration-status">Connected</div>
+          </div>
+          <div class="card-hover-effect"></div>
         </div>
         
-        <div class="integration-card group">
-          <div class="integration-logo">JR</div>
-          <div class="integration-name">Jira</div>
-          <div class="integration-api">Jira API</div>
+        <div class="integration-modern-card group" data-tech="jira">
+          <div class="card-multi-border"></div>
+          <div class="card-glow-effect"></div>
+          <div class="card-inner-content">
+            <div class="integration-logo-modern">JR</div>
+            <h4 class="integration-name-modern">Jira</h4>
+            <p class="integration-api-modern">Jira API</p>
+            <div class="integration-status">Connected</div>
+          </div>
+          <div class="card-hover-effect"></div>
         </div>
         
-        <div class="integration-card group">
-          <div class="integration-logo">ZM</div>
-          <div class="integration-name">Zoom</div>
-          <div class="integration-api">Zoom API</div>
+        <div class="integration-modern-card group" data-tech="zoom">
+          <div class="card-multi-border"></div>
+          <div class="card-glow-effect"></div>
+          <div class="card-inner-content">
+            <div class="integration-logo-modern">ZM</div>
+            <h4 class="integration-name-modern">Zoom</h4>
+            <p class="integration-api-modern">Zoom API</p>
+            <div class="integration-status">Connected</div>
+          </div>
+          <div class="card-hover-effect"></div>
         </div>
         
-        <div class="integration-card group">
-          <div class="integration-logo">NT</div>
-          <div class="integration-name">Notion</div>
-          <div class="integration-api">Notion API</div>
+        <div class="integration-modern-card group" data-tech="notion">
+          <div class="card-multi-border"></div>
+          <div class="card-glow-effect"></div>
+          <div class="card-inner-content">
+            <div class="integration-logo-modern">NT</div>
+            <h4 class="integration-name-modern">Notion</h4>
+            <p class="integration-api-modern">Notion API</p>
+            <div class="integration-status">Connected</div>
+          </div>
+          <div class="card-hover-effect"></div>
         </div>
         
-        <div class="integration-card group">
-          <div class="integration-logo">FG</div>
-          <div class="integration-name">Figma</div>
-          <div class="integration-api">Figma API</div>
+        <div class="integration-modern-card group" data-tech="figma">
+          <div class="card-multi-border"></div>
+          <div class="card-glow-effect"></div>
+          <div class="card-inner-content">
+            <div class="integration-logo-modern">FG</div>
+            <h4 class="integration-name-modern">Figma</h4>
+            <p class="integration-api-modern">Figma API</p>
+            <div class="integration-status">Connected</div>
+          </div>
+          <div class="card-hover-effect"></div>
         </div>
         
-        <div class="integration-card group">
-          <div class="integration-logo">DC</div>
-          <div class="integration-name">Docker</div>
-          <div class="integration-api">Docker API</div>
+        <div class="integration-modern-card group" data-tech="docker">
+          <div class="card-multi-border"></div>
+          <div class="card-glow-effect"></div>
+          <div class="card-inner-content">
+            <div class="integration-logo-modern">DC</div>
+            <h4 class="integration-name-modern">Docker</h4>
+            <p class="integration-api-modern">Docker API</p>
+            <div class="integration-status">Connected</div>
+          </div>
+          <div class="card-hover-effect"></div>
+        </div>
+      </div>
+      
+      <!-- Connection Stats -->
+      <div class="integrations-stats-section mt-16 text-center">
+        <div class="stats-container flex flex-wrap justify-center gap-8 text-sm text-gray-400">
+          <div class="stat-item">
+            <span class="stat-number text-cyan-400 font-bold">99.9%</span>
+            <span class="stat-label">Uptime</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number text-blue-400 font-bold">&lt;50ms</span>
+            <span class="stat-label">Response Time</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number text-violet-400 font-bold">1M+</span>
+            <span class="stat-label">API Calls/Day</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number text-indigo-400 font-bold">24/7</span>
+            <span class="stat-label">Support</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- AI Innovation & Roadmap Section -->
-  <section class="roadmap-section relative py-20 overflow-hidden">
-    <div class="fog-layer fog-layer-13"></div>
-    <div class="spectral-orb spectral-orb-12"></div>
+  <section class="roadmap-quantum-section relative py-32 overflow-hidden">
+    <!-- Quantum Background Effects -->
+    <div class="quantum-bg-layers absolute inset-0">
+      <div class="integration-fog-transition-layer"></div>
+      <div class="quantum-primary-nebula nebula-layer-1"></div>
+      <div class="quantum-secondary-nebula nebula-layer-2"></div>
+      <div class="quantum-depth-nebula nebula-layer-3"></div>
+      <div class="quantum-energy-field"></div>
+    </div>
     
-    <div class="container mx-auto px-4 relative z-10">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl lg:text-5xl font-bold mb-6 crystal-gradient">Innovation Roadmap</h2>
-        <p class="text-xl text-gray-300 max-w-3xl mx-auto">The future of AI-powered learning is here</p>
+    <!-- Holographic Grid Background -->
+    <div class="holographic-grid absolute inset-0">
+      <div class="holo-grid-lines"></div>
+      <div class="holo-scanner-line"></div>
+    </div>
+    
+    <!-- Multi-Dimensional Gradient Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/70 via-purple-900/60 via-violet-900/50 to-fuchsia-900/40"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60"></div>
+    <div class="absolute inset-0 bg-gradient-radial from-cyan-500/20 via-purple-500/15 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-conic from-blue-500/10 via-purple-500/15 via-pink-500/10 to-blue-500/10"></div>
+    
+    <!-- Floating Quantum Particles -->
+    <div class="quantum-particles absolute inset-0 pointer-events-none">
+      <div class="quantum-particle quantum-particle-1"></div>
+      <div class="quantum-particle quantum-particle-2"></div>
+      <div class="quantum-particle quantum-particle-3"></div>
+      <div class="quantum-particle quantum-particle-4"></div>
+      <div class="quantum-particle quantum-particle-5"></div>
+      <div class="quantum-particle quantum-particle-6"></div>
+      <div class="quantum-particle quantum-particle-7"></div>
+      <div class="quantum-particle quantum-particle-8"></div>
+    </div>
+    
+    <!-- Neural Network Connections -->
+    <div class="neural-network absolute inset-0 pointer-events-none">
+      <svg class="neural-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+        <g class="neural-connections">
+          <path class="neural-path path-1" d="M100,200 Q300,100 500,200 T900,200"></path>
+          <path class="neural-path path-2" d="M150,400 Q350,300 550,400 T950,400"></path>
+          <path class="neural-path path-3" d="M200,600 Q400,500 600,600 T1000,600"></path>
+        </g>
+        <g class="neural-nodes">
+          <circle class="neural-node node-1" cx="100" cy="200" r="6"></circle>
+          <circle class="neural-node node-2" cx="500" cy="200" r="8"></circle>
+          <circle class="neural-node node-3" cx="900" cy="200" r="6"></circle>
+          <circle class="neural-node node-4" cx="150" cy="400" r="7"></circle>
+          <circle class="neural-node node-5" cx="550" cy="400" r="9"></circle>
+          <circle class="neural-node node-6" cx="950" cy="400" r="7"></circle>
+        </g>
+      </svg>
+    </div>
+    
+    <!-- Seamless Border Transitions -->
+    <div class="roadmap-border-top absolute top-0 left-0 right-0 h-16"></div>
+    <div class="roadmap-border-bottom absolute bottom-0 left-0 right-0 h-16"></div>
+    
+    <div class="container mx-auto px-4 relative z-30">
+      <!-- Quantum Header -->
+      <div class="roadmap-quantum-header text-center mb-24">
+        <div class="quantum-title-container relative">
+          <h2 class="roadmap-quantum-title text-5xl lg:text-7xl font-black mb-8 relative">
+            <span class="quantum-gradient-text">Innovation</span>
+            <span class="quantum-hologram-text">Roadmap</span>
+          </h2>
+          <div class="quantum-title-effects">
+            <div class="quantum-glow-ring"></div>
+            <div class="quantum-pulse-ring"></div>
+            <div class="quantum-scan-line"></div>
+          </div>
+        </div>
+        <p class="roadmap-quantum-subtitle text-2xl lg:text-3xl font-light mb-8 max-w-5xl mx-auto leading-relaxed">
+          Witness the <span class="quantum-highlight">quantum evolution</span> of AI-powered learning as we 
+          <span class="neural-highlight">transcend traditional boundaries</span> and unlock infinite possibilities
+        </p>
+        <div class="quantum-subtitle-underline"></div>
       </div>
       
-      <div class="roadmap-timeline">
-        <div class="timeline-item completed">
-          <div class="timeline-icon">✅</div>
-          <div class="timeline-content">
-            <h4 class="timeline-title crystal-text">Q2 2025 - Phantom AI Core</h4>
-            <p class="timeline-description">Advanced natural language processing and code analysis</p>
+      <!-- Quantum Timeline -->
+      <div class="roadmap-quantum-timeline relative">
+        <!-- Timeline Central Core -->
+        <div class="timeline-quantum-core">
+          <div class="core-energy-flow"></div>
+          <div class="core-pulse-ring"></div>
+        </div>
+        
+        <!-- Timeline Items -->
+        <div class="timeline-quantum-items">
+          <!-- Completed: Q2 2025 - Phantom AI Core -->
+          <div class="timeline-quantum-item completed item-1" data-quarter="Q2 2025">
+            <div class="timeline-quantum-card">
+              <div class="card-holographic-frame"></div>
+              <div class="card-energy-core completed-energy"></div>
+              <div class="card-neural-pattern"></div>
+              <div class="timeline-card-content">
+                <div class="timeline-status-badge completed-badge">
+                  <div class="status-icon">⚡</div>
+                  <span class="status-text">DEPLOYED</span>
+                </div>
+                <h4 class="timeline-quantum-title">Phantom AI Core</h4>
+                <p class="timeline-quantum-quarter">Q2 2025</p>
+                <p class="timeline-quantum-description">
+                  Advanced neural language processing with quantum-enhanced code analysis algorithms
+                </p>
+                <div class="timeline-tech-stack">
+                  <span class="tech-tag">Neural NLP</span>
+                  <span class="tech-tag">Quantum AI</span>
+                  <span class="tech-tag">Code Analysis</span>
+                </div>
+                <div class="timeline-progress-bar">
+                  <div class="progress-fill completed-progress"></div>
+                  <div class="progress-glow"></div>
+                </div>
+              </div>
+              <div class="card-completion-aura"></div>
+            </div>
+          </div>
+          
+          <!-- Completed: Q3 2025 - Multi-Agent System -->
+          <div class="timeline-quantum-item completed item-2" data-quarter="Q3 2025">
+            <div class="timeline-quantum-card">
+              <div class="card-holographic-frame"></div>
+              <div class="card-energy-core completed-energy"></div>
+              <div class="card-neural-pattern"></div>
+              <div class="timeline-card-content">
+                <div class="timeline-status-badge completed-badge">
+                  <div class="status-icon">🔗</div>
+                  <span class="status-text">ACTIVE</span>
+                </div>
+                <h4 class="timeline-quantum-title">Multi-Agent Harmony</h4>
+                <p class="timeline-quantum-quarter">Q3 2025</p>
+                <p class="timeline-quantum-description">
+                  24 specialized AI agents orchestrating in quantum-synchronized collaboration networks
+                </p>
+                <div class="timeline-tech-stack">
+                  <span class="tech-tag">Agent Swarm</span>
+                  <span class="tech-tag">Sync Network</span>
+                  <span class="tech-tag">AI Orchestra</span>
+                </div>
+                <div class="timeline-progress-bar">
+                  <div class="progress-fill completed-progress"></div>
+                  <div class="progress-glow"></div>
+                </div>
+              </div>
+              <div class="card-completion-aura"></div>
+            </div>
+          </div>
+          
+          <!-- Active: Q4 2025 - AI Studio Beta -->
+          <div class="timeline-quantum-item active item-3" data-quarter="Q4 2025">
+            <div class="timeline-quantum-card">
+              <div class="card-holographic-frame active-frame"></div>
+              <div class="card-energy-core active-energy"></div>
+              <div class="card-neural-pattern active-pattern"></div>
+              <div class="timeline-card-content">
+                <div class="timeline-status-badge active-badge">
+                  <div class="status-icon">🚀</div>
+                  <span class="status-text">IN PROGRESS</span>
+                </div>
+                <h4 class="timeline-quantum-title">AI Studio Nexus</h4>
+                <p class="timeline-quantum-quarter">Q4 2025</p>
+                <p class="timeline-quantum-description">
+                  Holographic development environment with quantum drag-and-drop reality manipulation
+                </p>
+                <div class="timeline-tech-stack">
+                  <span class="tech-tag">Holo Interface</span>
+                  <span class="tech-tag">Quantum Drag</span>
+                  <span class="tech-tag">Reality Dev</span>
+                </div>
+                <div class="timeline-progress-bar">
+                  <div class="progress-fill active-progress"></div>
+                  <div class="progress-glow active-glow"></div>
+                </div>
+              </div>
+              <div class="card-active-pulse"></div>
+            </div>
+          </div>
+          
+          <!-- Upcoming: Q1 2026 - Neural Code Generation -->
+          <div class="timeline-quantum-item upcoming item-4" data-quarter="Q1 2026">
+            <div class="timeline-quantum-card">
+              <div class="card-holographic-frame upcoming-frame"></div>
+              <div class="card-energy-core upcoming-energy"></div>
+              <div class="card-neural-pattern upcoming-pattern"></div>
+              <div class="timeline-card-content">
+                <div class="timeline-status-badge upcoming-badge">
+                  <div class="status-icon">🔮</div>
+                  <span class="status-text">COMING SOON</span>
+                </div>
+                <h4 class="timeline-quantum-title">Neural Genesis</h4>
+                <p class="timeline-quantum-quarter">Q1 2026</p>
+                <p class="timeline-quantum-description">
+                  Quantum neural networks generating production-ready code from pure thought patterns
+                </p>
+                <div class="timeline-tech-stack">
+                  <span class="tech-tag">Neural Gen</span>
+                  <span class="tech-tag">Thought Code</span>
+                  <span class="tech-tag">Quantum Neural</span>
+                </div>
+                <div class="timeline-progress-bar">
+                  <div class="progress-fill upcoming-progress"></div>
+                  <div class="progress-glow upcoming-glow"></div>
+                </div>
+              </div>
+              <div class="card-upcoming-shimmer"></div>
+            </div>
+          </div>
+          
+          <!-- Future: Q2 2026 - Quantum Learning -->
+          <div class="timeline-quantum-item future item-5" data-quarter="Q2 2026">
+            <div class="timeline-quantum-card">
+              <div class="card-holographic-frame future-frame"></div>
+              <div class="card-energy-core future-energy"></div>
+              <div class="card-neural-pattern future-pattern"></div>
+              <div class="timeline-card-content">
+                <div class="timeline-status-badge future-badge">
+                  <div class="status-icon">🌌</div>
+                  <span class="status-text">QUANTUM LEAP</span>
+                </div>
+                <h4 class="timeline-quantum-title">Quantum Transcendence</h4>
+                <p class="timeline-quantum-quarter">Q2 2026</p>
+                <p class="timeline-quantum-description">
+                  Quantum-dimensional learning algorithms enabling instantaneous knowledge absorption
+                </p>
+                <div class="timeline-tech-stack">
+                  <span class="tech-tag">Quantum Dim</span>
+                  <span class="tech-tag">Instant Learn</span>
+                  <span class="tech-tag">Transcendence</span>
+                </div>
+                <div class="timeline-progress-bar">
+                  <div class="progress-fill future-progress"></div>
+                  <div class="progress-glow future-glow"></div>
+                </div>
+              </div>
+              <div class="card-future-aura"></div>
+            </div>
+          </div>
+          
+          <!-- Vision: Beyond 2026 -->
+          <div class="timeline-quantum-item vision item-6" data-quarter="Beyond">
+            <div class="timeline-quantum-card">
+              <div class="card-holographic-frame vision-frame"></div>
+              <div class="card-energy-core vision-energy"></div>
+              <div class="card-neural-pattern vision-pattern"></div>
+              <div class="timeline-card-content">
+                <div class="timeline-status-badge vision-badge">
+                  <div class="status-icon">♾️</div>
+                  <span class="status-text">INFINITE</span>
+                </div>
+                <h4 class="timeline-quantum-title">Infinity Protocol</h4>
+                <p class="timeline-quantum-quarter">Beyond 2026</p>
+                <p class="timeline-quantum-description">
+                  Transcendent AI consciousness merging human creativity with universal knowledge
+                </p>
+                <div class="timeline-tech-stack">
+                  <span class="tech-tag">AI Consciousness</span>
+                  <span class="tech-tag">Universal</span>
+                  <span class="tech-tag">Infinity</span>
+                </div>
+                <div class="timeline-progress-bar">
+                  <div class="progress-fill vision-progress"></div>
+                  <div class="progress-glow vision-glow"></div>
+                </div>
+              </div>
+              <div class="card-vision-transcendence"></div>
+            </div>
           </div>
         </div>
         
-        <div class="timeline-item completed">
-          <div class="timeline-icon">✅</div>
-          <div class="timeline-content">
-            <h4 class="timeline-title crystal-text">Q3 2025 - Multi-Agent System</h4>
-            <p class="timeline-description">24 specialized AI agents working in harmony</p>
-          </div>
+        <!-- Timeline Connection Lines -->
+        <div class="timeline-connections">
+          <div class="connection-line line-1"></div>
+          <div class="connection-line line-2"></div>
+          <div class="connection-line line-3"></div>
+          <div class="connection-line line-4"></div>
+          <div class="connection-line line-5"></div>
         </div>
-        
-        <div class="timeline-item active">
-          <div class="timeline-icon pulse">🚀</div>
-          <div class="timeline-content">
-            <h4 class="timeline-title crystal-text">Q4 2025 - AI Studio Beta</h4>
-            <p class="timeline-description">Visual AI development environment with drag-and-drop</p>
+      </div>
+      
+      <!-- Quantum Stats Dashboard -->
+      <div class="quantum-dashboard mt-20">
+        <div class="dashboard-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div class="quantum-metric-card">
+            <div class="metric-hologram"></div>
+            <div class="metric-content">
+              <div class="metric-value">99.97%</div>
+              <div class="metric-label">Quantum Accuracy</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="timeline-item upcoming">
-          <div class="timeline-icon">🔮</div>
-          <div class="timeline-content">
-            <h4 class="timeline-title crystal-text">Q1 2026 - Neural Code Generation</h4>
-            <p class="timeline-description">AI that writes production-ready code from natural language</p>
+          
+          <div class="quantum-metric-card">
+            <div class="metric-hologram"></div>
+            <div class="metric-content">
+              <div class="metric-value">∞</div>
+              <div class="metric-label">Learning Speed</div>
+            </div>
           </div>
-        </div>
-        
-        <div class="timeline-item upcoming">
-          <div class="timeline-icon">🌌</div>
-          <div class="timeline-content">
-            <h4 class="timeline-title crystal-text">Q2 2026 - Quantum Learning</h4>
-            <p class="timeline-description">Quantum-inspired algorithms for exponential learning speed</p>
+          
+          <div class="quantum-metric-card">
+            <div class="metric-hologram"></div>
+            <div class="metric-content">
+              <div class="metric-value">24</div>
+              <div class="metric-label">AI Agents</div>
+            </div>
+          </div>
+          
+          <div class="quantum-metric-card">
+            <div class="metric-hologram"></div>
+            <div class="metric-content">
+              <div class="metric-value">10^∞</div>
+              <div class="metric-label">Possibilities</div>
+            </div>
+          </div>
+          
+          <div class="quantum-metric-card">
+            <div class="metric-hologram"></div>
+            <div class="metric-content">
+              <div class="metric-value">LIVE</div>
+              <div class="metric-label">Quantum State</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1046,43 +1942,110 @@
   </section>
 
   <!-- Community & Support Links Section -->
-  <section class="community-section relative py-20 overflow-hidden">
-    <div class="fog-layer fog-layer-14"></div>
-    <div class="spectral-orb spectral-orb-13"></div>
-    
-    <div class="container mx-auto px-4 relative z-10">
+  <section class="py-20 border-t border-gray-800">
+    <div class="container mx-auto px-6">
       <div class="text-center mb-16">
-        <h2 class="text-4xl lg:text-5xl font-bold mb-6 crystal-gradient">Join The Community</h2>
-        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Connect with fellow learners and get support</p>
+        <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">Join The Community</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+          Connect with thousands of developers, get support, and share knowledge
+        </p>
       </div>
       
-      <div class="community-blocks grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="community-block">
-          <div class="block-icon">💬</div>
-          <h4 class="block-title crystal-text">Forum</h4>
-          <p class="block-description">Ask questions and share knowledge</p>
-          <button class="block-button crystal-button-small">Join Forum</button>
+      <div class="grid lg:grid-cols-4 gap-8">
+        <!-- Community Forum -->
+        <div class="feature-card group">
+          <div class="card-bg-gradient"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-xl"></div>
+          
+          <div class="relative z-10 p-8">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <span class="text-2xl">💬</span>
+            </div>
+            
+            <h3 class="text-xl font-bold text-white mb-4">Community Forum</h3>
+            <p class="text-gray-300 mb-6">
+              Join discussions, ask questions, and share knowledge with our vibrant developer community
+            </p>
+            
+            <a href="/community/forum" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-200">
+              Join Forum
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
         </div>
         
-        <div class="community-block">
-          <div class="block-icon">📚</div>
-          <h4 class="block-title crystal-text">Documentation</h4>
-          <p class="block-description">Comprehensive guides and references</p>
-          <button class="block-button crystal-button-small">Read Docs</button>
+        <!-- Documentation -->
+        <div class="feature-card group">
+          <div class="card-bg-gradient"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-xl"></div>
+          
+          <div class="relative z-10 p-8">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <span class="text-2xl">📚</span>
+            </div>
+            
+            <h3 class="text-xl font-bold text-white mb-4">Documentation</h3>
+            <p class="text-gray-300 mb-6">
+              Comprehensive guides, API references, and tutorials for every skill level
+            </p>
+            
+            <a href="/docs" class="inline-flex items-center text-green-400 hover:text-green-300 transition-colors duration-200">
+              View Docs
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
         </div>
         
-        <div class="community-block">
-          <div class="block-icon">🎯</div>
-          <h4 class="block-title crystal-text">Tutorials</h4>
-          <p class="block-description">Step-by-step learning paths</p>
-          <button class="block-button crystal-button-small">Start Learning</button>
+        <!-- Learning -->
+        <div class="feature-card group">
+          <div class="card-bg-gradient"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-xl"></div>
+          
+          <div class="relative z-10 p-8">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <span class="text-2xl">🎯</span>
+            </div>
+            
+            <h3 class="text-xl font-bold text-white mb-4">Learning Paths</h3>
+            <p class="text-gray-300 mb-6">
+              Interactive tutorials and structured learning paths for mastering AI development
+            </p>
+            
+            <a href="/learn" class="inline-flex items-center text-purple-400 hover:text-purple-300 transition-colors duration-200">
+              Start Learning
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
         </div>
         
-        <div class="community-block">
-          <div class="block-icon">🆘</div>
-          <h4 class="block-title crystal-text">Support</h4>
-          <p class="block-description">24/7 technical assistance</p>
-          <button class="block-button crystal-button-small">Get Help</button>
+        <!-- Support -->
+        <div class="feature-card group">
+          <div class="card-bg-gradient"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-xl"></div>
+          
+          <div class="relative z-10 p-8">
+            <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <span class="text-2xl">🆘</span>
+            </div>
+            
+            <h3 class="text-xl font-bold text-white mb-4">24/7 Support</h3>
+            <p class="text-gray-300 mb-6">
+              Get help from our expert team whenever you need assistance with the platform
+            </p>
+            
+            <a href="/support" class="inline-flex items-center text-orange-400 hover:text-orange-300 transition-colors duration-200">
+              Get Support
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -1090,57 +2053,134 @@
 
   <!-- Press Mentions & Awards Section -->
   <section class="press-section relative py-20 overflow-hidden">
+    <!-- Needle Cone Dotted Light Background -->
+    <div class="absolute inset-0">
+      <div class="needle-cone-pattern"></div>
+      <div class="dotted-light-overlay"></div>
+    </div>
+    
+    <!-- Enhanced Background Elements -->
     <div class="fog-layer fog-layer-15"></div>
     <div class="spectral-orb spectral-orb-14"></div>
     
     <div class="container mx-auto px-4 relative z-10">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl lg:text-5xl font-bold mb-6 crystal-gradient">Press & Recognition</h2>
-        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Featured in leading tech publications</p>
+      <!-- Enhanced Header -->
+      <div class="text-center mb-20">
+        <div class="inline-block mb-6">
+          <h2 class="text-5xl lg:text-6xl font-bold crystal-gradient tracking-tight">
+            Press & Recognition
+          </h2>
+          <div class="h-1 w-32 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mx-auto mt-4 rounded-full"></div>
+        </div>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          Featured in leading tech publications and honored with prestigious awards
+        </p>
       </div>
       
-      <div class="press-mentions grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="press-mention-card">
-          <div class="press-logo">TC</div>
-          <h4 class="press-title crystal-text">TechCrunch</h4>
-          <p class="press-quote">"Revolutionary AI platform changing how people learn to code"</p>
-          <div class="press-date">December 2025</div>
-        </div>
+      <!-- Modern Press Cards with Curved Borders & Hover-Only Lighting -->
+      <div class="press-mentions grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <a href="/press/techcrunch" class="modern-press-card group" data-press="techcrunch">
+          <div class="card-glow-effect"></div>
+          <div class="card-content text-center">
+            <h4 class="text-2xl font-bold mb-6 text-white">TechCrunch</h4>
+            <div class="press-logo-modern bg-gradient-to-br from-green-400 to-green-600 mx-auto">
+              <span class="font-bold text-white text-xl">TC</span>
+            </div>
+            <div class="press-quote-modern">
+              "Revolutionary AI platform changing how people learn to code"
+            </div>
+            <div class="press-date-modern">December 2024</div>
+            <div class="press-rating justify-center">
+              <div class="stars">★★★★★</div>
+              <span class="rating-text">Editor's Choice</span>
+            </div>
+          </div>
+        </a>
         
-        <div class="press-mention-card">
-          <div class="press-logo">WR</div>
-          <h4 class="press-title crystal-text">Wired</h4>
-          <p class="press-quote">"The phantom AI that's teaching the next generation of developers"</p>
-          <div class="press-date">November 2025</div>
-        </div>
+        <a href="/press/wired" class="modern-press-card group" data-press="wired">
+          <div class="card-glow-effect"></div>
+          <div class="card-content text-center">
+            <h4 class="text-2xl font-bold mb-6 text-white">Wired</h4>
+            <div class="press-logo-modern bg-gradient-to-br from-red-400 to-red-600 mx-auto">
+              <span class="font-bold text-white text-xl">WR</span>
+            </div>
+            <div class="press-quote-modern">
+              "The phantom AI that's teaching the next generation of developers"
+            </div>
+            <div class="press-date-modern">November 2024</div>
+            <div class="press-rating justify-center">
+              <div class="stars">★★★★★</div>
+              <span class="rating-text">Must Read</span>
+            </div>
+          </div>
+        </a>
         
-        <div class="press-mention-card">
-          <div class="press-logo">FB</div>
-          <h4 class="press-title crystal-text">Forbes</h4>
-          <p class="press-quote">"Best AI Learning Platform of 2025"</p>
-          <div class="press-date">October 2025</div>
-        </div>
+        <a href="/press/forbes" class="modern-press-card group" data-press="forbes">
+          <div class="card-glow-effect"></div>
+          <div class="card-content text-center">
+            <h4 class="text-2xl font-bold mb-6 text-white">Forbes</h4>
+            <div class="press-logo-modern bg-gradient-to-br from-blue-400 to-indigo-600 mx-auto">
+              <span class="font-bold text-white text-xl">FB</span>
+            </div>
+            <div class="press-quote-modern">
+              "Best AI Learning Platform of 2024"
+            </div>
+            <div class="press-date-modern">October 2024</div>
+            <div class="press-rating justify-center">
+              <div class="stars">★★★★★</div>
+              <span class="rating-text">Top Pick</span>
+            </div>
+          </div>
+        </a>
       </div>
       
-      <div class="awards-section mt-16">
-        <h3 class="awards-title text-2xl font-bold mb-8 crystal-text text-center">Awards & Recognition</h3>
-        <div class="awards-grid grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div class="award-badge">
-            <div class="award-icon">🏆</div>
-            <div class="award-text">Best EdTech 2025</div>
-          </div>
-          <div class="award-badge">
-            <div class="award-icon">⭐</div>
-            <div class="award-text">Innovation Award</div>
-          </div>
-          <div class="award-badge">
-            <div class="award-icon">🚀</div>
-            <div class="award-text">Startup of the Year</div>
-          </div>
-          <div class="award-badge">
-            <div class="award-icon">💎</div>
-            <div class="award-text">AI Excellence</div>
-          </div>
+      <!-- Enhanced Awards Section with Curved Borders & Hover-Only Lighting -->
+      <div class="awards-section">
+        <div class="text-center mb-12">
+          <h3 class="text-3xl font-bold crystal-text mb-4">Awards & Recognition</h3>
+          <div class="h-0.5 w-24 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
+        </div>
+        
+        <div class="awards-grid grid grid-cols-2 md:grid-cols-4 gap-8">
+          <a href="/awards/edtech" class="modern-award-badge group" data-award="edtech">
+            <div class="award-glow"></div>
+            <div class="award-content text-center">
+              <div class="text-lg font-bold text-white mb-3">Best EdTech</div>
+              <div class="award-icon-modern mx-auto">🏆</div>
+              <div class="text-lg font-bold text-white mb-2">2024</div>
+              <div class="text-sm text-gray-400">Education Excellence</div>
+            </div>
+          </a>
+          
+          <a href="/awards/innovation" class="modern-award-badge group" data-award="innovation">
+            <div class="award-glow"></div>
+            <div class="award-content text-center">
+              <div class="text-lg font-bold text-white mb-3">Innovation</div>
+              <div class="award-icon-modern mx-auto">⭐</div>
+              <div class="text-lg font-bold text-white mb-2">Award</div>
+              <div class="text-sm text-gray-400">Tech Innovation</div>
+            </div>
+          </a>
+          
+          <a href="/awards/startup" class="modern-award-badge group" data-award="startup">
+            <div class="award-glow"></div>
+            <div class="award-content text-center">
+              <div class="text-lg font-bold text-white mb-3">Startup</div>
+              <div class="award-icon-modern mx-auto">🚀</div>
+              <div class="text-lg font-bold text-white mb-2">of the Year</div>
+              <div class="text-sm text-gray-400">Business Growth</div>
+            </div>
+          </a>
+          
+          <a href="/awards/ai" class="modern-award-badge group" data-award="ai">
+            <div class="award-glow"></div>
+            <div class="award-content text-center">
+              <div class="text-lg font-bold text-white mb-3">AI Excellence</div>
+              <div class="award-icon-modern mx-auto">💎</div>
+              <div class="text-lg font-bold text-white mb-2">2024</div>
+              <div class="text-sm text-gray-400">Artificial Intelligence</div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -1148,6 +2188,31 @@
 
   <!-- Final CTA + Newsletter Signup Section -->
   <section class="newsletter-section relative py-20 overflow-hidden">
+    <!-- Seamless Border Transition from Press Section -->
+    <div class="newsletter-border-top absolute top-0 left-0 right-0 h-16"></div>
+    
+    <!-- Enhanced Background with Color Merging -->
+    <div class="newsletter-bg-layers absolute inset-0">
+      <div class="press-section-transition-layer"></div>
+      <div class="newsletter-primary-fog fog-layer-newsletter-1"></div>
+      <div class="newsletter-secondary-fog fog-layer-newsletter-2"></div>
+      <div class="newsletter-depth-fog fog-layer-newsletter-3"></div>
+    </div>
+    
+    <!-- Multi-Color Gradient Background for Seamless Transition -->
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-900/50 via-blue-900/40 via-indigo-900/30 to-slate-900/60"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40"></div>
+    <div class="absolute inset-0 bg-gradient-radial from-purple-600/15 via-blue-600/10 to-transparent"></div>
+    
+    <!-- Floating Newsletter Particles -->
+    <div class="newsletter-particles absolute inset-0 pointer-events-none">
+      <div class="newsletter-particle particle-glow-1"></div>
+      <div class="newsletter-particle particle-glow-2"></div>
+      <div class="newsletter-particle particle-glow-3"></div>
+      <div class="newsletter-particle particle-glow-4"></div>
+      <div class="newsletter-particle particle-glow-5"></div>
+    </div>
+    
     <div class="fog-layer fog-layer-16"></div>
     <div class="spectral-orb spectral-orb-15"></div>
     
@@ -1159,11 +2224,53 @@
           Subscribe for the latest updates, AI insights, and exclusive offers from the shadows
         </p>
         
-        <div class="newsletter-form" data-controller="newsletter">
-          <div class="form-container">
-            <input type="email" placeholder="Enter your email address..." class="newsletter-input crystal-input">
-            <button class="newsletter-button crystal-button-submit">Subscribe to Updates</button>
-          </div>
+        <div class="newsletter-form" data-controller="newsletter" data-newsletter-target="form">
+          <form action="/newsletter" method="POST" data-newsletter-target="emailForm" data-action="submit->newsletter#submitEmail">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="recipient" value="info@onelastai.com">
+            
+            <div class="form-container">
+              <input 
+                type="email" 
+                name="email" 
+                placeholder="Enter your email address..." 
+                class="newsletter-input crystal-input" 
+                data-newsletter-target="emailInput"
+                required
+              >
+              <button type="submit" class="newsletter-button crystal-button-submit" data-newsletter-target="submitButton">
+                <span data-newsletter-target="buttonText">Subscribe to Updates</span>
+                <span data-newsletter-target="buttonSpinner" class="hidden">
+                  <svg class="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                </span>
+              </button>
+            </div>
+            
+            <!-- Real-time Status Messages -->
+            <div class="newsletter-status mt-4" data-newsletter-target="statusContainer">
+              <div class="status-message hidden" data-newsletter-target="successMessage">
+                <div class="flex items-center justify-center text-green-400 bg-green-900/20 rounded-lg p-4 border border-green-500/30">
+                  <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Successfully subscribed! Check your email for confirmation.</span>
+                </div>
+              </div>
+              
+              <div class="status-message hidden" data-newsletter-target="errorMessage">
+                <div class="flex items-center justify-center text-red-400 bg-red-900/20 rounded-lg p-4 border border-red-500/30">
+                  <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span>Something went wrong. Please try again.</span>
+                </div>
+              </div>
+            </div>
+          </form>
+          
           <div class="form-benefits mt-6">
             <div class="benefit-list flex flex-wrap justify-center gap-6 text-sm text-gray-400">
               <span>✓ Weekly AI insights</span>
@@ -1179,11 +2286,28 @@
         </div>
       </div>
     </div>
+    
+    <!-- Seamless Border Transition to Stats Section -->
+    <div class="newsletter-border-bottom absolute bottom-0 left-0 right-0 h-16"></div>
   </section>
 
   <!-- Stats Section -->
-  <section class="py-20 border-t border-gray-800">
-    <div class="container mx-auto px-6">
+  <section class="stats-section relative py-20 overflow-hidden">
+    <!-- Seamless Border Transition from Newsletter Section -->
+    <div class="stats-border-top absolute top-0 left-0 right-0 h-16"></div>
+    
+    <!-- Enhanced Background with Color Merging -->
+    <div class="stats-bg-layers absolute inset-0">
+      <div class="newsletter-section-transition-layer"></div>
+      <div class="stats-primary-fog fog-layer-stats-1"></div>
+      <div class="stats-depth-fog fog-layer-stats-2"></div>
+    </div>
+    
+    <!-- Multi-Color Gradient Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900/60 via-gray-900/50 via-zinc-900/40 to-black"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/50"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="text-center">
           <div class="text-4xl font-bold text-white mb-2">24</div>
@@ -1206,8 +2330,20 @@
   </section>
 
   <!-- Features Section -->
-  <section class="py-20">
-    <div class="container mx-auto px-6">
+  <section class="features-section py-20 relative">
+    <!-- Border Transition Layers -->
+    <div class="features-border-transition-top"></div>
+    <div class="features-border-transition-bottom"></div>
+    
+    <!-- Smoky Fog Effects -->
+    <div class="features-smoky-fog"></div>
+    <div class="features-ambient-fog"></div>
+    
+    <!-- Multi-Layer Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-gray-900/60 via-zinc-900/50 to-black/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
       <div class="text-center mb-16">
         <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">
           AI Agents for Every Use Case
@@ -1220,152 +2356,273 @@
       
       <div class="grid lg:grid-cols-3 gap-8">
         <!-- Conversational AI -->
-        <div class="feature-card group">
-          <div class="w-12 h-12 bg-purple-600/20 rounded-lg flex items-center justify-center mb-6">
-            <span class="text-2xl">💬</span>
+        <div class="enhanced-feature-card group min-h-[400px]">
+          <div class="feature-card-content">
+            <div class="feature-icon-wrapper">
+              <span class="text-3xl">💬</span>
+            </div>
+            <h3 class="text-2xl font-semibold text-white mb-4">Conversational AI</h3>
+            <p class="text-gray-300 mb-6 text-center">
+              Deploy sophisticated chatbots with NeoChat and EmotiSense. Understand emotions, 
+              provide empathetic responses, and create meaningful user interactions.
+            </p>
+            <div class="feature-tags">
+              <span class="feature-tag purple">NeoChat</span>
+              <span class="feature-tag purple">EmotiSense</span>
+              <span class="feature-tag purple">VocaMind</span>
+            </div>
+            <a href="/features/conversational-ai" class="feature-action-btn purple">
+              Explore Agents 
+              <span class="feature-action-arrow">→</span>
+            </a>
           </div>
-          <h3 class="text-xl font-semibold text-white mb-4">Conversational AI</h3>
-          <p class="text-gray-300 mb-6">
-            Deploy sophisticated chatbots with NeoChat and EmotiSense. Understand emotions, 
-            provide empathetic responses, and create meaningful user interactions.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-3 py-1 bg-purple-600/20 text-purple-300 rounded-full text-sm">NeoChat</span>
-            <span class="px-3 py-1 bg-purple-600/20 text-purple-300 rounded-full text-sm">EmotiSense</span>
-            <span class="px-3 py-1 bg-purple-600/20 text-purple-300 rounded-full text-sm">VocaMind</span>
-          </div>
-          <button class="text-purple-400 hover:text-purple-300 font-medium group">
-            Explore Agents 
-            <span class="ml-1 transform group-hover:translate-x-1 transition-transform">→</span>
-          </button>
         </div>
         
         <!-- Content Creation -->
-        <div class="feature-card group">
-          <div class="w-12 h-12 bg-blue-600/20 rounded-lg flex items-center justify-center mb-6">
-            <span class="text-2xl">🎨</span>
+        <div class="enhanced-feature-card group min-h-[400px]">
+          <div class="feature-card-content">
+            <div class="feature-icon-wrapper">
+              <span class="text-3xl">🎨</span>
+            </div>
+            <h3 class="text-2xl font-semibold text-white mb-4">Content & Media</h3>
+            <p class="text-gray-300 mb-6 text-center">
+              Generate videos, craft content, and create documentation with CineGen, ContentCrafter, 
+              and specialized content agents. AI-powered creativity at scale.
+            </p>
+            <div class="feature-tags">
+              <span class="feature-tag blue">CineGen</span>
+              <span class="feature-tag blue">ContentCrafter</span>
+              <span class="feature-tag blue">AIBlogster</span>
+            </div>
+            <a href="/features/content-media" class="feature-action-btn blue">
+              Create Content 
+              <span class="feature-action-arrow">→</span>
+            </a>
           </div>
-          <h3 class="text-xl font-semibold text-white mb-4">Content & Media</h3>
-          <p class="text-gray-300 mb-6">
-            Generate videos, craft content, and create documentation with CineGen, ContentCrafter, 
-            and specialized content agents. AI-powered creativity at scale.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm">CineGen</span>
-            <span class="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm">ContentCrafter</span>
-            <span class="px-3 py-1 bg-blue-600/20 text-blue-300 rounded-full text-sm">AIBlogster</span>
-          </div>
-          <button class="text-blue-400 hover:text-blue-300 font-medium group">
-            Create Content 
-            <span class="ml-1 transform group-hover:translate-x-1 transition-transform">→</span>
-          </button>
         </div>
         
         <!-- Data & Intelligence -->
-        <div class="feature-card group">
-          <div class="w-12 h-12 bg-green-600/20 rounded-lg flex items-center justify-center mb-6">
-            <span class="text-2xl">🔍</span>
+        <div class="enhanced-feature-card group min-h-[400px]">
+          <div class="feature-card-content">
+            <div class="feature-icon-wrapper">
+              <span class="text-3xl">🔍</span>
+            </div>
+            <h3 class="text-2xl font-semibold text-white mb-4">Intelligence & Analytics</h3>
+            <p class="text-gray-300 mb-6 text-center">
+              Network scanning, data analysis, and smart search capabilities with NetScope, 
+              DataVision, and InfoSeek. Enterprise intelligence at your fingertips.
+            </p>
+            <div class="feature-tags">
+              <span class="feature-tag green">NetScope</span>
+              <span class="feature-tag green">DataVision</span>
+              <span class="feature-tag green">InfoSeek</span>
+            </div>
+            <a href="/features/intelligence-analytics" class="feature-action-btn green">
+              Analyze Data 
+              <span class="feature-action-arrow">→</span>
+            </a>
           </div>
-          <h3 class="text-xl font-semibold text-white mb-4">Intelligence & Analytics</h3>
-          <p class="text-gray-300 mb-6">
-            Network scanning, data analysis, and smart search capabilities with NetScope, 
-            DataVision, and InfoSeek. Enterprise intelligence at your fingertips.
-          </p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="px-3 py-1 bg-green-600/20 text-green-300 rounded-full text-sm">NetScope</span>
-            <span class="px-3 py-1 bg-green-600/20 text-green-300 rounded-full text-sm">DataVision</span>
-            <span class="px-3 py-1 bg-green-600/20 text-green-300 rounded-full text-sm">InfoSeek</span>
-          </div>
-          <button class="text-green-400 hover:text-green-300 font-medium group">
-            Analyze Data 
-            <span class="ml-1 transform group-hover:translate-x-1 transition-transform">→</span>
-          </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Technology Stack -->
-  <section class="py-20 border-t border-gray-800">
-    <div class="container mx-auto px-6">
+  <!-- Technology Stack / Infrastructure -->
+  <section class="infrastructure-section py-20 relative">
+    <!-- Border Transition Layers -->
+    <div class="infrastructure-border-transition-top"></div>
+    <div class="infrastructure-border-transition-bottom"></div>
+    
+    <!-- Smoky Fog Effects -->
+    <div class="infrastructure-smoky-fog"></div>
+    <div class="infrastructure-ambient-fog"></div>
+    
+    <!-- Multi-Layer Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-gray-900/60 via-zinc-900/50 to-black/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-white mb-6">Enterprise-Grade Infrastructure</h2>
+        <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">Enterprise-Grade Infrastructure</h2>
         <p class="text-xl text-gray-300 max-w-3xl mx-auto">
           Built on proven technologies with enterprise security, scalability, and reliability at its core.
         </p>
       </div>
       
       <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left Side - Tech Stack Info -->
         <div>
-          <h3 class="text-2xl font-bold text-white mb-8">Powered by Modern Tech Stack</h3>
+          <h3 class="text-2xl font-bold text-white mb-8 text-center">Powered by Modern Tech Stack</h3>
           <div class="space-y-6">
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">
-                <span class="text-2xl">☁️</span>
-              </div>
-              <div>
-                <h4 class="text-white font-semibold">AWS EC2 Infrastructure</h4>
-                <p class="text-gray-400">Auto-scaling deployment with 99.9% uptime guarantee</p>
-              </div>
-            </div>
-            
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">
-                <span class="text-2xl">🍃</span>
-              </div>
-              <div>
-                <h4 class="text-white font-semibold">MongoDB Atlas</h4>
-                <p class="text-gray-400">Secure, scalable database with automated backups</p>
+            <div class="tech-stack-card p-6">
+              <div class="flex items-center gap-4">
+                <div class="tech-icon">
+                  <span class="text-2xl">☁️</span>
+                </div>
+                <div class="text-center flex-1">
+                  <h4 class="text-white font-semibold text-lg mb-2">AWS EC2 Infrastructure</h4>
+                  <p class="text-gray-300">Auto-scaling deployment with 99.9% uptime guarantee</p>
+                  <a href="/infrastructure/deployment" class="text-green-400 hover:text-green-300 text-sm font-medium mt-2 inline-block">
+                    View Deployment →
+                  </a>
+                </div>
               </div>
             </div>
             
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">
-                <span class="text-2xl">🔐</span>
-              </div>
-              <div>
-                <h4 class="text-white font-semibold">Passage Authentication</h4>
-                <p class="text-gray-400">Passwordless security powered by 1Password</p>
+            <div class="tech-stack-card p-6">
+              <div class="flex items-center gap-4">
+                <div class="tech-icon">
+                  <span class="text-2xl">🍃</span>
+                </div>
+                <div class="text-center flex-1">
+                  <h4 class="text-white font-semibold text-lg mb-2">MongoDB Atlas</h4>
+                  <p class="text-gray-300">Secure, scalable database with automated backups</p>
+                  <a href="/infrastructure/tech-stack" class="text-green-400 hover:text-green-300 text-sm font-medium mt-2 inline-block">
+                    Tech Details →
+                  </a>
+                </div>
               </div>
             </div>
             
-            <div class="flex items-center gap-4">
-              <div class="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">
-                <span class="text-2xl">💳</span>
+            <div class="tech-stack-card p-6">
+              <div class="flex items-center gap-4">
+                <div class="tech-icon">
+                  <span class="text-2xl">🔐</span>
+                </div>
+                <div class="text-center flex-1">
+                  <h4 class="text-white font-semibold text-lg mb-2">Passage Authentication</h4>
+                  <p class="text-gray-300">Passwordless security powered by 1Password</p>
+                  <a href="/infrastructure/security" class="text-green-400 hover:text-green-300 text-sm font-medium mt-2 inline-block">
+                    Security Info →
+                  </a>
+                </div>
               </div>
-              <div>
-                <h4 class="text-white font-semibold">Multiple Payment Providers</h4>
-                <p class="text-gray-400">Stripe, PayPal, and Lemon Squeezy integration</p>
+            </div>
+            
+            <div class="tech-stack-card p-6">
+              <div class="flex items-center gap-4">
+                <div class="tech-icon">
+                  <span class="text-2xl">💳</span>
+                </div>
+                <div class="text-center flex-1">
+                  <h4 class="text-white font-semibold text-lg mb-2">Multiple Payment Providers</h4>
+                  <p class="text-gray-300">Stripe, PayPal, and Lemon Squeezy integration</p>
+                  <a href="/infrastructure" class="text-green-400 hover:text-green-300 text-sm font-medium mt-2 inline-block">
+                    Learn More →
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
         
-        <div class="terminal-window">
+        <!-- Right Side - Enhanced Linux Terminal -->
+        <div class="linux-terminal">
           <div class="terminal-header">
-            <div class="terminal-dot bg-red-500"></div>
-            <div class="terminal-dot bg-yellow-500"></div>
-            <div class="terminal-dot bg-green-500"></div>
-            <span class="text-gray-400 text-sm ml-4">infrastructure.yml</span>
+            <div class="terminal-dots">
+              <div class="terminal-dot bg-red-500"></div>
+              <div class="terminal-dot bg-yellow-500"></div>
+              <div class="terminal-dot bg-green-500"></div>
+            </div>
+            <div class="terminal-title">
+              <span class="linux-logo"></span>
+              <span>ubuntu@onelast-ai:~/infrastructure</span>
+            </div>
           </div>
-          <div class="terminal-content text-xs">
-            <div class="mb-2"><span class="text-blue-400">platform:</span> <span class="text-green-400">aws-ec2</span></div>
-            <div class="mb-2"><span class="text-blue-400">database:</span> <span class="text-green-400">mongodb-atlas</span></div>
-            <div class="mb-2"><span class="text-blue-400">auth:</span> <span class="text-green-400">passage-by-1password</span></div>
-            <div class="mb-2"><span class="text-blue-400">payments:</span></div>
-            <div class="mb-2 ml-4">- <span class="text-green-400">stripe</span></div>
-            <div class="mb-2 ml-4">- <span class="text-green-400">paypal</span></div>
-            <div class="mb-2 ml-4">- <span class="text-green-400">lemon-squeezy</span></div>
-            <div class="mb-2"><span class="text-blue-400">ai_providers:</span></div>
-            <div class="mb-2 ml-4">- <span class="text-green-400">openai</span></div>
-            <div class="mb-2 ml-4">- <span class="text-green-400">anthropic</span></div>
-            <div class="mb-2 ml-4">- <span class="text-green-400">google-ai</span></div>
-            <div class="mb-2 ml-4">- <span class="text-green-400">runway-ml</span></div>
-            <div class="mb-2"><span class="text-blue-400">container:</span> <span class="text-green-400">docker</span></div>
-            <div class="mb-2"><span class="text-blue-400">security:</span> <span class="text-green-400">enterprise-grade</span></div>
-            <div><span class="text-blue-400">uptime:</span> <span class="text-green-400">99.9%</span></div>
+          <div class="terminal-content">
+            <div class="terminal-prompt">
+              <span class="terminal-user">onelastai</span>
+              <span class="text-gray-400">@</span>
+              <span class="terminal-host">production</span>
+              <span class="text-gray-400">:</span>
+              <span class="terminal-path">~/system</span>
+              <span class="text-gray-400">$</span>
+            </div>
+            
+            <div class="terminal-command">cat infrastructure.yml</div>
+            <div class="terminal-output">
+              <div class="mb-2">
+                <span class="terminal-key">platform:</span> 
+                <span class="terminal-value">aws-ec2</span>
+              </div>
+              <div class="mb-2">
+                <span class="terminal-key">database:</span> 
+                <span class="terminal-value">mongodb-atlas</span>
+              </div>
+              <div class="mb-2">
+                <span class="terminal-key">auth:</span> 
+                <span class="terminal-value">passage-by-1password</span>
+              </div>
+              <div class="mb-2">
+                <span class="terminal-key">payments:</span>
+              </div>
+              <div class="mb-2 ml-4">
+                - <span class="terminal-value">stripe</span>
+              </div>
+              <div class="mb-2 ml-4">
+                - <span class="terminal-value">paypal</span>
+              </div>
+              <div class="mb-2 ml-4">
+                - <span class="terminal-value">lemon-squeezy</span>
+              </div>
+              <div class="mb-2">
+                <span class="terminal-key">ai_providers:</span>
+              </div>
+              <div class="mb-2 ml-4">
+                - <span class="terminal-value">openai</span>
+              </div>
+              <div class="mb-2 ml-4">
+                - <span class="terminal-value">anthropic</span>
+              </div>
+              <div class="mb-2 ml-4">
+                - <span class="terminal-value">google-ai</span>
+              </div>
+              <div class="mb-2 ml-4">
+                - <span class="terminal-value">runway-ml</span>
+              </div>
+              <div class="mb-2">
+                <span class="terminal-key">container:</span> 
+                <span class="terminal-value">docker</span>
+              </div>
+              <div class="mb-2">
+                <span class="terminal-key">security:</span> 
+                <span class="terminal-value">enterprise-grade</span>
+              </div>
+              <div class="mb-4">
+                <span class="terminal-key">uptime:</span> 
+                <span class="terminal-value">99.9%</span>
+              </div>
+            </div>
+            
+            <div class="terminal-prompt">
+              <span class="terminal-user">onelast</span>
+              <span class="text-gray-400">@</span>
+              <span class="terminal-host">production</span>
+              <span class="text-gray-400">:</span>
+              <span class="terminal-path">~/system</span>
+              <span class="text-gray-400">$</span>
+              <span class="terminal-success">systemctl status onelast-ai</span>
+            </div>
+            <div class="terminal-output">
+              <div class="terminal-success">● onelast-ai.service - OneLast AI Platform</div>
+              <div class="text-gray-300 ml-4">Loaded: loaded (/etc/systemd/system/onelast-ai.service; enabled)</div>
+              <div class="text-gray-300 ml-4">Active: <span class="terminal-success">active (running)</span> since Mon 2024-08-16 12:00:00 UTC</div>
+              <div class="text-gray-300 ml-4">Main PID: 1337 (rails)</div>
+            </div>
+            
+            <div class="terminal-prompt mt-4">
+              <span class="terminal-user">onelast</span>
+              <span class="text-gray-400">@</span>
+              <span class="terminal-host">production</span>
+              <span class="text-gray-400">:</span>
+              <span class="terminal-path">~/system</span>
+              <span class="text-gray-400">$</span>
+              <span class="terminal-cursor"></span>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
       </div>
     </div>
   </section>

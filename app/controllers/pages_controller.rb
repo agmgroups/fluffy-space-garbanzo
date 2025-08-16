@@ -118,11 +118,65 @@ class PagesController < ApplicationController
 
   def developers
   end
+  
+  def newsletter
+  end
+  
+  def newsletter_subscribe
+    email = params[:email]
+    recipient = params[:recipient] || 'info@onelastai.com'
+    
+    if email.blank?
+      render json: { success: false, error: 'Email is required' }, status: 400
+      return
+    end
+    
+    unless valid_email?(email)
+      render json: { success: false, error: 'Please enter a valid email address' }, status: 400
+      return
+    end
+    
+    begin
+      # In a real application, you would:
+      # 1. Save to database
+      # 2. Send to email service (like Mailchimp, SendGrid, etc.)
+      # 3. Send confirmation email
+      # 4. Forward to info@onelastai.com
+      
+      # For now, we'll simulate the process
+      Rails.logger.info "Newsletter subscription: #{email} -> #{recipient}"
+      
+      # Simulate email processing
+      sleep(0.5) # Simulate processing time
+      
+      # In production, you might use:
+      # NotificationMailer.new_subscription(email, recipient).deliver_now
+      # NewsletterService.subscribe(email)
+      
+      render json: { 
+        success: true, 
+        message: "Successfully subscribed! Your subscription has been forwarded to #{recipient}.",
+        email: email,
+        recipient: recipient
+      }
+      
+    rescue => e
+      Rails.logger.error "Newsletter subscription error: #{e.message}"
+      render json: { 
+        success: false, 
+        error: 'There was an error processing your subscription. Please try again.' 
+      }, status: 500
+    end
+  end
 
   private
 
   def authenticate_user!
     # Mock authentication - in real app, implement proper authentication
     # redirect_to login_path unless user_signed_in?
+  end
+  
+  def valid_email?(email)
+    email =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   end
 end

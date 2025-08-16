@@ -1,0 +1,520 @@
+<div class="min-h-screen hero-gradient">
+  <!-- Hero Section -->
+  <section class="relative pt-20 pb-16 overflow-hidden">
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center gap-12">
+        <!-- Hero Content -->
+        <div class="lg:w-1/2 text-center lg:text-left">
+          <div class="mb-6">
+            <span class="inline-block px-4 py-2 bg-blue-600/20 border border-blue-500/30 rounded-full text-blue-300 text-sm font-medium mb-4">
+              🚀 Advanced Programming AI Assistant
+            </span>
+          </div>
+          
+          <h1 class="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+            <span class="text-gradient">CodeMaster</span><br>
+            <span class="text-white">AI Developer</span>
+          </h1>
+          
+          <p class="text-xl text-gray-300 mb-8 leading-relaxed max-w-2xl">
+            Your intelligent coding companion. Generate, debug, optimize, and review code across 12+ programming languages with advanced AI assistance.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 mb-8">
+            <button class="btn-primary group" onclick="focusTerminal()">
+              Start Coding
+              <span class="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+            </button>
+            <button class="btn-secondary" onclick="showFeatures()">
+              View Features
+            </button>
+          </div>
+          
+          <div class="flex items-center gap-8 text-sm text-gray-400">
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-green-400 rounded-full pulse-glow"></div>
+              <span><%= @agent_stats[:total_conversations] %> Code Reviews</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+              <span><%= @agent_stats[:response_time] %> Response Time</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
+              <span><%= @agent_stats[:average_rating] %>/5.0 Rating</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Terminal Demo -->
+        <div class="lg:w-1/2 relative">
+          <div class="terminal-container">
+            <div class="terminal-header">
+              <div class="terminal-controls">
+                <div class="terminal-button close"></div>
+                <div class="terminal-button minimize"></div>
+                <div class="terminal-button maximize"></div>
+              </div>
+              <div class="terminal-title">CodeMaster Terminal - AI Programming Assistant</div>
+            </div>
+            <div class="terminal-body" id="terminal">
+              <div class="terminal-line">
+                <span class="terminal-prompt">codemaster@ai:~$</span>
+                <span class="terminal-text">Welcome to CodeMaster AI ✨</span>
+              </div>
+              <div class="terminal-line">
+                <span class="terminal-comment"># Advanced programming assistant ready</span>
+              </div>
+              <div class="terminal-line">
+                <span class="terminal-prompt">codemaster@ai:~$</span>
+                <span class="terminal-text">Languages: Python, JavaScript, Ruby, Go, Rust, Java, C++</span>
+              </div>
+              <div class="terminal-line">
+                <span class="terminal-comment"># Try: "Generate a REST API in Python" or "Debug my JavaScript code"</span>
+              </div>
+              <div class="terminal-line">
+                <span class="terminal-prompt">codemaster@ai:~$</span>
+                <span class="terminal-cursor">|</span>
+              </div>
+              <div class="terminal-input-line">
+                <span class="terminal-prompt">codemaster@ai:~$</span>
+                <input type="text" id="terminal-input" class="terminal-input" placeholder="Type your coding question or request..." autocomplete="off" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+      <div class="floating-code">def ai_magic():</div>
+      <div class="floating-code">console.log('✨');</div>
+      <div class="floating-code">fn optimize() {}</div>
+    </div>
+    
+    <div class="deep-shadow-overlay absolute inset-0 pointer-events-none"></div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="cinematic-section py-20" id="features">
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="text-center mb-16" data-blur-text="CAPABILITIES">
+        <h2 class="cinematic-title mb-4">Programming Capabilities</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+          Advanced AI-powered development tools for modern programming challenges
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Code Generation -->
+        <div class="cinematic-card">
+          <div class="floating-orb"></div>
+          <div class="card-number">01</div>
+          <h3 class="card-title">CODE GENERATION</h3>
+          <ul class="card-feature-list">
+            <li>Generate functions, classes, and modules</li>
+            <li>Create APIs and web applications</li>
+            <li>Build data structures and algorithms</li>
+            <li>Generate test cases and documentation</li>
+            <li>Support for 12+ programming languages</li>
+          </ul>
+        </div>
+        
+        <!-- Code Analysis -->
+        <div class="cinematic-card">
+          <div class="floating-orb"></div>
+          <div class="card-number">02</div>
+          <h3 class="card-title">CODE ANALYSIS</h3>
+          <ul class="card-feature-list">
+            <li>Complexity analysis and metrics</li>
+            <li>Code quality assessment</li>
+            <li>Security vulnerability detection</li>
+            <li>Performance bottleneck identification</li>
+            <li>Maintainability scoring</li>
+          </ul>
+        </div>
+        
+        <!-- Debugging -->
+        <div class="cinematic-card">
+          <div class="floating-orb"></div>
+          <div class="card-number">03</div>
+          <h3 class="card-title">SMART DEBUGGING</h3>
+          <ul class="card-feature-list">
+            <li>Error identification and explanation</li>
+            <li>Step-by-step debugging guidance</li>
+            <li>Automatic bug fix suggestions</li>
+            <li>Stack trace analysis</li>
+            <li>Logic error detection</li>
+          </ul>
+        </div>
+        
+        <!-- Code Optimization -->
+        <div class="cinematic-card">
+          <div class="floating-orb"></div>
+          <div class="card-number">04</div>
+          <h3 class="card-title">OPTIMIZATION</h3>
+          <ul class="card-feature-list">
+            <li>Performance optimization</li>
+            <li>Memory usage improvements</li>
+            <li>Algorithm efficiency enhancement</li>
+            <li>Code refactoring suggestions</li>
+            <li>Best practices implementation</li>
+          </ul>
+        </div>
+        
+        <!-- Code Review -->
+        <div class="cinematic-card">
+          <div class="floating-orb"></div>
+          <div class="card-number">05</div>
+          <h3 class="card-title">CODE REVIEW</h3>
+          <ul class="card-feature-list">
+            <li>Comprehensive code evaluation</li>
+            <li>Style and convention checking</li>
+            <li>Security best practices review</li>
+            <li>Documentation quality assessment</li>
+            <li>Improvement recommendations</li>
+          </ul>
+        </div>
+        
+        <!-- Code Explanation -->
+        <div class="cinematic-card">
+          <div class="floating-orb"></div>
+          <div class="card-number">06</div>
+          <h3 class="card-title">CODE EXPLANATION</h3>
+          <ul class="card-feature-list">
+            <li>Line-by-line code breakdown</li>
+            <li>Algorithm explanation</li>
+            <li>Design pattern identification</li>
+            <li>Complexity analysis</li>
+            <li>Educational code walkthroughs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Supported Languages Section -->
+  <section class="py-20 bg-black/30">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold text-white mb-4">Supported Languages</h2>
+        <p class="text-xl text-gray-300">Master programming across multiple languages with AI assistance</p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        <% languages = [
+          { name: 'Python', icon: '🐍', expertise: '95%' },
+          { name: 'JavaScript', icon: '⚡', expertise: '98%' },
+          { name: 'TypeScript', icon: '📘', expertise: '92%' },
+          { name: 'Ruby', icon: '💎', expertise: '90%' },
+          { name: 'Go', icon: '🚀', expertise: '88%' },
+          { name: 'Rust', icon: '⚙️', expertise: '85%' },
+          { name: 'Java', icon: '☕', expertise: '93%' },
+          { name: 'C++', icon: '⚡', expertise: '87%' },
+          { name: 'C#', icon: '🔷', expertise: '91%' },
+          { name: 'PHP', icon: '🐘', expertise: '89%' },
+          { name: 'Swift', icon: '🍎', expertise: '86%' },
+          { name: 'Kotlin', icon: '🤖', expertise: '88%' }
+        ] %>
+        
+        <% languages.each do |lang| %>
+          <div class="language-card">
+            <div class="language-icon"><%= lang[:icon] %></div>
+            <div class="language-name"><%= lang[:name] %></div>
+            <div class="language-expertise"><%= lang[:expertise] %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-20">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="stat-card">
+          <div class="stat-number"><%= @agent_stats[:total_conversations] %></div>
+          <div class="stat-label">Code Reviews</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">12+</div>
+          <div class="stat-label">Languages</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number"><%= @agent_stats[:response_time] %></div>
+          <div class="stat-label">Response Time</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number"><%= @agent_stats[:average_rating] %>/5</div>
+          <div class="stat-label">Developer Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Additional CSS for CodeMaster -->
+<style>
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-code {
+  position: absolute;
+  color: rgba(139, 92, 246, 0.3);
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  animation: float-code 15s linear infinite;
+}
+
+.floating-code:nth-child(1) {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.floating-code:nth-child(2) {
+  top: 60%;
+  right: 15%;
+  animation-delay: 5s;
+}
+
+.floating-code:nth-child(3) {
+  bottom: 30%;
+  left: 20%;
+  animation-delay: 10s;
+}
+
+@keyframes float-code {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px) rotate(5deg);
+    opacity: 0;
+  }
+}
+
+.language-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.language-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+.language-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.language-name {
+  color: white;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.language-expertise {
+  color: #8b5cf6;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #8b5cf6;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: #9ca3af;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const terminalInput = document.getElementById('terminal-input');
+  const terminal = document.getElementById('terminal');
+  
+  if (terminalInput) {
+    terminalInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        const message = this.value.trim();
+        if (message) {
+          addMessageToTerminal('user', message);
+          this.value = '';
+          sendMessage(message);
+        }
+      }
+    });
+  }
+  
+  function addMessageToTerminal(type, message) {
+    const terminalBody = terminal.querySelector('.terminal-body') || terminal;
+    const line = document.createElement('div');
+    line.className = 'terminal-line';
+    
+    if (type === 'user') {
+      line.innerHTML = `<span class="terminal-prompt">codemaster@ai:~$</span> <span class="terminal-text">${message}</span>`;
+    } else {
+      line.innerHTML = `<span class="terminal-response">${message}</span>`;
+    }
+    
+    // Remove the input line temporarily
+    const inputLine = terminalBody.querySelector('.terminal-input-line');
+    if (inputLine) {
+      terminalBody.removeChild(inputLine);
+    }
+    
+    terminalBody.appendChild(line);
+    
+    // Add the input line back
+    if (inputLine) {
+      terminalBody.appendChild(inputLine);
+    }
+    
+    // Scroll to bottom
+    terminalBody.scrollTop = terminalBody.scrollHeight;
+  }
+  
+  function sendMessage(message) {
+    // Show typing indicator
+    addMessageToTerminal('system', '🤖 CodeMaster is analyzing...');
+    
+    fetch('/codemaster/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
+      },
+      body: JSON.stringify({ message: message })
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Remove typing indicator
+      const terminalBody = terminal.querySelector('.terminal-body') || terminal;
+      const lines = terminalBody.querySelectorAll('.terminal-line');
+      const lastLine = lines[lines.length - 2]; // -2 because input line is last
+      if (lastLine && lastLine.textContent.includes('analyzing')) {
+        terminalBody.removeChild(lastLine);
+      }
+      
+      if (data.success) {
+        addMessageToTerminal('assistant', data.response);
+        
+        // Add code snippets if any
+        if (data.code_snippets && data.code_snippets.length > 0) {
+          data.code_snippets.forEach(code => {
+            addCodeSnippet(code, data.language);
+          });
+        }
+      } else {
+        addMessageToTerminal('error', data.error || 'Sorry, something went wrong.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      addMessageToTerminal('error', 'Connection error. Please try again.');
+    });
+  }
+  
+  function addCodeSnippet(code, language) {
+    const terminalBody = terminal.querySelector('.terminal-body') || terminal;
+    const codeBlock = document.createElement('div');
+    codeBlock.className = 'terminal-code-block';
+    codeBlock.innerHTML = `
+      <div class="code-header">
+        <span class="code-language">${language}</span>
+        <button class="copy-code" onclick="copyCode(this)">Copy</button>
+      </div>
+      <pre><code>${escapeHtml(code)}</code></pre>
+    `;
+    
+    // Remove the input line temporarily
+    const inputLine = terminalBody.querySelector('.terminal-input-line');
+    if (inputLine) {
+      terminalBody.removeChild(inputLine);
+    }
+    
+    terminalBody.appendChild(codeBlock);
+    
+    // Add the input line back
+    if (inputLine) {
+      terminalBody.appendChild(inputLine);
+    }
+    
+    // Scroll to bottom
+    terminalBody.scrollTop = terminalBody.scrollHeight;
+  }
+  
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+});
+
+function copyCode(button) {
+  const codeBlock = button.closest('.terminal-code-block');
+  const code = codeBlock.querySelector('code').textContent;
+  
+  navigator.clipboard.writeText(code).then(() => {
+    button.textContent = 'Copied!';
+    setTimeout(() => {
+      button.textContent = 'Copy';
+    }, 2000);
+  });
+}
+
+function focusTerminal() {
+  const terminalInput = document.getElementById('terminal-input');
+  if (terminalInput) {
+    terminalInput.focus();
+  }
+}
+
+function showFeatures() {
+  document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+}
+</script>

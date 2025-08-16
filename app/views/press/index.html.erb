@@ -1,0 +1,86 @@
+<div class="min-h-screen bg-gray-900">
+  <!-- Header Section -->
+  <section class="relative py-20 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-indigo-900/20 to-purple-900/20"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40"></div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-5xl lg:text-6xl font-bold text-white mb-6">Press Coverage</h1>
+        <p class="text-xl text-gray-300 leading-relaxed">
+          See what leading tech publications are saying about OneLastAI
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Press Articles Grid -->
+  <section class="py-20">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-3 gap-8">
+          <% @press_articles.each do |article| %>
+            <a href="/press/<%= article[:id] %>" class="press-article-card group">
+              <div class="press-card-glow"></div>
+              <div class="press-card-content">
+                <div class="press-logo bg-gradient-to-br from-<%= article[:color] %>-400 to-<%= article[:color] %>-600">
+                  <span class="font-bold text-white text-xl"><%= article[:logo] %></span>
+                </div>
+                
+                <div class="press-badge">
+                  <span class="badge-text"><%= article[:badge] %></span>
+                </div>
+                
+                <h3 class="press-article-title"><%= article[:publication] %></h3>
+                <h4 class="press-article-headline"><%= article[:title] %></h4>
+                
+                <p class="press-excerpt"><%= article[:excerpt] %></p>
+                
+                <div class="press-meta">
+                  <span class="press-date"><%= article[:date] %></span>
+                  <div class="press-rating">
+                    <% article[:rating].times do %>
+                      <span class="star">★</span>
+                    <% end %>
+                  </div>
+                </div>
+                
+                <div class="press-read-more">
+                  Read Full Article →
+                </div>
+              </div>
+            </a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Press Stats -->
+  <section class="py-20 border-t border-gray-800">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-white text-center mb-12">Media Impact</h2>
+        
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="text-4xl font-bold text-blue-400 mb-2">25+</div>
+            <div class="text-gray-400">Press Features</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold text-green-400 mb-2">10M+</div>
+            <div class="text-gray-400">Media Reach</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold text-purple-400 mb-2">95%</div>
+            <div class="text-gray-400">Positive Coverage</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold text-yellow-400 mb-2">8</div>
+            <div class="text-gray-400">Major Awards</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

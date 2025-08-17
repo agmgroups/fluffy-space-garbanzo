@@ -239,6 +239,15 @@ Rails.application.routes.draw do
   get '/ideaforge', to: 'ideaforge#index'
   post '/ideaforge/chat', to: 'ideaforge#chat'
 
+  # IdeaForge specialized innovation endpoints
+  post '/ideaforge/idea_generation', to: 'ideaforge#idea_generation'
+  post '/ideaforge/creative_workshop', to: 'ideaforge#creative_workshop'
+  post '/ideaforge/innovation_framework', to: 'ideaforge#innovation_framework'
+  post '/ideaforge/trend_analysis', to: 'ideaforge#trend_analysis'
+  post '/ideaforge/concept_development', to: 'ideaforge#concept_development'
+  post '/ideaforge/collaboration_space', to: 'ideaforge#collaboration_space'
+  get '/ideaforge/status', to: 'ideaforge#status'
+
   # VocaMind routes
   get '/vocamind', to: 'vocamind#index'
   post '/vocamind/chat', to: 'vocamind#chat'

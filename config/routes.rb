@@ -84,6 +84,7 @@ Rails.application.routes.draw do
 
   # EmotiSense development routes
   get '/emotisense', to: 'emotisense#index'
+  post '/emotisense/chat', to: 'emotisense#chat'
   post '/emotisense/process_emotion', to: 'emotisense#process_emotion'
   get '/emotisense/emotion_chat', to: 'emotisense#emotion_chat'
   get '/emotisense/mood_journal', to: 'emotisense#mood_journal'
@@ -95,8 +96,18 @@ Rails.application.routes.draw do
   post '/emotisense/analyze_voice', to: 'emotisense#analyze_voice'
   get '/emotisense/export_data', to: 'emotisense#export_data'
 
+  # EmotiSense specialized emotional intelligence endpoints
+  post '/emotisense/emotion_detection', to: 'emotisense#emotion_detection'
+  post '/emotisense/sentiment_analysis', to: 'emotisense#sentiment_analysis'
+  post '/emotisense/mood_tracking', to: 'emotisense#mood_tracking'
+  post '/emotisense/therapeutic_support', to: 'emotisense#therapeutic_support'
+  post '/emotisense/emotional_coaching', to: 'emotisense#emotional_coaching'
+  post '/emotisense/wellness_assessment', to: 'emotisense#wellness_assessment'
+  get '/emotisense/status', to: 'emotisense#status'
+
   # CineGen development routes
   get '/cinegen', to: 'cinegen#index'
+  post '/cinegen/chat', to: 'cinegen#chat'
   post '/cinegen/generate_video', to: 'cinegen#generate_video'
   post '/cinegen/compose_scenes', to: 'cinegen#compose_scenes'
   get '/cinegen/render_progress', to: 'cinegen#render_progress'
@@ -106,8 +117,24 @@ Rails.application.routes.draw do
   get '/cinegen/export_video', to: 'cinegen#export_video'
   post '/cinegen/terminal_command', to: 'cinegen#terminal_command'
 
+  # CineGen navigation routes
+  get '/cinegen/scene_composer', to: 'cinegen#scene_composer', as: :scene_composer_cinegen
+  get '/cinegen/render_dashboard', to: 'cinegen#render_dashboard', as: :render_dashboard_cinegen
+  get '/cinegen/video_player', to: 'cinegen#video_player', as: :video_player_cinegen
+  get '/cinegen/analytics', to: 'cinegen#analytics', as: :analytics_cinegen
+
+  # CineGen specialized cinematic AI endpoints
+  post '/cinegen/video_generation', to: 'cinegen#video_generation'
+  post '/cinegen/scene_composition', to: 'cinegen#scene_composition'
+  post '/cinegen/visual_effects', to: 'cinegen#visual_effects'
+  post '/cinegen/cinematic_storytelling', to: 'cinegen#cinematic_storytelling'
+  post '/cinegen/post_production', to: 'cinegen#post_production'
+  post '/cinegen/content_optimization', to: 'cinegen#content_optimization'
+  get '/cinegen/status', to: 'cinegen#status'
+
   # ContentCrafter development routes
   get '/contentcrafter', to: 'contentcrafter#index'
+  post '/contentcrafter/chat', to: 'contentcrafter#chat'
   post '/contentcrafter/generate_content', to: 'contentcrafter#generate_content'
   get '/contentcrafter/content_formats', to: 'contentcrafter#get_content_formats'
   post '/contentcrafter/preview_content', to: 'contentcrafter#preview_content'
@@ -115,6 +142,47 @@ Rails.application.routes.draw do
   post '/contentcrafter/analyze_content', to: 'contentcrafter#analyze_content'
   post '/contentcrafter/fusion_generate', to: 'contentcrafter#fusion_generate'
   post '/contentcrafter/terminal_command', to: 'contentcrafter#terminal_command'
+
+  # ContentCrafter specialized endpoints
+  post '/contentcrafter/copywriting', to: 'contentcrafter#copywriting_creation'
+  post '/contentcrafter/content_strategy', to: 'contentcrafter#content_strategy_development'
+  post '/contentcrafter/seo_optimization', to: 'contentcrafter#seo_optimization'
+  post '/contentcrafter/format_generation', to: 'contentcrafter#multi_format_generation'
+  post '/contentcrafter/brand_voice', to: 'contentcrafter#brand_voice_development'
+  post '/contentcrafter/content_analytics', to: 'contentcrafter#content_analytics'
+
+  # Memora specialized endpoints
+  post '/memora/memory_storage', to: 'memora#memory_storage'
+  post '/memora/knowledge_retrieval', to: 'memora#knowledge_retrieval'
+  post '/memora/graph_analysis', to: 'memora#graph_analysis'
+  post '/memora/learning_analytics', to: 'memora#learning_analytics'
+  post '/memora/cognitive_enhancement', to: 'memora#cognitive_enhancement'
+  post '/memora/memory_optimization', to: 'memora#memory_optimization'
+
+  # NetScope specialized endpoints
+  post '/netscope/network_analysis', to: 'netscope#network_analysis'
+  post '/netscope/security_monitoring', to: 'netscope#security_monitoring'
+  post '/netscope/threat_detection', to: 'netscope#threat_detection'
+  post '/netscope/vulnerability_assessment', to: 'netscope#vulnerability_assessment'
+  post '/netscope/compliance_auditing', to: 'netscope#compliance_auditing'
+  post '/netscope/incident_response', to: 'netscope#incident_response'
+
+  # TaskMaster specialized endpoints
+  post '/taskmaster/project_management', to: 'taskmaster#project_management'
+  post '/taskmaster/workflow_automation', to: 'taskmaster#workflow_automation'
+  post '/taskmaster/resource_optimization', to: 'taskmaster#resource_optimization'
+  post '/taskmaster/deadline_tracking', to: 'taskmaster#deadline_tracking'
+  post '/taskmaster/team_coordination', to: 'taskmaster#team_coordination'
+  post '/taskmaster/productivity_analytics', to: 'taskmaster#productivity_analytics'
+
+  # Reportly specialized endpoints
+  post '/reportly/business_intelligence', to: 'reportly#business_intelligence'
+  post '/reportly/data_visualization', to: 'reportly#data_visualization'
+  post '/reportly/automated_reporting', to: 'reportly#automated_reporting'
+  post '/reportly/performance_analytics', to: 'reportly#performance_analytics'
+  post '/reportly/executive_dashboards', to: 'reportly#executive_dashboards'
+  post '/reportly/predictive_analytics', to: 'reportly#predictive_analytics'
+  get '/contentcrafter/status', to: 'contentcrafter#status'
 
   # Memora development routes
   get '/memora', to: 'memora#index'
@@ -252,6 +320,15 @@ Rails.application.routes.draw do
   get '/vocamind', to: 'vocamind#index'
   post '/vocamind/chat', to: 'vocamind#chat'
 
+  # VocaMind specialized voice and language endpoints
+  post '/vocamind/speech_analysis', to: 'vocamind#speech_analysis'
+  post '/vocamind/voice_synthesis', to: 'vocamind#voice_synthesis'
+  post '/vocamind/accent_training', to: 'vocamind#accent_training'
+  post '/vocamind/language_coaching', to: 'vocamind#language_coaching'
+  post '/vocamind/phonetic_analysis', to: 'vocamind#phonetic_analysis'
+  post '/vocamind/conversation_practice', to: 'vocamind#conversation_practice'
+  get '/vocamind/status', to: 'vocamind#status'
+
   # TaskMaster routes
   get '/taskmaster', to: 'taskmaster#index'
   post '/taskmaster/chat', to: 'taskmaster#chat'
@@ -263,34 +340,82 @@ Rails.application.routes.draw do
   # DataSphere routes
   get '/datasphere', to: 'datasphere#index'
   post '/datasphere/chat', to: 'datasphere#chat'
+  post '/datasphere/machine_learning', to: 'datasphere#machine_learning'
+  post '/datasphere/statistical_analysis', to: 'datasphere#statistical_analysis'
+  post '/datasphere/data_processing', to: 'datasphere#data_processing'
+  post '/datasphere/deep_analytics', to: 'datasphere#deep_analytics'
+  post '/datasphere/predictive_modeling', to: 'datasphere#predictive_modeling'
+  post '/datasphere/ai_research', to: 'datasphere#ai_research'
 
   # ConfigAI routes
   get '/configai', to: 'configai#index'
   post '/configai/chat', to: 'configai#chat'
+  post '/configai/system_configuration', to: 'configai#system_configuration'
+  post '/configai/deployment_automation', to: 'configai#deployment_automation'
+  post '/configai/environment_management', to: 'configai#environment_management'
+  post '/configai/infrastructure_optimization', to: 'configai#infrastructure_optimization'
+  post '/configai/security_configuration', to: 'configai#security_configuration'
+  post '/configai/monitoring_setup', to: 'configai#monitoring_setup'
 
   # LabX routes
   get '/labx', to: 'labx#index'
   post '/labx/chat', to: 'labx#chat'
+  post '/labx/research_methodologies', to: 'labx#research_methodologies'
+  post '/labx/experimental_design', to: 'labx#experimental_design'
+  post '/labx/data_collection', to: 'labx#data_collection'
+  post '/labx/analysis_protocols', to: 'labx#analysis_protocols'
+  post '/labx/laboratory_management', to: 'labx#laboratory_management'
+  post '/labx/scientific_documentation', to: 'labx#scientific_documentation'
 
   # SpyLens routes
   get '/spylens', to: 'spylens#index'
   post '/spylens/chat', to: 'spylens#chat'
+  post '/spylens/threat_intelligence', to: 'spylens#threat_intelligence'
+  post '/spylens/data_mining', to: 'spylens#data_mining'
+  post '/spylens/pattern_recognition', to: 'spylens#pattern_recognition'
+  post '/spylens/surveillance_analytics', to: 'spylens#surveillance_analytics'
+  post '/spylens/security_monitoring', to: 'spylens#security_monitoring'
+  post '/spylens/intelligence_reporting', to: 'spylens#intelligence_reporting'
 
-  # Girlfriend routes
-  get '/girlfriend', to: 'girlfriend#index'
-  post '/girlfriend/chat', to: 'girlfriend#chat'
-
-  # CallGhost routes
+  # CallGhost Communication AI routes
   get '/callghost', to: 'callghost#index'
   post '/callghost/chat', to: 'callghost#chat'
+  post '/callghost/call_management', to: 'callghost#call_management'
+  post '/callghost/voice_processing', to: 'callghost#voice_processing'
+  post '/callghost/communication_analysis', to: 'callghost#communication_analysis'
+  post '/callghost/contact_optimization', to: 'callghost#contact_optimization'
+  post '/callghost/interaction_tracking', to: 'callghost#interaction_tracking'
+  post '/callghost/conversation_enhancement', to: 'callghost#conversation_enhancement'
 
-  # DNAForge routes
+  # DNAForge Genetic Analysis AI routes
   get '/dnaforge', to: 'dnaforge#index'
   post '/dnaforge/chat', to: 'dnaforge#chat'
+  post '/dnaforge/dna_sequencing', to: 'dnaforge#dna_sequencing'
+  post '/dnaforge/genetic_mapping', to: 'dnaforge#genetic_mapping'
+  post '/dnaforge/trait_analysis', to: 'dnaforge#trait_analysis'
+  post '/dnaforge/heredity_prediction', to: 'dnaforge#heredity_prediction'
+  post '/dnaforge/genomic_insights', to: 'dnaforge#genomic_insights'
+  post '/dnaforge/biotechnology_applications', to: 'dnaforge#biotechnology_applications'
 
-  # DreamWeaver routes
+  # DreamWeaver Creative AI routes
   get '/dreamweaver', to: 'dreamweaver#index'
   post '/dreamweaver/chat', to: 'dreamweaver#chat'
+  post '/dreamweaver/story_generation', to: 'dreamweaver#story_generation'
+  post '/dreamweaver/creative_writing', to: 'dreamweaver#creative_writing'
+  post '/dreamweaver/artistic_inspiration', to: 'dreamweaver#artistic_inspiration'
+  post '/dreamweaver/imagination_enhancement', to: 'dreamweaver#imagination_enhancement'
+  post '/dreamweaver/narrative_development', to: 'dreamweaver#narrative_development'
+  post '/dreamweaver/creative_collaboration', to: 'dreamweaver#creative_collaboration'
+
+  # NeoChat Conversational AI routes
+  get '/neochat', to: 'neochat#index'
+  post '/neochat/chat', to: 'neochat#chat'
+  post '/neochat/natural_language_processing', to: 'neochat#natural_language_processing'
+  post '/neochat/contextual_understanding', to: 'neochat#contextual_understanding'
+  post '/neochat/dialogue_management', to: 'neochat#dialogue_management'
+  post '/neochat/personality_adaptation', to: 'neochat#personality_adaptation'
+  post '/neochat/emotional_intelligence', to: 'neochat#emotional_intelligence'
+  post '/neochat/conversational_optimization', to: 'neochat#conversational_optimization'
 
   # Platform Pages
   get '/about', to: 'pages#about'
@@ -427,5 +552,18 @@ Rails.application.routes.draw do
         end
       end
     end
+  end
+
+  # Girlfriend Companion & Wellness Agent
+  scope module: 'girlfriend', path: 'girlfriend' do
+    root 'girlfriend#index', as: 'girlfriend_root'
+    post 'chat', to: 'girlfriend#chat', as: 'girlfriend_chat'
+    post 'emotional_support', to: 'girlfriend#emotional_support', as: 'girlfriend_emotional_support'
+    post 'relationship_guidance', to: 'girlfriend#relationship_guidance', as: 'girlfriend_relationship_guidance'
+    post 'personal_conversations', to: 'girlfriend#personal_conversations', as: 'girlfriend_personal_conversations'
+    post 'wellness_coaching', to: 'girlfriend#wellness_coaching', as: 'girlfriend_wellness_coaching'
+    post 'activity_planning', to: 'girlfriend#activity_planning', as: 'girlfriend_activity_planning'
+    post 'companion_interactions', to: 'girlfriend#companion_interactions', as: 'girlfriend_companion_interactions'
+    get 'status', to: 'girlfriend#status', as: 'girlfriend_status'
   end
 end

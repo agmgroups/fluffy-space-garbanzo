@@ -12,8 +12,21 @@ module ApplicationHelper
     agent_controllers.include?(controller_name)
   end
 
+  # Alias for consistency with template
+  def is_agent_page?
+    agent_page?
+  end
+
   # Check if we should show the footer
   def show_footer?
     !agent_page?
+  end
+
+  # Get body CSS classes for current page
+  def body_css_classes
+    classes = []
+    classes << 'agent-page' if agent_page?
+    classes << "#{controller_name}-page" if controller_name.present?
+    classes.join(' ')
   end
 end

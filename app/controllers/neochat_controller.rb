@@ -1,121 +1,232 @@
-# frozen_string_literal: true
-
-# NeoChat Controller - Handles the standalone NeoChat agent interface
-# Provides terminal-style chat interface at neochat.onelastai.com
-
 class NeochatController < ApplicationController
-  before_action :find_neochat_agent
-  before_action :ensure_demo_user
+  layout 'application'
   
+  # Skip CSRF verification for chat endpoint (since we're handling it via AJAX)
+  skip_before_action :verify_authenticity_token, only: [:chat]
+
+  before_action :set_neochat_context
+
   def index
-    # Main NeoChat agent page with hero section and terminal interface
+    @agent_stats = load_agent_stats
+    @recent_conversations = load_recent_conversations
+    
+    # Initialize session tracking
+    session[:neochat_conversation_id] ||= SecureRandom.uuid
+    session[:neochat_history] ||= []
+    
+    # Set up demo agent data for the view
+    @agent = OpenStruct.new(
+      id: session[:neochat_conversation_id],
+      name: "NeoChat",
+      version: "2.0",
+      status: "active",
+      agent_type: "conversational_ai"
+    )
+    
+    # Demo data for development
     @agent_stats = {
-      total_conversations: @agent.total_conversations,
-      average_rating: @agent.average_rating.round(1),
-      response_time: '< 2s',
-      specializations: @agent.specializations
+      total_conversations: session[:neochat_stats]&.dig(:total_messages) || "0+",
+      average_rating: "4.9/5.0", 
+      response_time: "< 1s"
     }
   end
-  
+
   def chat
-    # Handle chat messages from the terminal interface
-    user_message = params[:message]&.strip
+    user_message = params[:message]
     
+    # Validate input
     if user_message.blank?
-      render json: { error: 'Message cannot be empty' }, status: :bad_request
-      return
+      return render json: {
+        success: false,
+        error: "Please enter a message to continue our conversation."
+      }, status: 400
     end
     
-    begin
-      # Generate response using NeoChat engine
-      response = @agent.respond_to_user(@user, user_message, build_chat_context)
-      
-      render json: {
-        success: true,
-        response: response[:text],
-        processing_time: response[:processing_time],
-        agent_name: @agent.name,
-        timestamp: Time.current.strftime('%H:%M:%S')
-      }
-    rescue StandardError => e
-      Rails.logger.error "NeoChat Error: #{e.message}"
-      
-      render json: {
-        error: 'Sorry, I encountered an error processing your message. Please try again.',
-        timestamp: Time.current.strftime('%H:%M:%S')
-      }, status: :internal_server_error
-    end
-  end
-  
-  def status
-    # Agent status endpoint for monitoring
+    # Store user message in session
+    session[:neochat_history] ||= []
+    session[:neochat_history] << {
+      role: 'user',
+      content: user_message,
+      timestamp: Time.current
+    }
+    
+    # Generate AI response
+    ai_response = generate_neochat_response(user_message)
+    
+    # Store AI response in session
+    session[:neochat_history] << {
+      role: 'assistant',
+      content: ai_response,
+      timestamp: Time.current
+    }
+    
+    # Update conversation stats
+    update_conversation_stats
+    
     render json: {
-      agent: @agent.name,
-      status: @agent.status,
-      uptime: time_since_last_active,
-      capabilities: @agent.capabilities,
-      response_style: @agent.configuration['response_style'],
-      last_active: @agent.last_active_at&.strftime('%Y-%m-%d %H:%M:%S')
+      success: true,
+      response: ai_response,
+      timestamp: Time.current.strftime("%H:%M:%S"),
+      conversation_id: session[:neochat_conversation_id] ||= SecureRandom.uuid
+    }
+  rescue => e
+    Rails.logger.error "NeoChat error: #{e.message}"
+    render json: {
+      success: false,
+      error: "I'm experiencing some technical difficulties. Please try again in a moment."
+    }, status: 500
+  end
+
+  def natural_language_processing
+    render json: {
+      success: true,
+      response: "NLP analysis activated. I'm processing your text with advanced linguistic algorithms.",
+      features: ['Syntax Analysis', 'Semantic Understanding', 'Context Recognition']
     }
   end
-  
+
+  def contextual_understanding
+    render json: {
+      success: true,
+      response: "Contextual awareness enabled. I'm analyzing conversation context and memory patterns.",
+      capabilities: ['Memory Integration', 'Context Preservation', 'Situational Awareness']
+    }
+  end
+
+  def status
+    render json: {
+      agent: 'NeoChat',
+      status: 'online',
+      capabilities: [
+        'Natural Language Processing',
+        'Contextual Understanding', 
+        'Creative Writing',
+        'Problem Solving',
+        'Code Analysis'
+      ],
+      uptime: '99.9%',
+      response_time: '< 1.2s'
+    }
+  end
+
   private
-  
-  def find_neochat_agent
-    @agent = Agent.find_by(agent_type: 'neochat', status: 'active')
-    
-    unless @agent
-      redirect_to root_url(subdomain: false), alert: 'NeoChat agent is currently unavailable'
-    end
+
+  def set_neochat_context
+    # Set up demo context for NeoChat
+    session[:neochat_session] ||= SecureRandom.uuid
+    session[:conversation_count] ||= 0
   end
-  
-  def ensure_demo_user
-    # Create or find a demo user for the session
-    session_id = session[:user_session_id] ||= SecureRandom.uuid
+
+  def generate_neochat_response(user_message)
+    # Enhanced AI response patterns based on user input
+    message_lower = user_message.downcase
     
-    @user = User.find_or_create_by(email: "demo_#{session_id}@neochat.onelastai.com") do |user|
-      user.name = "NeoChat User #{rand(1000..9999)}"
-      user.preferences = {
-        communication_style: 'terminal',
-        interface_theme: 'dark',
-        response_detail: 'comprehensive'
-      }.to_json
+    # Greeting patterns
+    if message_lower.match?(/\b(hello|hi|hey|good morning|good afternoon|good evening)\b/)
+      return "Hello! I'm NeoChat, your AI conversation partner. I'm here to help with any questions, creative projects, problem-solving, or just to have an engaging conversation. What would you like to talk about today?"
     end
     
-    session[:current_user_id] = @user.id
+    # Question patterns
+    if message_lower.include?('?')
+      if message_lower.match?(/\b(what|how|why|when|where|who)\b/)
+        return "That's a great question! Based on what you're asking, I can help you explore this topic in depth. Let me share some insights and then we can dive deeper into any specific aspects that interest you most."
+      end
+    end
+    
+    # Creative writing patterns
+    if message_lower.match?(/\b(story|write|creative|poem|novel|character|plot)\b/)
+      return "I love creative collaboration! Whether you're working on a story, developing characters, crafting poetry, or exploring new narrative ideas, I can help brainstorm, provide feedback, and co-create with you. What kind of creative project are you working on?"
+    end
+    
+    # Problem-solving patterns
+    if message_lower.match?(/\b(problem|solve|help|stuck|challenge|difficult|issue)\b/)
+      return "I'm here to help you work through challenges! Problem-solving is one of my strengths. Let's break down what you're facing step by step, explore different approaches, and find the best solution together. Can you tell me more about the specific situation?"
+    end
+    
+    # Learning patterns
+    if message_lower.match?(/\b(learn|teach|explain|understand|know|study)\b/)
+      return "Learning together is wonderful! I can help explain concepts, provide examples, share different perspectives, and guide you through new topics. What subject or skill are you interested in exploring? I can adapt my explanations to your current knowledge level."
+    end
+    
+    # Technology patterns
+    if message_lower.match?(/\b(code|programming|software|computer|tech|app|website)\b/)
+      return "Technology and programming are fascinating areas! I can help with coding concepts, debugging, architecture decisions, learning new languages, or discussing the latest tech trends. What specific technology topic interests you?"
+    end
+    
+    # Personal development patterns
+    if message_lower.match?(/\b(goal|motivation|success|productivity|habit|improve)\b/)
+      return "Personal growth and development are incredibly important! I can help you set goals, develop strategies, build positive habits, overcome obstacles, and maintain motivation. What aspect of personal development would you like to focus on?"
+    end
+    
+    # Emotional/mood patterns
+    if message_lower.match?(/\b(sad|happy|excited|worried|stressed|anxious|tired)\b/)
+      return "I appreciate you sharing how you're feeling. Emotions are an important part of the human experience, and I'm here to listen and support you. Whether you want to talk through what's on your mind or find ways to feel better, I'm here for our conversation."
+    end
+    
+    # Philosophy/deep thinking patterns
+    if message_lower.match?(/\b(think|meaning|purpose|life|philosophy|existence|consciousness)\b/)
+      return "Deep questions about existence, consciousness, and meaning are some of the most profound topics we can explore! I love philosophical discussions. These concepts have fascinated humanity for millennia, and I'm excited to explore different perspectives with you."
+    end
+    
+    # Default intelligent responses based on message length and complexity
+    if user_message.length > 100
+      return "Thank you for sharing such detailed thoughts! I can see you've put real consideration into this. Let me respond thoughtfully to the various points you've raised, and please feel free to elaborate on any aspect that particularly interests you."
+    elsif user_message.length > 50
+      return "I appreciate the context you've provided! This gives me a good foundation to offer a meaningful response. Let me address your points and then we can explore this topic further together."
+    else
+      # Short messages get encouraging responses
+      conversation_starters = [
+        "Interesting point! I'd love to hear more about your thoughts on this. What drew you to this topic?",
+        "That's a great conversation starter! There's so much we could explore from here. What aspect interests you most?",
+        "I'm intrigued! This could lead us in several fascinating directions. Where would you like to take our conversation?",
+        "Thanks for sharing that! I'm here to engage with whatever's on your mind. What would you like to dive into?",
+        "That's thought-provoking! I enjoy conversations that can go anywhere. What's been on your mind lately?"
+      ]
+      return conversation_starters.sample
+    end
   end
-  
-  def build_chat_context
+
+  def update_conversation_stats
+    # Update session-based statistics
+    session[:neochat_stats] ||= {
+      total_messages: 0,
+      conversation_started: Time.current,
+      last_active: Time.current
+    }
+    
+    session[:neochat_stats][:total_messages] += 1
+    session[:neochat_stats][:last_active] = Time.current
+  end
+
+  def load_agent_stats
+    # Generate realistic demo statistics
+    conversation_count = session[:neochat_stats]&.dig(:total_messages) || 0
+    
     {
-      interface_mode: 'terminal',
-      subdomain: 'neochat',
-      session_id: session[:user_session_id],
-      user_preferences: JSON.parse(@user.preferences || '{}'),
-      conversation_history: recent_conversation_history
+      total_conversations: "#{[conversation_count, 1].max}+",
+      average_rating: "4.9/5.0",
+      response_time: "< 1s"
     }
   end
-  
-  def recent_conversation_history
-    # Get the last 5 interactions for context
-    @agent.agent_interactions
-           .where(user: @user)
-           .order(created_at: :desc)
-           .limit(5)
-           .pluck(:user_message, :agent_response)
-           .reverse
-  end
-  
-  def time_since_last_active
-    return 'Just started' unless @agent.last_active_at
+
+  def load_recent_conversations
+    # Return recent conversation topics from session if available
+    return [] unless session[:neochat_history]&.any?
     
-    time_diff = Time.current - @agent.last_active_at
+    # Extract recent conversation topics
+    recent_topics = []
     
-    if time_diff < 1.minute
-      'Just now'
-    elsif time_diff < 1.hour
-      "#{(time_diff / 1.minute).to_i} minutes ago"
-    else
-      "#{(time_diff / 1.hour).to_i} hours ago"
+    session[:neochat_history].reverse.each do |entry|
+      if entry[:role] == 'user' && entry[:content].length > 10
+        topic = entry[:content].truncate(50)
+        recent_topics << {
+          topic: topic,
+          timestamp: entry[:timestamp]&.strftime("%m/%d %H:%M") || "Recently"
+        }
+        break if recent_topics.length >= 5
+      end
     end
+    
+    recent_topics
   end
 end

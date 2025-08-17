@@ -25,6 +25,77 @@
         z-index: 1000;
         padding: 0.5rem 1rem;
         font-family: 'Consolas', 'Monaco', monospace;
+        transition: transform 0.3s ease;
+      }
+
+      /* Agent Page Menu - Collapsible */
+      .agent-page .global-menu-bar {
+        position: fixed;
+        transform: translateY(-100%);
+      }
+
+      .agent-page .global-menu-bar.menu-visible {
+        transform: translateY(0);
+      }
+
+      /* Menu Toggle Button for Agent Pages */
+      .menu-toggle-btn {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background: linear-gradient(45deg, #0a0a0a, #1a1a2e);
+        border: 2px solid #00d4ff;
+        color: #00d4ff;
+        padding: 0.5rem;
+        border-radius: 50%;
+        cursor: pointer;
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-weight: bold;
+        font-size: 16px;
+        z-index: 1001;
+        box-shadow: 0 2px 10px rgba(0, 212, 255, 0.3);
+        transition: all 0.3s ease;
+        display: none;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .agent-page .menu-toggle-btn {
+        display: flex;
+      }
+
+      .menu-toggle-btn:hover {
+        background: linear-gradient(45deg, #1a1a2e, #0a0a0a);
+        box-shadow: 0 4px 15px rgba(0, 212, 255, 0.5);
+        transform: scale(1.05);
+      }
+
+      .menu-toggle-btn.active {
+        background: linear-gradient(45deg, #00d4ff, #0099cc);
+        color: #0a0a0a;
+      }
+
+      /* Ensure agent pages have proper spacing for button */
+      .agent-page {
+        position: relative;
+      }
+
+      /* Sub-navigation adjustments for agent pages */
+      .agent-page .cinegen-subnav,
+      .agent-page .emotisense-subnav,
+      .agent-page .agent-subnav {
+        top: 0;
+        margin-top: 0;
+      }
+
+      /* Adjust menu button position when sub-nav is present */
+      .agent-page.cinegen-page .menu-toggle-btn,
+      .agent-page.emotisense-page .menu-toggle-btn {
+        top: 4.5rem; /* Below sub-navigation */
+        right: 1rem;
       }
 
       .menu-container {
@@ -233,6 +304,11 @@
         padding-top: 50px;
       }
 
+      /* Agent pages don't need top padding when menu is hidden */
+      .agent-page body {
+        padding-top: 0;
+      }
+
       /* User section */
       .user-section {
         display: flex;
@@ -277,9 +353,14 @@
     </style>
   </head>
 
-  <body>
+  <body class="<%= body_css_classes %> <%= 'agent-page' if is_agent_page? %>">
+    <!-- Menu Toggle Button (Only visible on agent pages) -->
+    <button class="menu-toggle-btn" onclick="toggleGlobalMenu()" id="menuToggleBtn">
+      ▼
+    </button>
+
     <!-- Global Menu Bar -->
-    <nav class="global-menu-bar">
+    <nav class="global-menu-bar" id="globalMenuBar">
       <div class="menu-container">
         <!-- Logo Section -->
         <div class="logo-section">
@@ -537,6 +618,11 @@
       </div>
     </nav>
 
+    <!-- Agent-Specific Sub-Navigation -->
+    <% if controller_name == 'cinegen' %>
+      <%= render 'shared/cinegen_subnav' %>
+    <% end %>
+
     <%= yield %>
 
     <!-- Conditional Footer - Hidden on Agent Pages -->
@@ -544,6 +630,21 @@
 
     <!-- Global Menu JavaScript -->
     <script>
+      function toggleGlobalMenu() {
+        const menuBar = document.getElementById('globalMenuBar');
+        const toggleBtn = document.getElementById('menuToggleBtn');
+        
+        menuBar.classList.toggle('menu-visible');
+        toggleBtn.classList.toggle('active');
+        
+        // Update button arrow
+        if (menuBar.classList.contains('menu-visible')) {
+          toggleBtn.textContent = '▲';
+        } else {
+          toggleBtn.textContent = '▼';
+        }
+      }
+
       function toggleDropdown(menuId) {
         // Close all other dropdowns first
         const allDropdowns = document.querySelectorAll('.dropdown');
@@ -577,7 +678,7 @@
 
       // Close dropdowns when clicking outside
       document.addEventListener('click', (e) => {
-        if (!e.target.closest('.menu-item')) {
+        if (!e.target.closest('.menu-item') && !e.target.closest('.menu-toggle-btn')) {
           const allDropdowns = document.querySelectorAll('.dropdown');
           const allButtons = document.querySelectorAll('.menu-button');
           
@@ -588,6 +689,18 @@
           allButtons.forEach(button => {
             button.classList.remove('active');
           });
+
+          // On agent pages, also close the global menu if clicking outside
+          if (document.body.classList.contains('agent-page')) {
+            const menuBar = document.getElementById('globalMenuBar');
+            const toggleBtn = document.getElementById('menuToggleBtn');
+            
+            if (menuBar && menuBar.classList.contains('menu-visible')) {
+              menuBar.classList.remove('menu-visible');
+              toggleBtn.classList.remove('active');
+              toggleBtn.textContent = '▼';
+            }
+          }
         }
       });
 

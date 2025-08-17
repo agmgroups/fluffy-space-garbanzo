@@ -11,6 +11,8 @@
     <%= javascript_importmap_tags %>
     <%= hotwire_livereload_tags if Rails.env.development? %>
     
+    <%= yield :head %>
+    
     <!-- Global Menu Bar Styles -->
     <style>
       /* Global Menu Bar */
@@ -715,5 +717,7 @@
         });
       });
     </script>
+    
+    <%= yield :javascript %>
   </body>
 </html>

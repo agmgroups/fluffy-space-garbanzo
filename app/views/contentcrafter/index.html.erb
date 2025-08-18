@@ -121,7 +121,7 @@
       position: absolute;
       top: 100%;
       right: 0;
-      min-width: 250px;
+      min-width: 200px;
       background: rgba(13, 27, 42, 0.98);
       border: 2px solid #a8dadc;
       border-radius: 12px;
@@ -145,12 +145,13 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      padding: 1rem 1.5rem;
+      padding: 0.75rem 1rem;
       color: #a8dadc;
       text-decoration: none;
       transition: all 0.3s ease;
       border-bottom: 1px solid rgba(168, 218, 220, 0.1);
       cursor: pointer;
+      font-size: 0.9rem;
     }
 
     .primary-menu-item:hover {
@@ -627,8 +628,8 @@
       
       .primary-menu-dropdown,
       .contentcrafter-dropdown-menu {
-        min-width: 200px;
-        right: -1rem;
+        min-width: 180px;
+        right: -0.5rem;
       }
       
       .hero-section {
@@ -710,19 +711,13 @@
           ▶
         </button>
         <div class="primary-menu-dropdown" id="primary-menu">
-          <div class="primary-menu-item" onclick="goToAgentHub()">
-            <span>🏠</span> Agent Hub
+          <div class="primary-menu-item" onclick="goToHome()">
+            <span>🏠</span> Home
           </div>
-          <div class="primary-menu-item" onclick="openAgentDirectory()">
-            <span>📁</span> All Agents
+          <div class="primary-menu-item" onclick="goToAgents()">
+            <span>🤖</span> Agents
           </div>
-          <div class="primary-menu-item" onclick="openSettings()">
-            <span>⚙️</span> Settings
-          </div>
-          <div class="primary-menu-item" onclick="openHelp()">
-            <span>❓</span> Help & Support
-          </div>
-          <div class="primary-menu-item" onclick="openProfile()">
+          <div class="primary-menu-item" onclick="goToProfile()">
             <span>👤</span> Profile
           </div>
         </div>
@@ -856,24 +851,16 @@
     });
 
     // Primary Menu Item Functions
-    function goToAgentHub() {
+    function goToHome() {
       window.location.href = '/';
     }
 
-    function openAgentDirectory() {
-      alert('🔜 Agent Directory coming soon!');
+    function goToAgents() {
+      window.location.href = '/';
     }
 
-    function openSettings() {
-      alert('🔜 Settings panel coming soon!');
-    }
-
-    function openHelp() {
-      alert('🔜 Help & Support center coming soon!');
-    }
-
-    function openProfile() {
-      alert('🔜 User profile coming soon!');
+    function goToProfile() {
+      alert('🔜 Profile page coming soon!');
     }
 
     // Chat functionality

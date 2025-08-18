@@ -250,7 +250,7 @@ class IdeaforgeController < ApplicationController
     {
       text: "💡 **IdeaForge Creative Generation Engine**\n\n" \
             "Unleashing unlimited innovation potential with advanced creative methodologies:\n\n" \
-            "🧠 **Generation Techniques:**\n" \
+            "🌌 **Generation Techniques:**\n" \
             "• SCAMPER method (Substitute, Combine, Adapt, Modify, Purpose, Eliminate, Reverse)\n" \
             "• Six Thinking Hats (Edward de Bono)\n" \
             "• Mind mapping & association chains\n" \
@@ -435,7 +435,7 @@ class IdeaforgeController < ApplicationController
     {
       text: "🌟 **IdeaForge Innovation AI Ready**\n\n" \
             "Your expert in innovation, creativity, and breakthrough thinking! Here's what I offer:\n\n" \
-            "🧠 **Core Innovation Capabilities:**\n" \
+            "🌌 **Core Innovation Capabilities:**\n" \
             "• Advanced idea generation & brainstorming\n" \
             "• Creative workshop design & facilitation\n" \
             "• Innovation framework implementation\n" \

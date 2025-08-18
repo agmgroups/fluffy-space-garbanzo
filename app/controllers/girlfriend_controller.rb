@@ -274,7 +274,7 @@ class GirlfriendController < ApplicationController
             "• Relationship mapping and network analysis\n" \
             "• Temporal pattern analysis and timeline reconstruction\n" \
             "• Anomaly detection and outlier identification\n\n" \
-            "🧠 **Advanced Analytics:**\n" \
+            "🌌 **Advanced Analytics:**\n" \
             "• Machine learning-powered data classification\n" \
             "• Natural language processing and sentiment analysis\n" \
             "• Graph analytics and social network analysis\n" \
@@ -303,7 +303,7 @@ class GirlfriendController < ApplicationController
             "• **Network Pattern Detection:** Digital footprint and activity analysis\n" \
             "• **Temporal Pattern Analysis:** Time-based behavior and event correlation\n" \
             "• **Operational Pattern Intelligence:** Systematic behavior identification\n\n" \
-            "🧠 **AI-Powered Analysis:**\n" \
+            "🌌 **AI-Powered Analysis:**\n" \
             "• Deep learning neural networks for complex pattern detection\n" \
             "• Ensemble algorithms for multi-dimensional pattern analysis\n" \
             "• Unsupervised learning for unknown pattern discovery\n" \

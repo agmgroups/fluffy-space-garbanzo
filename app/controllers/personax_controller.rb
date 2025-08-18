@@ -227,7 +227,7 @@ class PersonaxController < ApplicationController
 
   def handle_personality_analysis_request(_message)
     {
-      text: "🧠 **PersonaX Personality Analysis Engine**\n\n" \
+      text: "🌌 **PersonaX Personality Analysis Engine**\n\n" \
             "Advanced psychological profiling and personality insights:\n\n" \
             "🎯 **Analysis Framework:**\n" \
             "• Big Five personality traits (OCEAN)\n" \
@@ -382,7 +382,7 @@ class PersonaxController < ApplicationController
     {
       text: "🎭 **PersonaX Personality AI Ready**\n\n" \
             "Your expert in personality science and human psychology! Here's what I offer:\n\n" \
-            "🧠 **Core Capabilities:**\n" \
+            "🌌 **Core Capabilities:**\n" \
             "• Comprehensive personality analysis\n" \
             "• MBTI & Big Five assessments\n" \
             "• Relationship compatibility analysis\n" \

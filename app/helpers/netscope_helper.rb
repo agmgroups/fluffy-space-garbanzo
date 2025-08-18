@@ -2,25 +2,25 @@
 
 module NetscopeHelper
   # Terminal styling and network visualization helpers for NetScope
-  
+
   def netscope_terminal_prompt
-    "netscope@reconnaissance:~$ "
+    'netscope@reconnaissance:~$ '
   end
-  
+
   def netscope_welcome_ascii
     <<~ASCII
       ███╗   ██╗███████╗████████╗███████╗ ██████╗ ██████╗ ██████╗ ███████╗
       ████╗  ██║██╔════╝╚══██╔══╝██╔════╝██╔════╝██╔═══██╗██╔══██╗██╔════╝
-      ██╔██╗ ██║█████╗     ██║   ███████╗██║     ██║   ██║██████╔╝█████╗  
-      ██║╚██╗██║██╔══╝     ██║   ╚════██║██║     ██║   ██║██╔═══╝ ██╔══╝  
+      ██╔██╗ ██║█████╗     ██║   ███████╗██║     ██║   ██║██████╔╝█████╗#{'  '}
+      ██║╚██╗██║██╔══╝     ██║   ╚════██║██║     ██║   ██║██╔═══╝ ██╔══╝#{'  '}
       ██║ ╚████║███████╗   ██║   ███████║╚██████╗╚██████╔╝██║     ███████╗
       ╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚══════╝
-      
+
       🌐 Network & IP Insights - Advanced Reconnaissance Platform 🔍
       ═══════════════════════════════════════════════════════════════════
     ASCII
   end
-  
+
   def netscope_stats_display(stats)
     <<~STATS
       ┌─ Network Statistics ──────────────────────────────────────────────┐
@@ -31,7 +31,7 @@ module NetscopeHelper
       └───────────────────────────────────────────────────────────────────┘
     STATS
   end
-  
+
   def netscope_session_stats(session_data)
     <<~SESSION
       ┌─ Session Statistics ──────────────────────────────────────────────┐
@@ -43,7 +43,7 @@ module NetscopeHelper
       └───────────────────────────────────────────────────────────────────┘
     SESSION
   end
-  
+
   def netscope_scan_types_grid
     scan_types = [
       ['🔍 IP Intelligence', 'Comprehensive IP analysis and geolocation'],
@@ -57,15 +57,15 @@ module NetscopeHelper
       ['📊 Comprehensive', 'Full-spectrum security and reconnaissance scan'],
       ['🔄 Reverse DNS', 'PTR record resolution and hostname mapping']
     ]
-    
+
     output = "┌─ Available Scan Types ────────────────────────────────────────────┐\n"
     scan_types.each do |name, description|
       output += "│ #{name.ljust(15)} │ #{description.ljust(45)} │\n"
     end
-    output += "└───────────────────────────────────────────────────────────────────┘"
+    output += '└───────────────────────────────────────────────────────────────────┘'
     output
   end
-  
+
   def netscope_command_help
     commands = [
       ['scan [target]', 'Perform IP intelligence scan'],
@@ -83,18 +83,18 @@ module NetscopeHelper
       ['tools', 'List available tools'],
       ['help', 'Show this help menu']
     ]
-    
+
     output = "┌─ NetScope Commands ───────────────────────────────────────────────┐\n"
     commands.each do |command, description|
       output += "│ #{command.ljust(18)} │ #{description.ljust(43)} │\n"
     end
-    output += "└───────────────────────────────────────────────────────────────────┘"
+    output += '└───────────────────────────────────────────────────────────────────┘'
     output
   end
-  
+
   def format_ip_intelligence(data)
-    return "No IP intelligence data available" unless data.is_a?(Hash)
-    
+    return 'No IP intelligence data available' unless data.is_a?(Hash)
+
     <<~IP_INTEL
       ┌─ IP Intelligence Report ──────────────────────────────────────────┐
       │ IP Address: #{data[:ip]&.ljust(18)} │ Status: #{data[:status]&.ljust(15)}    │
@@ -105,15 +105,15 @@ module NetscopeHelper
       └───────────────────────────────────────────────────────────────────┘
     IP_INTEL
   end
-  
+
   def format_port_scan_results(data)
-    return "No port scan data available" unless data.is_a?(Hash)
-    
+    return 'No port scan data available' unless data.is_a?(Hash)
+
     output = "┌─ Port Scan Results ───────────────────────────────────────────────┐\n"
     output += "│ Target: #{data[:target]&.ljust(20)} │ Ports Scanned: #{data[:total_ports]&.to_s&.ljust(13)} │\n"
     output += "│ Open Ports: #{data[:open_ports]&.count&.to_s&.ljust(16)} │ Scan Duration: #{data[:scan_time]&.ljust(13)} │\n"
     output += "├───────────────────────────────────────────────────────────────────┤\n"
-    
+
     if data[:open_ports]&.any?
       data[:open_ports].each do |port_info|
         port = port_info[:port] || port_info['port']
@@ -124,14 +124,14 @@ module NetscopeHelper
     else
       output += "│ No open ports found or scan data unavailable                     │\n"
     end
-    
-    output += "└───────────────────────────────────────────────────────────────────┘"
+
+    output += '└───────────────────────────────────────────────────────────────────┘'
     output
   end
-  
+
   def format_whois_data(data)
-    return "No WHOIS data available" unless data.is_a?(Hash)
-    
+    return 'No WHOIS data available' unless data.is_a?(Hash)
+
     <<~WHOIS
       ┌─ WHOIS Information ───────────────────────────────────────────────┐
       │ Domain: #{data[:domain]&.ljust(22)} │ Status: #{data[:status]&.ljust(15)}    │
@@ -142,14 +142,14 @@ module NetscopeHelper
       └───────────────────────────────────────────────────────────────────┘
     WHOIS
   end
-  
+
   def format_dns_records(data)
-    return "No DNS data available" unless data.is_a?(Hash)
-    
+    return 'No DNS data available' unless data.is_a?(Hash)
+
     output = "┌─ DNS Records ─────────────────────────────────────────────────────┐\n"
     output += "│ Domain: #{data[:domain]&.ljust(58)}                │\n"
     output += "├───────────────────────────────────────────────────────────────────┤\n"
-    
+
     if data[:records]&.any?
       data[:records].each do |record|
         type = record[:type] || record['type'] || 'Unknown'
@@ -160,14 +160,14 @@ module NetscopeHelper
     else
       output += "│ No DNS records found or data unavailable                         │\n"
     end
-    
-    output += "└───────────────────────────────────────────────────────────────────┘"
+
+    output += '└───────────────────────────────────────────────────────────────────┘'
     output
   end
-  
+
   def format_threat_intelligence(data)
-    return "No threat intelligence data available" unless data.is_a?(Hash)
-    
+    return 'No threat intelligence data available' unless data.is_a?(Hash)
+
     risk_color = case data[:risk_level]&.downcase
                  when 'high', 'critical'
                    '🔴'
@@ -178,7 +178,7 @@ module NetscopeHelper
                  else
                    '⚪'
                  end
-    
+
     <<~THREAT
       ┌─ Threat Intelligence Report ──────────────────────────────────────┐
       │ Target: #{data[:target]&.ljust(22)} │ Risk Level: #{risk_color} #{data[:risk_level]&.ljust(12)} │
@@ -189,10 +189,10 @@ module NetscopeHelper
       └───────────────────────────────────────────────────────────────────┘
     THREAT
   end
-  
+
   def format_ssl_analysis(data)
-    return "No SSL analysis data available" unless data.is_a?(Hash)
-    
+    return 'No SSL analysis data available' unless data.is_a?(Hash)
+
     grade_color = case data[:grade]&.upcase
                   when 'A+', 'A'
                     '🟢'
@@ -203,7 +203,7 @@ module NetscopeHelper
                   else
                     '⚪'
                   end
-    
+
     <<~SSL
       ┌─ SSL Certificate Analysis ────────────────────────────────────────┐
       │ Domain: #{data[:domain]&.ljust(22)} │ Grade: #{grade_color} #{data[:grade]&.ljust(13)}      │
@@ -215,52 +215,52 @@ module NetscopeHelper
       └───────────────────────────────────────────────────────────────────┘
     SSL
   end
-  
+
   def format_scan_history(history)
-    return "No scan history available" unless history&.any?
-    
+    return 'No scan history available' unless history&.any?
+
     output = "┌─ Recent Scan History ─────────────────────────────────────────────┐\n"
     output += "│ Time     │ Target              │ Type          │ Status       │\n"
     output += "├──────────┼─────────────────────┼───────────────┼──────────────┤\n"
-    
+
     history.last(10).each do |scan|
       time = scan[:timestamp] || scan['timestamp'] || 'Unknown'
       target = truncate_target(scan[:target] || scan['target'] || 'Unknown')
       type = scan[:scan_type] || scan['scan_type'] || 'Unknown'
       status = scan[:status] || scan['status'] || 'Completed'
-      
+
       output += "│ #{time.ljust(8)} │ #{target.ljust(19)} │ #{type.ljust(13)} │ #{status.ljust(12)} │\n"
     end
-    
-    output += "└───────────────────────────────────────────────────────────────────┘"
+
+    output += '└───────────────────────────────────────────────────────────────────┘'
     output
   end
-  
+
   def format_network_topology(data)
-    return "Network topology data unavailable" unless data.is_a?(Hash) && data[:hops]
-    
+    return 'Network topology data unavailable' unless data.is_a?(Hash) && data[:hops]
+
     output = "┌─ Network Traceroute Path ─────────────────────────────────────────┐\n"
     output += "│ Hop │ IP Address        │ Hostname              │ RTT (ms)    │\n"
     output += "├─────┼───────────────────┼───────────────────────┼─────────────┤\n"
-    
+
     data[:hops].each_with_index do |hop, index|
       hop_num = (index + 1).to_s.ljust(3)
       ip = hop[:ip] || hop['ip'] || '*'
       hostname = hop[:hostname] || hop['hostname'] || 'Unknown'
       rtt = hop[:rtt] || hop['rtt'] || 'N/A'
-      
+
       output += "│ #{hop_num} │ #{ip.ljust(17)} │ #{hostname.ljust(21)} │ #{rtt.to_s.ljust(11)} │\n"
     end
-    
-    output += "└───────────────────────────────────────────────────────────────────┘"
+
+    output += '└───────────────────────────────────────────────────────────────────┘'
     output
   end
-  
+
   def netscope_status_indicators
     {
       online: '🟢 ONLINE',
       scanning: '🔍 SCANNING',
-      analyzing: '🧠 ANALYZING',
+      analyzing: '🌌 ANALYZING',
       complete: '✅ COMPLETE',
       error: '🔴 ERROR',
       warning: '🟡 WARNING',
@@ -269,14 +269,14 @@ module NetscopeHelper
       unknown: '❓ UNKNOWN'
     }
   end
-  
+
   def scan_progress_bar(percentage)
     bar_length = 50
     filled_length = (percentage / 100.0 * bar_length).to_i
     bar = '█' * filled_length + '░' * (bar_length - filled_length)
     "#{bar} #{percentage.round(1)}%"
   end
-  
+
   def risk_level_badge(level)
     case level&.downcase
     when 'critical'
@@ -293,25 +293,25 @@ module NetscopeHelper
       '❓ UNKNOWN'
     end
   end
-  
+
   def format_comprehensive_report(data)
-    return "No comprehensive scan data available" unless data.is_a?(Hash)
-    
+    return 'No comprehensive scan data available' unless data.is_a?(Hash)
+
     output = "┌─ Comprehensive Scan Report ───────────────────────────────────────┐\n"
     output += "│ Target: #{data[:target]&.ljust(58)}                │\n"
     output += "│ Scan Duration: #{data[:scan_duration]&.ljust(21)} │ Risk: #{risk_level_badge(data[:overall_risk])} │\n"
     output += "├───────────────────────────────────────────────────────────────────┤\n"
-    
+
     if data[:modules]&.any?
       data[:modules].each do |module_name, module_data|
         status = module_data[:status] == 'success' ? '✅' : '❌'
         output += "│ #{status} #{module_name.to_s.ljust(20)} │ #{module_data[:summary]&.ljust(36)} │\n"
       end
     end
-    
+
     output += "├───────────────────────────────────────────────────────────────────┤\n"
     output += "│ Key Findings:                                                     │\n"
-    
+
     if data[:key_findings]&.any?
       data[:key_findings].each do |finding|
         output += "│ • #{finding.ljust(62)}   │\n"
@@ -319,26 +319,26 @@ module NetscopeHelper
     else
       output += "│ • No significant findings detected                                │\n"
     end
-    
-    output += "└───────────────────────────────────────────────────────────────────┘"
+
+    output += '└───────────────────────────────────────────────────────────────────┘'
     output
   end
-  
+
   private
-  
+
   def format_session_time(time)
     return 'Unknown' unless time
-    
+
     if time.is_a?(String)
       time
     else
       time.strftime('%H:%M:%S')
     end
   end
-  
+
   def truncate_target(target)
     return 'None' unless target && target != 'None'
-    
+
     target.length > 19 ? "#{target[0..16]}..." : target
   end
 end

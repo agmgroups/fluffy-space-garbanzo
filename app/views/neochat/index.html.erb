@@ -81,6 +81,43 @@
       50% { opacity: 0.3; }
     }
 
+    .hero-feature-card {
+      background: rgba(255, 0, 150, 0.1);
+      border: 2px solid rgba(255, 0, 150, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1rem auto;
+      max-width: 400px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .hero-feature-card:hover {
+      background: rgba(255, 0, 150, 0.2);
+      border-color: #ff0096;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(255, 0, 150, 0.3);
+    }
+
+    .hero-feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .hero-feature-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ff0096;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-feature-desc {
+      color: #a0a0a0;
+      line-height: 1.6;
+    }
+
     .neochat-workspace {
       display: flex;
       max-width: 1400px;
@@ -89,6 +126,20 @@
       gap: 2rem;
       position: relative;
       z-index: 2;
+    }
+
+    .features-left {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .features-right {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
 
     .chat-terminal {
@@ -271,7 +322,6 @@
     }
 
     .features-panel {
-      width: 350px;
       background: rgba(0, 0, 0, 0.8);
       border: 2px solid rgba(255, 0, 150, 0.3);
       border-radius: 12px;
@@ -409,8 +459,12 @@
         gap: 1rem;
       }
       
-      .features-panel {
+      .features-left, .features-right {
         width: 100%;
+      }
+      
+      .hero-feature-card {
+        max-width: 100%;
       }
       
       .agent-title {
@@ -422,16 +476,49 @@
 
 <div class="neochat-container">
   <div class="neochat-header">
-    <div class="agent-avatar">🧠</div>
+    <div class="agent-avatar">🌌</div>
     <h1 class="agent-title">NeoChat</h1>
     <p class="agent-subtitle">Advanced AI Conversation Assistant</p>
     <div class="agent-status">
       <span class="status-dot"></span>
       <span>Online & Ready</span>
     </div>
+    
+    <!-- Featured Card in Hero -->
+    <div class="hero-feature-card" onclick="clearChat()">
+      <div class="hero-feature-icon">🔄</div>
+      <div class="hero-feature-name">Clear Chat</div>
+      <div class="hero-feature-desc">Start a fresh conversation and reset the chat history</div>
+    </div>
   </div>
 
   <div class="neochat-workspace">
+    <!-- Left Features Panel -->
+    <div class="features-left">
+      <div class="features-panel">
+        <h3 class="features-title">🎯 Core Features</h3>
+        <div class="feature-grid">
+          <button class="feature-btn" onclick="startFeature('natural_language')">
+            <div class="feature-icon">🗣️</div>
+            <div class="feature-name">Natural Language</div>
+            <div class="feature-desc">Advanced natural language processing and understanding</div>
+          </button>
+
+          <button class="feature-btn" onclick="startFeature('creative_writing')">
+            <div class="feature-icon">✍️</div>
+            <div class="feature-name">Creative Writing</div>
+            <div class="feature-desc">Collaborative creative writing and storytelling</div>
+          </button>
+
+          <button class="feature-btn" onclick="startFeature('problem_solving')">
+            <div class="feature-icon">🧩</div>
+            <div class="feature-name">Problem Solving</div>
+            <div class="feature-desc">Analytical thinking and solution development</div>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Main Chat Terminal -->
     <div class="chat-terminal">
       <!-- Terminal Header -->
@@ -441,7 +528,7 @@
           <div class="control-btn minimize"></div>
           <div class="control-btn maximize"></div>
         </div>
-        <span class="terminal-title">neochat@ai-terminal:~$</span>
+        <span class="terminal-title"></span>
         <div class="terminal-status">
           <span class="status-indicator"></span>
           <span>ONLINE</span>
@@ -452,7 +539,7 @@
       <div class="chat-messages" id="chatMessages">
         <div class="welcome-message">
           <h3>╔═══════════════════════════════════════════════════════════════════╗</h3>
-          <h3>║                        🧠 NeoChat v2.0                           ║</h3>
+          <h3>║                        🌌 NeoChat v2.0                           ║</h3>
           <h3>║              Your Advanced AI Conversation Partner               ║</h3>
           <h3>╚═══════════════════════════════════════════════════════════════════╝</h3>
           <br>
@@ -497,65 +584,48 @@
       </div>
     </div>
 
-    <!-- Features Panel -->
-    <div class="features-panel">
-      <h3 class="features-title">🚀 AI Features</h3>
-      
-      <div class="feature-grid">
-        <button class="feature-btn" onclick="startFeature('natural_language')">
-          <div class="feature-icon">🗣️</div>
-          <div class="feature-name">Natural Language</div>
-          <div class="feature-desc">Advanced natural language processing and understanding</div>
-        </button>
+    <!-- Right Features Panel -->
+    <div class="features-right">
+      <div class="features-panel">
+        <h3 class="features-title">🚀 Advanced Tools</h3>
+        <div class="feature-grid">
+          <button class="feature-btn" onclick="startFeature('learning_support')">
+            <div class="feature-icon">📚</div>
+            <div class="feature-name">Learning Support</div>
+            <div class="feature-desc">Educational assistance and knowledge exploration</div>
+          </button>
 
-        <button class="feature-btn" onclick="startFeature('creative_writing')">
-          <div class="feature-icon">✍️</div>
-          <div class="feature-name">Creative Writing</div>
-          <div class="feature-desc">Collaborative creative writing and storytelling</div>
-        </button>
+          <button class="feature-btn" onclick="startFeature('code_analysis')">
+            <div class="feature-icon">💻</div>
+            <div class="feature-name">Code Analysis</div>
+            <div class="feature-desc">Programming help and code review assistance</div>
+          </button>
 
-        <button class="feature-btn" onclick="startFeature('problem_solving')">
-          <div class="feature-icon">🧩</div>
-          <div class="feature-name">Problem Solving</div>
-          <div class="feature-desc">Analytical thinking and solution development</div>
-        </button>
-
-        <button class="feature-btn" onclick="startFeature('learning_support')">
-          <div class="feature-icon">📚</div>
-          <div class="feature-name">Learning Support</div>
-          <div class="feature-desc">Educational assistance and knowledge exploration</div>
-        </button>
-
-        <button class="feature-btn" onclick="startFeature('code_analysis')">
-          <div class="feature-icon">💻</div>
-          <div class="feature-name">Code Analysis</div>
-          <div class="feature-desc">Programming help and code review assistance</div>
-        </button>
-
-        <button class="feature-btn" onclick="clearChat()">
-          <div class="feature-icon">🔄</div>
-          <div class="feature-name">Clear Chat</div>
-          <div class="feature-desc">Start a fresh conversation</div>
-        </button>
-      </div>
-
-      <div class="stats-section">
-        <div class="stats-title">📊 Session Stats</div>
-        <div class="stat-item">
-          <span class="stat-label">Conversations:</span>
-          <span class="stat-value"><%= @agent_stats[:total_conversations] %></span>
+          <button class="feature-btn" onclick="startFeature('contextual_understanding')">
+            <div class="feature-icon">🌌</div>
+            <div class="feature-name">Context Analysis</div>
+            <div class="feature-desc">Deep contextual understanding and memory integration</div>
+          </button>
         </div>
-        <div class="stat-item">
-          <span class="stat-label">Rating:</span>
-          <span class="stat-value"><%= @agent_stats[:average_rating] %></span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">Response Time:</span>
-          <span class="stat-value"><%= @agent_stats[:response_time] %></span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">Status:</span>
-          <span class="stat-value">Online</span>
+
+        <div class="stats-section">
+          <div class="stats-title">📊 Session Stats</div>
+          <div class="stat-item">
+            <span class="stat-label">Conversations:</span>
+            <span class="stat-value"><%= @agent_stats[:total_conversations] %></span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Rating:</span>
+            <span class="stat-value"><%= @agent_stats[:average_rating] %></span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Response Time:</span>
+            <span class="stat-value"><%= @agent_stats[:response_time] %></span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Status:</span>
+            <span class="stat-value">Online</span>
+          </div>
         </div>
       </div>
     </div>
@@ -659,7 +729,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const now = timestamp || new Date().toLocaleTimeString();
     const roleLabel = role === 'user' ? 'You' : 'NeoChat';
-    const roleIcon = role === 'user' ? '👤' : '🧠';
+    const roleIcon = role === 'user' ? '👤' : '🌌';
     
     messageDiv.innerHTML = `
       <div class="message-header">

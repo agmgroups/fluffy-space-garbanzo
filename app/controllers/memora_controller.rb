@@ -37,12 +37,12 @@ class MemoraController < ApplicationController
     memory_type = params[:memory_type] || 'fact'
     priority = params[:priority] || 'medium'
     context = params[:context] || {}
-    
+
     return render json: { error: 'Content is required' }, status: 400 if content.blank?
 
     # Store memory with intelligent processing
     storage_data = store_intelligent_memory(content, memory_type, priority, context)
-    
+
     render json: {
       memory_storage: storage_data,
       memory_id: storage_data[:memory_id],
@@ -59,12 +59,12 @@ class MemoraController < ApplicationController
     query = params[:query] || params[:search]
     retrieval_type = params[:retrieval_type] || 'semantic'
     context_filter = params[:context_filter] || {}
-    
+
     return render json: { error: 'Query is required' }, status: 400 if query.blank?
 
     # Retrieve knowledge with intelligent search
     retrieval_data = retrieve_intelligent_knowledge(query, retrieval_type, context_filter)
-    
+
     render json: {
       knowledge_retrieval: retrieval_data,
       search_results: retrieval_data[:search_results],
@@ -81,10 +81,10 @@ class MemoraController < ApplicationController
     analysis_scope = params[:analysis_scope] || 'full'
     relationship_depth = params[:relationship_depth] || 3
     focus_concepts = params[:focus_concepts] || []
-    
+
     # Analyze knowledge graph relationships
     graph_data = analyze_knowledge_graph(analysis_scope, relationship_depth, focus_concepts)
-    
+
     render json: {
       graph_analysis: graph_data,
       knowledge_networks: graph_data[:knowledge_networks],
@@ -101,10 +101,10 @@ class MemoraController < ApplicationController
     analytics_period = params[:analytics_period] || '30_days'
     learning_domains = params[:learning_domains] || []
     growth_metrics = params[:growth_metrics] || ['knowledge_acquisition']
-    
+
     # Analyze learning patterns and growth
     analytics_data = analyze_learning_patterns(analytics_period, learning_domains, growth_metrics)
-    
+
     render json: {
       learning_analytics: analytics_data,
       knowledge_growth: analytics_data[:knowledge_growth],
@@ -121,10 +121,10 @@ class MemoraController < ApplicationController
     enhancement_goals = params[:enhancement_goals] || []
     cognitive_profile = params[:cognitive_profile] || {}
     enhancement_type = params[:enhancement_type] || 'memory_optimization'
-    
+
     # Enhance cognitive performance and memory efficiency
     enhancement_data = enhance_cognitive_performance(enhancement_goals, cognitive_profile, enhancement_type)
-    
+
     render json: {
       cognitive_enhancement: enhancement_data,
       optimization_strategies: enhancement_data[:optimization_strategies],
@@ -141,10 +141,10 @@ class MemoraController < ApplicationController
     optimization_type = params[:optimization_type] || 'storage_efficiency'
     performance_goals = params[:performance_goals] || []
     current_metrics = params[:current_metrics] || {}
-    
+
     # Optimize memory storage and retrieval performance
     optimization_data = optimize_memory_performance(optimization_type, performance_goals, current_metrics)
-    
+
     render json: {
       memory_optimization: optimization_data,
       optimization_results: optimization_data[:optimization_results],
@@ -155,10 +155,10 @@ class MemoraController < ApplicationController
       processing_time: optimization_data[:processing_time]
     }
   end
-  
+
   def index
     # Main Memora terminal interface
-    
+
     # Agent stats for the interface
     @agent_stats = {
       total_conversations: @agent.total_conversations,
@@ -167,222 +167,201 @@ class MemoraController < ApplicationController
       specializations: @agent.specializations
     }
   end
-  
+
   def store_memory
-    begin
-      message = params[:message]
-      
-      if message.blank?
-        render json: { 
-          success: false, 
-          message: "Please provide memory content to store" 
-        }
-        return
-      end
-      
-      # Process memory storage request
-      response = @memora_engine.process_input(
-        current_user, 
-        message, 
-        memory_context_params.merge(request_type: :store_memory)
-      )
-      
-      # Update session stats
-      increment_session_stats('memories_stored')
-      
+    message = params[:message]
+
+    if message.blank?
       render json: {
-        success: true,
-        memory_response: response[:text],
-        metadata: response[:metadata],
-        memory_data: response[:memory_data],
-        timestamp: response[:timestamp],
-        processing_time: response[:processing_time]
+        success: false,
+        message: 'Please provide memory content to store'
       }
-      
-    rescue => e
-      Rails.logger.error "Memora storage error: #{e.message}"
-      render json: { 
-        success: false, 
-        message: "I encountered an issue storing your memory. Please try again with different content." 
-      }
+      return
     end
+
+    # Process memory storage request
+    response = @memora_engine.process_input(
+      current_user,
+      message,
+      memory_context_params.merge(request_type: :store_memory)
+    )
+
+    # Update session stats
+    increment_session_stats('memories_stored')
+
+    render json: {
+      success: true,
+      memory_response: response[:text],
+      metadata: response[:metadata],
+      memory_data: response[:memory_data],
+      timestamp: response[:timestamp],
+      processing_time: response[:processing_time]
+    }
+  rescue StandardError => e
+    Rails.logger.error "Memora storage error: #{e.message}"
+    render json: {
+      success: false,
+      message: 'I encountered an issue storing your memory. Please try again with different content.'
+    }
   end
-  
+
   def recall_memory
-    begin
-      query = params[:query] || params[:message]
-      
-      if query.blank?
-        render json: { 
-          success: false, 
-          message: "Please provide a query to search your memories" 
-        }
-        return
-      end
-      
-      # Process memory recall request
-      response = @memora_engine.process_input(
-        current_user, 
-        query, 
-        memory_context_params.merge(request_type: :recall_memory)
-      )
-      
-      # Update session stats
-      increment_session_stats('memories_recalled')
-      
+    query = params[:query] || params[:message]
+
+    if query.blank?
       render json: {
-        success: true,
-        recall_response: response[:text],
-        metadata: response[:metadata],
-        memory_data: response[:memory_data],
-        timestamp: response[:timestamp],
-        processing_time: response[:processing_time]
+        success: false,
+        message: 'Please provide a query to search your memories'
       }
-      
-    rescue => e
-      Rails.logger.error "Memora recall error: #{e.message}"
-      render json: { 
-        success: false, 
-        message: "I encountered an issue recalling your memories. Please try a different query." 
-      }
+      return
     end
+
+    # Process memory recall request
+    response = @memora_engine.process_input(
+      current_user,
+      query,
+      memory_context_params.merge(request_type: :recall_memory)
+    )
+
+    # Update session stats
+    increment_session_stats('memories_recalled')
+
+    render json: {
+      success: true,
+      recall_response: response[:text],
+      metadata: response[:metadata],
+      memory_data: response[:memory_data],
+      timestamp: response[:timestamp],
+      processing_time: response[:processing_time]
+    }
+  rescue StandardError => e
+    Rails.logger.error "Memora recall error: #{e.message}"
+    render json: {
+      success: false,
+      message: 'I encountered an issue recalling your memories. Please try a different query.'
+    }
   end
-  
+
   def search_memories
-    begin
-      search_query = params[:query]
-      search_filters = {
-        memory_type: params[:memory_type],
-        priority: params[:priority],
-        tags: params[:tags]&.split(','),
-        date_range: params[:date_range]
-      }
-      
-      response = @memora_engine.search_memories(
-        current_user, 
-        search_query, 
-        memory_context_params.merge(filters: search_filters)
-      )
-      
-      render json: {
-        success: true,
-        search_results: response,
-        query: search_query,
-        filters_applied: search_filters.compact
-      }
-      
-    rescue => e
-      Rails.logger.error "Memora search error: #{e.message}"
-      render json: { 
-        success: false, 
-        message: "Search encountered an issue. Please try different search terms." 
-      }
-    end
+    search_query = params[:query]
+    search_filters = {
+      memory_type: params[:memory_type],
+      priority: params[:priority],
+      tags: params[:tags]&.split(','),
+      date_range: params[:date_range]
+    }
+
+    response = @memora_engine.search_memories(
+      current_user,
+      search_query,
+      memory_context_params.merge(filters: search_filters)
+    )
+
+    render json: {
+      success: true,
+      search_results: response,
+      query: search_query,
+      filters_applied: search_filters.compact
+    }
+  rescue StandardError => e
+    Rails.logger.error "Memora search error: #{e.message}"
+    render json: {
+      success: false,
+      message: 'Search encountered an issue. Please try different search terms.'
+    }
   end
-  
+
   def process_voice
-    begin
-      # Handle voice input processing
-      audio_data = {
-        sample_text: params[:transcription] || params[:message],
-        confidence: params[:confidence] || 95,
-        signature: params[:audio_signature]
-      }
-      
-      response = @memora_engine.process_voice_input(
-        current_user,
-        audio_data,
-        memory_context_params
-      )
-      
-      increment_session_stats('voice_memories')
-      
-      render json: {
-        success: true,
-        voice_response: response,
-        transcription: response[:transcription],
-        memory_stored: response[:memory_stored]
-      }
-      
-    rescue => e
-      Rails.logger.error "Memora voice error: #{e.message}"
-      render json: { 
-        success: false, 
-        message: "Voice processing encountered an issue. Please try again." 
-      }
-    end
+    # Handle voice input processing
+    audio_data = {
+      sample_text: params[:transcription] || params[:message],
+      confidence: params[:confidence] || 95,
+      signature: params[:audio_signature]
+    }
+
+    response = @memora_engine.process_voice_input(
+      current_user,
+      audio_data,
+      memory_context_params
+    )
+
+    increment_session_stats('voice_memories')
+
+    render json: {
+      success: true,
+      voice_response: response,
+      transcription: response[:transcription],
+      memory_stored: response[:memory_stored]
+    }
+  rescue StandardError => e
+    Rails.logger.error "Memora voice error: #{e.message}"
+    render json: {
+      success: false,
+      message: 'Voice processing encountered an issue. Please try again.'
+    }
   end
-  
+
   def get_memory_stats
-    begin
-      stats = @memora_engine.get_memory_stats(current_user)
-      
-      render json: {
-        success: true,
-        stats: stats,
-        session_stats: @session_data
-      }
-      
-    rescue => e
-      Rails.logger.error "Memora stats error: #{e.message}"
-      render json: { 
-        success: false, 
-        message: "Unable to retrieve memory statistics." 
-      }
-    end
+    stats = @memora_engine.get_memory_stats(current_user)
+
+    render json: {
+      success: true,
+      stats:,
+      session_stats: @session_data
+    }
+  rescue StandardError => e
+    Rails.logger.error "Memora stats error: #{e.message}"
+    render json: {
+      success: false,
+      message: 'Unable to retrieve memory statistics.'
+    }
   end
-  
+
   def get_memory_insights
-    begin
-      insights = @memora_engine.get_memory_insights(current_user)
-      
-      render json: {
-        success: true,
-        insights: insights,
-        generated_at: Time.current
-      }
-      
-    rescue => e
-      Rails.logger.error "Memora insights error: #{e.message}"
-      render json: { 
-        success: false, 
-        message: "Unable to generate memory insights." 
-      }
-    end
+    insights = @memora_engine.get_memory_insights(current_user)
+
+    render json: {
+      success: true,
+      insights:,
+      generated_at: Time.current
+    }
+  rescue StandardError => e
+    Rails.logger.error "Memora insights error: #{e.message}"
+    render json: {
+      success: false,
+      message: 'Unable to generate memory insights.'
+    }
   end
-  
+
   def export_memories
-    begin
-      export_format = params[:format] || 'json'
-      export_filter = {
-        memory_type: params[:memory_type],
-        date_range: params[:date_range],
-        priority: params[:priority]
-      }
-      
-      exported_data = @memora_engine.export_memories(
-        current_user, 
-        export_format, 
-        export_filter.compact
-      )
-      
-      render json: {
-        success: true,
-        export_data: exported_data,
-        format: export_format,
-        filter_applied: export_filter.compact,
-        download_url: "/memora/download/memories.#{export_format}"
-      }
-      
-    rescue => e
-      Rails.logger.error "Memora export error: #{e.message}"
-      render json: { 
-        success: false, 
-        message: "Export process encountered an issue." 
-      }
-    end
+    export_format = params[:format] || 'json'
+    export_filter = {
+      memory_type: params[:memory_type],
+      date_range: params[:date_range],
+      priority: params[:priority]
+    }
+
+    exported_data = @memora_engine.export_memories(
+      current_user,
+      export_format,
+      export_filter.compact
+    )
+
+    render json: {
+      success: true,
+      export_data: exported_data,
+      format: export_format,
+      filter_applied: export_filter.compact,
+      download_url: "/memora/download/memories.#{export_format}"
+    }
+  rescue StandardError => e
+    Rails.logger.error "Memora export error: #{e.message}"
+    render json: {
+      success: false,
+      message: 'Export process encountered an issue.'
+    }
   end
-  
+
   def get_memory_types
     render json: {
       memory_types: Agents::MemoraEngine::MEMORY_TYPES,
@@ -390,69 +369,66 @@ class MemoraController < ApplicationController
       context_tags: Agents::MemoraEngine::CONTEXT_TAGS
     }
   end
-  
+
   def memory_graph
-    begin
-      # Get memory graph visualization data
-      graph_data = generate_memory_graph_data(current_user)
-      
-      render json: {
-        success: true,
-        graph_data: graph_data,
-        node_count: graph_data[:nodes]&.length || 0,
-        connection_count: graph_data[:edges]&.length || 0
-      }
-      
-    rescue => e
-      Rails.logger.error "Memory graph error: #{e.message}"
-      render json: { 
-        success: false, 
-        message: "Unable to generate memory graph." 
-      }
-    end
+    # Get memory graph visualization data
+    graph_data = generate_memory_graph_data(current_user)
+
+    render json: {
+      success: true,
+      graph_data:,
+      node_count: graph_data[:nodes]&.length || 0,
+      connection_count: graph_data[:edges]&.length || 0
+    }
+  rescue StandardError => e
+    Rails.logger.error "Memory graph error: #{e.message}"
+    render json: {
+      success: false,
+      message: 'Unable to generate memory graph.'
+    }
   end
-  
+
   def terminal_command
     command = params[:command]
     args = params[:args] || []
-    
+
     case command
     when 'stats'
       stats = @memora_engine.get_memory_stats(current_user)
-      render json: { success: true, stats: stats }
+      render json: { success: true, stats: }
     when 'types'
-      render json: { 
-        success: true, 
-        types: Agents::MemoraEngine::MEMORY_TYPES 
+      render json: {
+        success: true,
+        types: Agents::MemoraEngine::MEMORY_TYPES
       }
     when 'search'
       query = args.join(' ')
       if query.present?
         results = @memora_engine.recall_memory(current_user, query, {})
-        render json: { success: true, results: results }
+        render json: { success: true, results: }
       else
-        render json: { success: false, message: "Please provide search query" }
+        render json: { success: false, message: 'Please provide search query' }
       end
     when 'insights'
       insights = @memora_engine.get_memory_insights(current_user)
-      render json: { success: true, insights: insights }
+      render json: { success: true, insights: }
     when 'export'
       format = args.first || 'json'
       export_data = @memora_engine.export_memories(current_user, format)
-      render json: { success: true, export_data: export_data }
+      render json: { success: true, export_data: }
     when 'help'
       help_text = generate_memory_help_text
       render json: { success: true, help: help_text }
     else
-      render json: { 
-        success: false, 
-        message: "Unknown command: #{command}. Type 'help' for available commands." 
+      render json: {
+        success: false,
+        message: "Unknown command: #{command}. Type 'help' for available commands."
       }
     end
   end
-  
+
   private
-  
+
   def set_agent
     @agent = Agent.find_by(agent_type: 'memora') || create_default_agent
     @memora_engine = @agent.engine_class.new(@agent)
@@ -460,9 +436,9 @@ class MemoraController < ApplicationController
 
   def time_since_last_active
     return 'Just started' unless @agent.last_active_at
-    
+
     time_diff = Time.current - @agent.last_active_at
-    
+
     if time_diff < 1.minute
       'Just now'
     elsif time_diff < 1.hour
@@ -509,7 +485,7 @@ class MemoraController < ApplicationController
 
   def handle_memory_storage_request(_message)
     {
-      text: "🧠 **Memora Memory Storage Intelligence**\n\n" \
+      text: "🌌 **Memora Memory Storage Intelligence**\n\n" \
             "Advanced memory management with intelligent organization and contextual understanding:\n\n" \
             "💾 **Storage Capabilities:**\n" \
             "• **Semantic Indexing:** Intelligent content analysis and categorization\n" \
@@ -616,7 +592,7 @@ class MemoraController < ApplicationController
             "• Learning style identification and adaptation\n" \
             "• Forgetting curve analysis and intervention\n" \
             "• Motivation and engagement pattern tracking\n\n" \
-            "🧠 **Cognitive Insights:**\n" \
+            "🌌 **Cognitive Insights:**\n" \
             "• Attention span and focus optimization\n" \
             "• Memory encoding strategy effectiveness\n" \
             "• Information processing speed analysis\n" \
@@ -635,7 +611,7 @@ class MemoraController < ApplicationController
     {
       text: "🚀 **Memora Cognitive Enhancement Center**\n\n" \
             "Advanced cognitive training and memory enhancement with personalized optimization:\n\n" \
-            "🧠 **Enhancement Programs:**\n" \
+            "🌌 **Enhancement Programs:**\n" \
             "• **Memory Palace:** Spatial memory technique training\n" \
             "• **Spaced Repetition:** Optimized review and retention systems\n" \
             "• **Chunking Strategies:** Information grouping and organization\n" \
@@ -695,7 +671,7 @@ class MemoraController < ApplicationController
 
   def handle_general_memory_query(_message)
     {
-      text: "🧠 **Memora Memory Intelligence AI Ready**\n\n" \
+      text: "🌌 **Memora Memory Intelligence AI Ready**\n\n" \
             "Your comprehensive AI memory manager and knowledge companion! Here's what I offer:\n\n" \
             "💾 **Core Capabilities:**\n" \
             "• Advanced memory storage with intelligent organization\n" \
@@ -980,7 +956,7 @@ class MemoraController < ApplicationController
   end
 
   # Specialized processing methods for the new endpoints
-  def store_intelligent_memory(content, memory_type, priority, context)
+  def store_intelligent_memory(content, memory_type, _priority, _context)
     {
       memory_id: "mem_#{SecureRandom.hex(8)}",
       organization_structure: create_organization_structure(memory_type),
@@ -991,7 +967,7 @@ class MemoraController < ApplicationController
     }
   end
 
-  def retrieve_intelligent_knowledge(query, retrieval_type, context_filter)
+  def retrieve_intelligent_knowledge(query, _retrieval_type, _context_filter)
     {
       search_results: generate_search_results(query),
       relevance_scores: calculate_relevance_scores,
@@ -1002,7 +978,7 @@ class MemoraController < ApplicationController
     }
   end
 
-  def analyze_knowledge_graph(analysis_scope, relationship_depth, focus_concepts)
+  def analyze_knowledge_graph(_analysis_scope, _relationship_depth, _focus_concepts)
     {
       knowledge_networks: map_knowledge_networks,
       concept_clusters: identify_concept_clusters,
@@ -1013,7 +989,7 @@ class MemoraController < ApplicationController
     }
   end
 
-  def analyze_learning_patterns(analytics_period, learning_domains, growth_metrics)
+  def analyze_learning_patterns(analytics_period, _learning_domains, _growth_metrics)
     {
       knowledge_growth: track_knowledge_growth(analytics_period),
       learning_patterns: identify_learning_patterns,
@@ -1024,7 +1000,7 @@ class MemoraController < ApplicationController
     }
   end
 
-  def enhance_cognitive_performance(enhancement_goals, cognitive_profile, enhancement_type)
+  def enhance_cognitive_performance(_enhancement_goals, _cognitive_profile, _enhancement_type)
     {
       optimization_strategies: develop_optimization_strategies,
       memory_techniques: select_memory_techniques,
@@ -1035,7 +1011,7 @@ class MemoraController < ApplicationController
     }
   end
 
-  def optimize_memory_performance(optimization_type, performance_goals, current_metrics)
+  def optimize_memory_performance(_optimization_type, _performance_goals, _current_metrics)
     {
       optimization_results: execute_optimization_procedures,
       performance_improvements: measure_performance_improvements,
@@ -1051,11 +1027,11 @@ class MemoraController < ApplicationController
     { type: memory_type, hierarchy: 'topic_based', indexing: 'semantic' }
   end
 
-  def find_related_memories(content)
+  def find_related_memories(_content)
     ['Related memory 1', 'Related memory 2', 'Related memory 3']
   end
 
-  def identify_knowledge_connections(content)
+  def identify_knowledge_connections(_content)
     ['Connection to topic A', 'Connection to concept B', 'Link to domain C']
   end
 
@@ -1063,7 +1039,7 @@ class MemoraController < ApplicationController
     content.split.sample(5)
   end
 
-  def generate_search_results(query)
+  def generate_search_results(_query)
     ['Search result 1', 'Search result 2', 'Search result 3']
   end
 
@@ -1136,7 +1112,7 @@ class MemoraController < ApplicationController
   end
 
   def setup_performance_tracking
-    { metrics: ['accuracy', 'speed', 'retention'], frequency: 'weekly' }
+    { metrics: %w[accuracy speed retention], frequency: 'weekly' }
   end
 
   def create_personalized_enhancement_plan
@@ -1162,7 +1138,7 @@ class MemoraController < ApplicationController
   def generate_maintenance_recommendations
     ['Weekly index optimization', 'Monthly performance review', 'Quarterly system cleanup']
   end
-  
+
   def set_memory_context
     # @memory_stats = @memora_engine.get_memory_stats(current_user)
     @memory_stats = { total_memories: 0, avg_importance: 0, categories: [] } # Temporary placeholder
@@ -1175,7 +1151,7 @@ class MemoraController < ApplicationController
       active_integrations: session[:memora_integrations] || []
     }
   end
-  
+
   def memory_context_params
     {
       memory_type: params[:memory_type],
@@ -1187,32 +1163,32 @@ class MemoraController < ApplicationController
       platform: params[:platform] || 'terminal'
     }
   end
-  
+
   def increment_session_stats(stat_key)
     session["memora_#{stat_key}"] = (session["memora_#{stat_key}"] || 0) + 1
     session[:memora_start] ||= Time.current
   end
-  
+
   def create_default_agent
     Agent.create!(
       name: 'Memora',
       agent_type: 'memora',
-      personality_traits: [
-        'organized', 'reliable', 'analytical', 'contextual', 
-        'intuitive', 'secure', 'adaptive', 'intelligent'
+      personality_traits: %w[
+        organized reliable analytical contextual
+        intuitive secure adaptive intelligent
       ],
-      capabilities: [
-        'memory_storage', 'semantic_indexing', 'voice_processing',
-        'context_binding', 'natural_recall', 'memory_graph',
-        'privacy_protection', 'agent_synchronization'
+      capabilities: %w[
+        memory_storage semantic_indexing voice_processing
+        context_binding natural_recall memory_graph
+        privacy_protection agent_synchronization
       ],
-      specializations: [
-        'semantic_search', 'voice_recognition', 'context_analysis',
-        'memory_patterns', 'knowledge_mapping', 'data_export',
-        'privacy_encryption', 'cross_agent_sync'
+      specializations: %w[
+        semantic_search voice_recognition context_analysis
+        memory_patterns knowledge_mapping data_export
+        privacy_encryption cross_agent_sync
       ],
       configuration: {
-        'emoji' => '🧠',
+        'emoji' => '🌌',
         'tagline' => 'Your Intelligent Memory Manager - Capture, Store, Recall Everything',
         'primary_color' => '#6B46C1',
         'secondary_color' => '#8B5CF6',
@@ -1221,8 +1197,8 @@ class MemoraController < ApplicationController
       status: 'active'
     )
   end
-  
-  def generate_memory_graph_data(user)
+
+  def generate_memory_graph_data(_user)
     # Generate mock graph data for visualization
     {
       nodes: [
@@ -1237,12 +1213,12 @@ class MemoraController < ApplicationController
         { from: 'fact_1', to: 'exp_1', weight: 0.7 }
       ],
       clusters: {
-        work: ['goal_1', 'pref_1'],
-        learning: ['fact_1', 'exp_1']
+        work: %w[goal_1 pref_1],
+        learning: %w[fact_1 exp_1]
       }
     }
   end
-  
+
   def generate_memory_help_text
     {
       commands: {
@@ -1255,18 +1231,18 @@ class MemoraController < ApplicationController
       },
       memory_types: Agents::MemoraEngine::MEMORY_TYPES.keys.map(&:to_s),
       examples: [
-        "Remember: I prefer working in the morning with classical music #productivity",
-        "Recall: What did I say about my career goals?",
-        "Store goal: Launch my startup by December 2025 !high",
-        "Voice: Remember my meeting notes from today"
+        'Remember: I prefer working in the morning with classical music #productivity',
+        'Recall: What did I say about my career goals?',
+        'Store goal: Launch my startup by December 2025 !high',
+        'Voice: Remember my meeting notes from today'
       ],
       advanced_features: [
         "🗣️ Voice input with 'Voice: [content]' command",
-        "🏷️ Use hashtags for automatic tagging",
-        "🎯 Set priorities with !critical, !high, !medium, !low",
-        "🔗 Agent sync with @emotisense, @cinegen, @contentcrafter",
-        "🧠 Semantic search understands meaning, not just keywords",
-        "📊 Memory graph shows connections between related memories"
+        '🏷️ Use hashtags for automatic tagging',
+        '🎯 Set priorities with !critical, !high, !medium, !low',
+        '🔗 Agent sync with @emotisense, @cinegen, @contentcrafter',
+        '🌌 Semantic search understands meaning, not just keywords',
+        '📊 Memory graph shows connections between related memories'
       ]
     }
   end

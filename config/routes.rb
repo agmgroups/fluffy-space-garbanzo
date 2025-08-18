@@ -81,6 +81,8 @@ Rails.application.routes.draw do
   # Test route for NeoChat (temporary)
   get '/neochat', to: 'neochat#index'
   post '/neochat/chat', to: 'neochat#chat'
+  post '/neochat/clear', to: 'neochat#clear'
+  get '/neochat/status', to: 'neochat#status'
 
   # EmotiSense development routes
   get '/emotisense', to: 'emotisense#index'

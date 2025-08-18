@@ -13,7 +13,7 @@ class EmotisenseController < ApplicationController
     @emotion_history = session[:emotion_history] || []
     @daily_mood_stats = calculate_daily_mood_stats
     @active_visualizations = session[:active_visualizations] || default_visualizations
-    
+
     # Agent stats for the interface
     @agent_stats = {
       total_conversations: @agent.total_conversations,
@@ -21,7 +21,7 @@ class EmotisenseController < ApplicationController
       response_time: '< 2s',
       specializations: @agent.specializations
     }
-    
+
     # Real-time emotion context
     @emotion_context = {
       current_session_length: session_duration,
@@ -62,14 +62,14 @@ class EmotisenseController < ApplicationController
   def emotion_detection
     message = params[:message] || params[:text]
     context = params[:context] || {}
-    
+
     return render json: { error: 'Message is required' }, status: 400 if message.blank?
 
     # Process emotional content analysis
     emotion_analysis = analyze_emotional_content(message, context)
-    
+
     render json: {
-      emotion_analysis: emotion_analysis,
+      emotion_analysis:,
       sentiment_score: emotion_analysis[:sentiment_score],
       confidence: emotion_analysis[:confidence],
       detected_emotions: emotion_analysis[:emotions],
@@ -83,12 +83,12 @@ class EmotisenseController < ApplicationController
   def sentiment_analysis
     content = params[:content] || params[:message]
     analysis_type = params[:analysis_type] || 'comprehensive'
-    
+
     return render json: { error: 'Content is required' }, status: 400 if content.blank?
 
     # Advanced sentiment processing
     sentiment_data = perform_sentiment_analysis(content, analysis_type)
-    
+
     render json: {
       sentiment_analysis: sentiment_data,
       polarity: sentiment_data[:polarity],
@@ -104,10 +104,10 @@ class EmotisenseController < ApplicationController
   def mood_tracking
     mood_data = params[:mood_data] || {}
     tracking_period = params[:period] || 'daily'
-    
+
     # Process mood tracking information
     mood_analysis = process_mood_tracking(mood_data, tracking_period)
-    
+
     render json: {
       mood_tracking: mood_analysis,
       mood_patterns: mood_analysis[:patterns],
@@ -124,12 +124,12 @@ class EmotisenseController < ApplicationController
     concern = params[:concern] || params[:issue]
     intensity = params[:intensity] || 'moderate'
     context = params[:context] || {}
-    
+
     return render json: { error: 'Concern or issue is required' }, status: 400 if concern.blank?
 
     # Generate therapeutic guidance
     therapeutic_guidance = generate_therapeutic_support(concern, intensity, context)
-    
+
     render json: {
       therapeutic_support: therapeutic_guidance,
       coping_strategies: therapeutic_guidance[:coping_strategies],
@@ -146,12 +146,12 @@ class EmotisenseController < ApplicationController
     coaching_goal = params[:goal] || params[:focus_area]
     current_level = params[:current_level] || 'beginner'
     preferences = params[:preferences] || {}
-    
+
     return render json: { error: 'Coaching goal is required' }, status: 400 if coaching_goal.blank?
 
     # Develop personalized coaching plan
     coaching_plan = create_emotional_coaching_plan(coaching_goal, current_level, preferences)
-    
+
     render json: {
       emotional_coaching: coaching_plan,
       learning_path: coaching_plan[:learning_path],
@@ -168,10 +168,10 @@ class EmotisenseController < ApplicationController
     assessment_type = params[:assessment_type] || 'comprehensive'
     symptoms = params[:symptoms] || []
     lifestyle_factors = params[:lifestyle_factors] || {}
-    
+
     # Perform wellness assessment
     wellness_analysis = conduct_wellness_assessment(assessment_type, symptoms, lifestyle_factors)
-    
+
     render json: {
       wellness_assessment: wellness_analysis,
       mental_health_insights: wellness_analysis[:mental_health_insights],
@@ -188,29 +188,29 @@ class EmotisenseController < ApplicationController
   def analyze_voice
     # In a real implementation, this would process audio data
     # audio_data = params[:audio_data] # Future implementation
-    
+
     # Simulated voice emotion analysis
     voice_analysis = {
       tone_analysis: {
         pitch_variation: rand(0.1..1.0),
-        speaking_rate: ['slow', 'normal', 'fast'].sample,
+        speaking_rate: %w[slow normal fast].sample,
         volume_consistency: rand(0.3..1.0),
         emotional_stress: rand(0.0..0.8)
       },
       detected_emotions: {
-        primary: ['joy', 'sadness', 'anger', 'fear', 'excitement'].sample,
-        secondary: ['calm', 'anxious', 'confident', 'uncertain'].sample,
+        primary: %w[joy sadness anger fear excitement].sample,
+        secondary: %w[calm anxious confident uncertain].sample,
         confidence: rand(0.6..0.95)
       },
       recommendations: [
-        "Your voice shows signs of #{['stress', 'excitement', 'calm', 'tension'].sample}",
+        "Your voice shows signs of #{%w[stress excitement calm tension].sample}",
         "Consider #{['taking deep breaths', 'speaking slower', 'relaxing shoulders'].sample}",
-        "Your emotional state appears #{['stable', 'fluctuating', 'positive', 'complex'].sample}"
+        "Your emotional state appears #{%w[stable fluctuating positive complex].sample}"
       ]
     }
 
     render json: {
-      voice_analysis: voice_analysis,
+      voice_analysis:,
       ui_updates: generate_voice_ui_updates(voice_analysis)
     }
   end
@@ -226,12 +226,12 @@ class EmotisenseController < ApplicationController
         triggers: params[:triggers] || [],
         energy_level: params[:energy_level]
       }
-      
+
       save_mood_entry(mood_entry)
-      
+
       render json: {
         success: true,
-        message: "Mood entry saved! 💜 Thank you for sharing your emotional journey.",
+        message: 'Mood entry saved! 💜 Thank you for sharing your emotional journey.',
         mood_insights: generate_mood_insights(mood_entry)
       }
     else
@@ -248,7 +248,7 @@ class EmotisenseController < ApplicationController
     @mood_timeline = generate_mood_timeline_data
     @emotional_insights = generate_emotional_insights
     @biometric_data = simulate_biometric_data
-    
+
     respond_to do |format|
       format.html
       format.json do
@@ -273,13 +273,13 @@ class EmotisenseController < ApplicationController
   def process_empathy_response
     scenario_id = params[:scenario_id]
     user_response = params[:response]
-    
+
     # Analyze empathetic response quality
     empathy_analysis = analyze_empathy_response(user_response, scenario_id)
-    
+
     # Update user progress
     update_empathy_progress(empathy_analysis)
-    
+
     render json: {
       analysis: empathy_analysis,
       feedback: generate_empathy_feedback(empathy_analysis),
@@ -312,7 +312,7 @@ class EmotisenseController < ApplicationController
       session_data: session[:emotisense_session_data] || {},
       insights: generate_export_insights
     }
-    
+
     respond_to do |format|
       format.json { render json: emotion_data }
       format.csv do
@@ -326,26 +326,24 @@ class EmotisenseController < ApplicationController
 
   def set_agent
     @agent = Agent.find_by(agent_type: :emotisense, status: 'active') || Agent.find_by(agent_type: :emotisense)
-    
-    unless @agent
-      @agent = Agent.create!(
-        name: "EmotiSense",
-        agent_type: :emotisense,
-        status: 'active',
-        description: "Advanced Mood & Emotion Analyzer with empathetic AI capabilities",
-        personality_traits: ['empathetic', 'intuitive', 'compassionate', 'insightful', 'supportive'],
-        capabilities: ['emotion_detection', 'mood_analysis', 'empathy_training', 'wellness_guidance'],
-        specializations: ['emotional_intelligence', 'mood_tracking', 'therapeutic_conversation'],
-        configuration: {
-          'emoji' => '💜',
-          'tagline' => 'Your empathetic emotional intelligence companion',
-          'primary_color' => '#6c5ce7',
-          'secondary_color' => '#a29bfe',
-          'accent_color' => '#fd79a8'
-        }
-      )
-    end
-    
+
+    @agent ||= Agent.create!(
+      name: 'EmotiSense',
+      agent_type: :emotisense,
+      status: 'active',
+      description: 'Advanced Mood & Emotion Analyzer with empathetic AI capabilities',
+      personality_traits: %w[empathetic intuitive compassionate insightful supportive],
+      capabilities: %w[emotion_detection mood_analysis empathy_training wellness_guidance],
+      specializations: %w[emotional_intelligence mood_tracking therapeutic_conversation],
+      configuration: {
+        'emoji' => '💜',
+        'tagline' => 'Your empathetic emotional intelligence companion',
+        'primary_color' => '#6c5ce7',
+        'secondary_color' => '#a29bfe',
+        'accent_color' => '#fd79a8'
+      }
+    )
+
     @emotisense_engine = Agents::EmotisenseEngine.new(@agent) if @agent
   end
 
@@ -370,7 +368,7 @@ class EmotisenseController < ApplicationController
     session[:interaction_count] += 1
     session[:current_emotion] = result[:emotion_analysis][:primary_emotion]
     session[:emotisense_mood] = result[:mood_state]
-    
+
     # Add to emotion history (keep last 20 entries)
     emotion_entry = {
       timestamp: Time.current,
@@ -379,11 +377,11 @@ class EmotisenseController < ApplicationController
       confidence: result[:emotion_analysis][:confidence],
       ui_triggers: result[:ui_triggers]
     }
-    
+
     session[:emotion_history] ||= []
     session[:emotion_history] << emotion_entry
     session[:emotion_history] = session[:emotion_history].last(20)
-    
+
     # Store active visualizations
     session[:active_visualizations] = result[:visualizations]
   end
@@ -391,21 +389,19 @@ class EmotisenseController < ApplicationController
   def calculate_daily_mood_stats
     emotions = session[:emotion_history] || []
     today_emotions = emotions.select { |e| Date.parse(e[:timestamp].to_s) == Date.current }
-    
-    if today_emotions.empty?
-      return { dominant_mood: 'neutral', mood_changes: 0, average_intensity: 'moderate' }
-    end
-    
+
+    return { dominant_mood: 'neutral', mood_changes: 0, average_intensity: 'moderate' } if today_emotions.empty?
+
     emotion_counts = today_emotions.group_by { |e| e[:emotion] }
     dominant_mood = emotion_counts.max_by { |_, emotions| emotions.length }&.first || 'neutral'
-    
+
     intensities = today_emotions.map { |e| intensity_to_number(e[:intensity]) }
     average_intensity = number_to_intensity(intensities.sum.to_f / intensities.length)
-    
+
     {
-      dominant_mood: dominant_mood,
+      dominant_mood:,
       mood_changes: today_emotions.length,
-      average_intensity: average_intensity,
+      average_intensity:,
       emotion_distribution: emotion_counts.transform_values(&:length)
     }
   end
@@ -413,12 +409,12 @@ class EmotisenseController < ApplicationController
   def get_dominant_emotions
     emotions = session[:emotion_history] || []
     return {} if emotions.empty?
-    
+
     emotion_counts = emotions.group_by { |e| e[:emotion] }
     emotion_counts.transform_values(&:length)
-               .sort_by { |_, count| -count }
-               .first(3)
-               .to_h
+                  .sort_by { |_, count| -count }
+                  .first(3)
+                  .to_h
   end
 
   def build_emotional_journey
@@ -458,34 +454,32 @@ class EmotisenseController < ApplicationController
     session[:mood_journal] = session[:mood_journal].last(50) # Keep last 50 entries
   end
 
-  def generate_mood_insights(mood_entry)
+  def generate_mood_insights(_mood_entry)
     recent_entries = (session[:mood_journal] || []).last(7)
-    
-    if recent_entries.length < 2
-      return ["Thank you for starting your emotional journey with us! 💜"]
-    end
-    
+
+    return ['Thank you for starting your emotional journey with us! 💜'] if recent_entries.length < 2
+
     # Analyze patterns
     ratings = recent_entries.map { |e| e[:mood_rating] }
     trend = ratings.last - ratings.first
-    
+
     insights = []
-    
-    if trend > 0
-      insights << "Your mood has been trending upward! 📈✨"
-    elsif trend < 0
-      insights << "I notice some challenges lately. Remember, every emotion is valid. 🤗"
-    else
-      insights << "Your emotional state has been quite stable. 🧘‍♀️"
-    end
-    
+
+    insights << if trend > 0
+                  'Your mood has been trending upward! 📈✨'
+                elsif trend < 0
+                  'I notice some challenges lately. Remember, every emotion is valid. 🤗'
+                else
+                  'Your emotional state has been quite stable. 🧘‍♀️'
+                end
+
     # Common emotion analysis
     all_emotions = recent_entries.flat_map { |e| e[:emotions] }.compact
     if all_emotions.any?
       common_emotion = all_emotions.group_by(&:itself).max_by { |_, v| v.length }&.first
       insights << "#{common_emotion.humanize} seems to be a recurring theme for you."
     end
-    
+
     insights
   end
 
@@ -496,7 +490,7 @@ class EmotisenseController < ApplicationController
   def analyze_mood_patterns
     entries = get_mood_history
     return {} if entries.length < 3
-    
+
     {
       weekly_average: calculate_weekly_average(entries),
       most_common_triggers: find_common_triggers(entries),
@@ -508,11 +502,11 @@ class EmotisenseController < ApplicationController
   def generate_emotion_wheel_data
     emotions = session[:emotion_history] || []
     return [] if emotions.empty?
-    
+
     recent_emotions = emotions.last(10)
     emotion_counts = recent_emotions.group_by { |e| e[:emotion] }
     total = recent_emotions.length
-    
+
     emotion_counts.map do |emotion, instances|
       {
         emotion: emotion.to_s.humanize,
@@ -539,25 +533,23 @@ class EmotisenseController < ApplicationController
   def generate_emotional_insights
     emotions = session[:emotion_history] || []
     return [] if emotions.empty?
-    
+
     insights = []
-    
+
     # Recent emotion analysis
     recent_emotion = emotions.last[:emotion]
     insights << "You're currently experiencing #{recent_emotion.to_s.humanize.downcase} 💜"
-    
+
     # Emotional diversity
     unique_emotions = emotions.map { |e| e[:emotion] }.uniq
-    if unique_emotions.length >= 4
-      insights << "You have a rich emotional range! This shows great emotional awareness 🌈"
-    end
-    
+    insights << 'You have a rich emotional range! This shows great emotional awareness 🌈' if unique_emotions.length >= 4
+
     # Intensity patterns
-    high_intensity_count = emotions.count { |e| ['very_high', 'extreme'].include?(e[:intensity]) }
+    high_intensity_count = emotions.count { |e| %w[very_high extreme].include?(e[:intensity]) }
     if high_intensity_count > emotions.length * 0.3
-      insights << "You experience emotions quite intensely. Consider grounding techniques 🧘‍♀️"
+      insights << 'You experience emotions quite intensely. Consider grounding techniques 🧘‍♀️'
     end
-    
+
     insights
   end
 
@@ -576,24 +568,24 @@ class EmotisenseController < ApplicationController
     [
       {
         id: 1,
-        title: "Friend Going Through Breakup",
-        description: "Your close friend just went through a difficult breakup and is feeling devastated.",
+        title: 'Friend Going Through Breakup',
+        description: 'Your close friend just went through a difficult breakup and is feeling devastated.',
         context: "They've been together for 3 years and didn't see it coming.",
-        emotion_focus: "sadness, loss, confusion"
+        emotion_focus: 'sadness, loss, confusion'
       },
       {
         id: 2,
-        title: "Colleague Feeling Overwhelmed",
-        description: "A coworker seems stressed and overwhelmed with their workload.",
+        title: 'Colleague Feeling Overwhelmed',
+        description: 'A coworker seems stressed and overwhelmed with their workload.',
         context: "They've been working late every day and seem exhausted.",
-        emotion_focus: "stress, anxiety, burnout"
+        emotion_focus: 'stress, anxiety, burnout'
       },
       {
         id: 3,
-        title: "Family Member Excited About Achievement",
-        description: "Your sibling just got accepted to their dream university.",
+        title: 'Family Member Excited About Achievement',
+        description: 'Your sibling just got accepted to their dream university.',
         context: "They've worked really hard for this and are over the moon.",
-        emotion_focus: "joy, excitement, pride"
+        emotion_focus: 'joy, excitement, pride'
       }
     ]
   end
@@ -601,22 +593,22 @@ class EmotisenseController < ApplicationController
   def get_wellness_activities(emotion)
     activities = {
       sadness: [
-        { title: "Gentle Self-Care Ritual", duration: "15 min", type: "self-care" },
-        { title: "Gratitude Journaling", duration: "10 min", type: "reflection" },
-        { title: "Comforting Music Playlist", duration: "30 min", type: "audio" }
+        { title: 'Gentle Self-Care Ritual', duration: '15 min', type: 'self-care' },
+        { title: 'Gratitude Journaling', duration: '10 min', type: 'reflection' },
+        { title: 'Comforting Music Playlist', duration: '30 min', type: 'audio' }
       ],
       anger: [
-        { title: "Progressive Muscle Relaxation", duration: "20 min", type: "physical" },
-        { title: "Anger Release Writing", duration: "15 min", type: "expression" },
-        { title: "Cooling Breath Exercise", duration: "5 min", type: "breathing" }
+        { title: 'Progressive Muscle Relaxation', duration: '20 min', type: 'physical' },
+        { title: 'Anger Release Writing', duration: '15 min', type: 'expression' },
+        { title: 'Cooling Breath Exercise', duration: '5 min', type: 'breathing' }
       ],
       joy: [
-        { title: "Celebration Dance", duration: "10 min", type: "movement" },
-        { title: "Share the Joy", duration: "15 min", type: "social" },
-        { title: "Creative Expression", duration: "30 min", type: "creativity" }
+        { title: 'Celebration Dance', duration: '10 min', type: 'movement' },
+        { title: 'Share the Joy', duration: '15 min', type: 'social' },
+        { title: 'Creative Expression', duration: '30 min', type: 'creativity' }
       ]
     }
-    
+
     activities[emotion.to_sym] || activities[:sadness] # Default to calming activities
   end
 
@@ -652,13 +644,13 @@ class EmotisenseController < ApplicationController
       love: '#fd79a8',
       calm: '#00b894'
     }
-    
+
     color_map[emotion.to_sym] || '#6c5ce7' # Default purple
   end
 
   def calculate_average_intensity(emotion_instances)
     return 'moderate' if emotion_instances.empty?
-    
+
     intensities = emotion_instances.map { |e| intensity_to_number(e[:intensity]) }
     average = intensities.sum.to_f / intensities.length
     number_to_intensity(average)
@@ -667,78 +659,78 @@ class EmotisenseController < ApplicationController
   def get_emotion_meditations(emotion)
     meditations = {
       sadness: [
-        { title: "Healing Heart Meditation", duration: "15 min", guide: "Dr. Sarah Chen" },
-        { title: "Self-Compassion Practice", duration: "20 min", guide: "Marcus Williams" },
-        { title: "Gentle Release Meditation", duration: "12 min", guide: "Luna Park" }
+        { title: 'Healing Heart Meditation', duration: '15 min', guide: 'Dr. Sarah Chen' },
+        { title: 'Self-Compassion Practice', duration: '20 min', guide: 'Marcus Williams' },
+        { title: 'Gentle Release Meditation', duration: '12 min', guide: 'Luna Park' }
       ],
       anger: [
-        { title: "Cooling Fire Meditation", duration: "18 min", guide: "Dr. Maria Santos" },
-        { title: "Inner Peace Practice", duration: "25 min", guide: "James Morrison" },
-        { title: "Emotional Balance", duration: "15 min", guide: "Zen Master Kim" }
+        { title: 'Cooling Fire Meditation', duration: '18 min', guide: 'Dr. Maria Santos' },
+        { title: 'Inner Peace Practice', duration: '25 min', guide: 'James Morrison' },
+        { title: 'Emotional Balance', duration: '15 min', guide: 'Zen Master Kim' }
       ],
       joy: [
-        { title: "Gratitude Expansion", duration: "10 min", guide: "Happy Singh" },
-        { title: "Joy Sharing Meditation", duration: "20 min", guide: "Dr. Light" },
-        { title: "Celebration Practice", duration: "15 min", guide: "Joy Masters" }
+        { title: 'Gratitude Expansion', duration: '10 min', guide: 'Happy Singh' },
+        { title: 'Joy Sharing Meditation', duration: '20 min', guide: 'Dr. Light' },
+        { title: 'Celebration Practice', duration: '15 min', guide: 'Joy Masters' }
       ]
     }
-    
+
     meditations[emotion.to_sym] || meditations[:sadness]
   end
 
   def get_breathing_exercises(emotion)
     exercises = {
       sadness: [
-        { name: "4-7-8 Calming Breath", technique: "Inhale 4, Hold 7, Exhale 8", duration: "5 min" },
-        { name: "Heart Coherence", technique: "5 sec in, 5 sec out", duration: "10 min" },
-        { name: "Gentle Wave Breathing", technique: "Natural rhythm", duration: "8 min" }
+        { name: '4-7-8 Calming Breath', technique: 'Inhale 4, Hold 7, Exhale 8', duration: '5 min' },
+        { name: 'Heart Coherence', technique: '5 sec in, 5 sec out', duration: '10 min' },
+        { name: 'Gentle Wave Breathing', technique: 'Natural rhythm', duration: '8 min' }
       ],
       anger: [
-        { name: "Cooling Breath", technique: "Tongue curl inhale", duration: "6 min" },
-        { name: "Square Breathing", technique: "4-4-4-4 pattern", duration: "10 min" },
-        { name: "Release Breath", technique: "Quick inhale, long exhale", duration: "7 min" }
+        { name: 'Cooling Breath', technique: 'Tongue curl inhale', duration: '6 min' },
+        { name: 'Square Breathing', technique: '4-4-4-4 pattern', duration: '10 min' },
+        { name: 'Release Breath', technique: 'Quick inhale, long exhale', duration: '7 min' }
       ],
       joy: [
-        { name: "Energizing Breath", technique: "Quick shallow breaths", duration: "3 min" },
-        { name: "Celebration Breath", technique: "Deep belly breaths", duration: "5 min" },
-        { name: "Joy Breathing", technique: "Smile while breathing", duration: "10 min" }
+        { name: 'Energizing Breath', technique: 'Quick shallow breaths', duration: '3 min' },
+        { name: 'Celebration Breath', technique: 'Deep belly breaths', duration: '5 min' },
+        { name: 'Joy Breathing', technique: 'Smile while breathing', duration: '10 min' }
       ]
     }
-    
+
     exercises[emotion.to_sym] || exercises[:sadness]
   end
 
   def get_mood_boosters(emotion)
     boosters = {
       sadness: [
-        { activity: "Watch funny animal videos", time: "15 min", effect: "Endorphin boost" },
-        { activity: "Call a supportive friend", time: "20 min", effect: "Social connection" },
-        { activity: "Create something beautiful", time: "30 min", effect: "Accomplishment" }
+        { activity: 'Watch funny animal videos', time: '15 min', effect: 'Endorphin boost' },
+        { activity: 'Call a supportive friend', time: '20 min', effect: 'Social connection' },
+        { activity: 'Create something beautiful', time: '30 min', effect: 'Accomplishment' }
       ],
       anger: [
-        { activity: "Physical exercise", time: "20 min", effect: "Energy release" },
-        { activity: "Listen to calming music", time: "15 min", effect: "Nervous system reset" },
-        { activity: "Practice forgiveness", time: "10 min", effect: "Emotional freedom" }
+        { activity: 'Physical exercise', time: '20 min', effect: 'Energy release' },
+        { activity: 'Listen to calming music', time: '15 min', effect: 'Nervous system reset' },
+        { activity: 'Practice forgiveness', time: '10 min', effect: 'Emotional freedom' }
       ],
       joy: [
-        { activity: "Share your happiness", time: "10 min", effect: "Amplified joy" },
-        { activity: "Dance to favorite music", time: "15 min", effect: "Physical expression" },
-        { activity: "Plan something fun", time: "20 min", effect: "Future anticipation" }
+        { activity: 'Share your happiness', time: '10 min', effect: 'Amplified joy' },
+        { activity: 'Dance to favorite music', time: '15 min', effect: 'Physical expression' },
+        { activity: 'Plan something fun', time: '20 min', effect: 'Future anticipation' }
       ]
     }
-    
+
     boosters[emotion.to_sym] || boosters[:sadness]
   end
 
   def calculate_weekly_average(entries)
     return 0 if entries.empty?
-    
+
     weekly_entries = entries.select do |entry|
       Date.parse(entry[:timestamp].to_s) >= 1.week.ago.to_date
     end
-    
+
     return 0 if weekly_entries.empty?
-    
+
     total_rating = weekly_entries.sum { |entry| entry[:mood_rating] || 0 }
     (total_rating.to_f / weekly_entries.length).round(1)
   end
@@ -746,20 +738,20 @@ class EmotisenseController < ApplicationController
   def find_common_triggers(entries)
     all_triggers = entries.flat_map { |entry| entry[:triggers] || [] }
     return [] if all_triggers.empty?
-    
+
     all_triggers.group_by(&:itself)
-               .sort_by { |_, occurrences| -occurrences.length }
-               .first(3)
-               .map(&:first)
+                .sort_by { |_, occurrences| -occurrences.length }
+                .first(3)
+                .map(&:first)
   end
 
   def analyze_energy_patterns(entries)
     energy_levels = entries.map { |entry| entry[:energy_level] }.compact
     return {} if energy_levels.empty?
-    
+
     energy_counts = energy_levels.group_by(&:itself)
     most_common = energy_counts.max_by { |_, count| count.length }&.first
-    
+
     {
       most_common_energy: most_common,
       energy_distribution: energy_counts.transform_values(&:length)
@@ -769,7 +761,7 @@ class EmotisenseController < ApplicationController
   def analyze_emotional_vocabulary(entries)
     all_emotions = entries.flat_map { |entry| entry[:emotions] || [] }
     return {} if all_emotions.empty?
-    
+
     {
       unique_emotions: all_emotions.uniq.length,
       most_frequent: all_emotions.group_by(&:itself).max_by { |_, count| count.length }&.first,
@@ -790,7 +782,7 @@ class EmotisenseController < ApplicationController
     get_empathy_scenarios.find { |s| s[:id] == scenario_id.to_i }
   end
 
-  def analyze_empathy_response(response, scenario_id)
+  def analyze_empathy_response(_response, _scenario_id)
     # Simulated empathy analysis
     {
       empathy_score: rand(6..10),
@@ -798,9 +790,9 @@ class EmotisenseController < ApplicationController
       response_appropriateness: rand(6..9),
       active_listening_indicators: rand(5..10),
       suggestions: [
-        "Great use of emotional validation!",
-        "Consider asking more open-ended questions",
-        "Your response showed genuine care"
+        'Great use of emotional validation!',
+        'Consider asking more open-ended questions',
+        'Your response showed genuine care'
       ].sample(2)
     }
   end
@@ -808,33 +800,34 @@ class EmotisenseController < ApplicationController
   def update_empathy_progress(analysis)
     progress = get_empathy_progress
     progress[:scenarios_completed] += 1
-    
+
     # Update average score
     current_average = progress[:average_empathy_score]
     new_score = analysis[:empathy_score]
-    progress[:average_empathy_score] = ((current_average * (progress[:scenarios_completed] - 1)) + new_score) / progress[:scenarios_completed]
-    
+    progress[:average_empathy_score] =
+      ((current_average * (progress[:scenarios_completed] - 1)) + new_score) / progress[:scenarios_completed]
+
     session[:empathy_progress] = progress
   end
 
   def generate_empathy_feedback(analysis)
     score = analysis[:empathy_score]
-    
+
     if score >= 9
-      "Excellent empathetic response! 🌟 You demonstrated deep understanding and compassion."
+      'Excellent empathetic response! 🌟 You demonstrated deep understanding and compassion.'
     elsif score >= 7
-      "Good empathetic response! 💜 You showed care and understanding."
+      'Good empathetic response! 💜 You showed care and understanding.'
     elsif score >= 5
-      "Nice try! 🤗 Consider focusing more on emotional validation."
+      'Nice try! 🤗 Consider focusing more on emotional validation.'
     else
-      "Keep practicing! 💪 Empathy grows with conscious effort."
+      'Keep practicing! 💪 Empathy grows with conscious effort.'
     end
   end
 
   def get_next_scenario(current_scenario_id)
     scenarios = get_empathy_scenarios
     current_index = scenarios.index { |s| s[:id] == current_scenario_id.to_i }
-    
+
     if current_index && current_index < scenarios.length - 1
       scenarios[current_index + 1]
     else
@@ -845,11 +838,17 @@ class EmotisenseController < ApplicationController
   def generate_export_insights
     emotions = session[:emotion_history] || []
     mood_entries = session[:mood_journal] || []
-    
+
     {
       total_interactions: emotions.length,
       emotional_range: emotions.map { |e| e[:emotion] }.uniq.length,
-      average_mood_rating: mood_entries.empty? ? 0 : mood_entries.sum { |e| e[:mood_rating] || 0 } / mood_entries.length.to_f,
+      average_mood_rating: if mood_entries.empty?
+                             0
+                           else
+                             mood_entries.sum { |e|
+                               e[:mood_rating] || 0
+                             } / mood_entries.length.to_f
+                           end,
       most_common_emotion: emotions.group_by { |e| e[:emotion] }.max_by { |_, v| v.length }&.first,
       session_duration_minutes: session_duration
     }
@@ -857,10 +856,10 @@ class EmotisenseController < ApplicationController
 
   def generate_emotion_csv(emotion_data)
     require 'csv'
-    
+
     CSV.generate do |csv|
       csv << ['Timestamp', 'Emotion', 'Intensity', 'Confidence', 'Mood Rating', 'Notes']
-      
+
       emotion_data[:emotion_history].each do |emotion|
         csv << [
           emotion[:timestamp],
@@ -871,7 +870,7 @@ class EmotisenseController < ApplicationController
           ''
         ]
       end
-      
+
       emotion_data[:mood_journal].each do |entry|
         csv << [
           entry[:timestamp],
@@ -891,9 +890,9 @@ class EmotisenseController < ApplicationController
 
   def time_since_last_active
     return 'Just started' unless @agent.last_active_at
-    
+
     time_diff = Time.current - @agent.last_active_at
-    
+
     if time_diff < 1.minute
       'Just now'
     elsif time_diff < 1.hour
@@ -940,7 +939,7 @@ class EmotisenseController < ApplicationController
 
   def handle_emotion_detection_request(_message)
     {
-      text: "🧠 **EmotiSense Emotion Detection Engine**\n\n" \
+      text: "🌌 **EmotiSense Emotion Detection Engine**\n\n" \
             "Advanced emotional intelligence AI for deep emotion analysis:\n\n" \
             "🎯 **Detection Capabilities:**\n" \
             "• Real-time emotion recognition from text\n" \
@@ -1127,7 +1126,7 @@ class EmotisenseController < ApplicationController
     {
       text: "💜 **EmotiSense Emotional Intelligence AI Ready**\n\n" \
             "Your compassionate companion for emotional wellness and mental health support! Here's what I offer:\n\n" \
-            "🧠 **Core Capabilities:**\n" \
+            "🌌 **Core Capabilities:**\n" \
             "• Advanced emotion detection and analysis\n" \
             "• Comprehensive sentiment analysis\n" \
             "• Intelligent mood tracking and pattern recognition\n" \
@@ -1159,8 +1158,8 @@ class EmotisenseController < ApplicationController
   # Helper methods for generating emotional intelligence data
   def generate_emotion_detection_data
     {
-      primary_emotion: ['joy', 'sadness', 'anger', 'fear', 'surprise', 'love'].sample,
-      secondary_emotions: ['hope', 'anxiety', 'excitement', 'calm'].sample(2),
+      primary_emotion: %w[joy sadness anger fear surprise love].sample,
+      secondary_emotions: %w[hope anxiety excitement calm].sample(2),
       intensity_score: rand(6..10),
       confidence_level: rand(85..98)
     }
@@ -1197,7 +1196,7 @@ class EmotisenseController < ApplicationController
     {
       polarity: rand(-1.0..1.0).round(3),
       subjectivity: rand(0.0..1.0).round(3),
-      emotional_tone: ['positive', 'negative', 'neutral', 'mixed'].sample,
+      emotional_tone: %w[positive negative neutral mixed].sample,
       certainty_level: rand(70..95)
     }
   end
@@ -1231,9 +1230,9 @@ class EmotisenseController < ApplicationController
 
   def generate_mood_tracking_data
     {
-      current_mood: ['stable', 'fluctuating', 'improving', 'declining'].sample,
+      current_mood: %w[stable fluctuating improving declining].sample,
       mood_score: rand(3..8),
-      energy_level: ['low', 'moderate', 'high', 'very_high'].sample,
+      energy_level: %w[low moderate high very_high].sample,
       stability_rating: rand(60..90)
     }
   end
@@ -1267,10 +1266,10 @@ class EmotisenseController < ApplicationController
 
   def generate_therapeutic_data
     {
-      support_level: ['mild', 'moderate', 'intensive'].sample,
-      intervention_type: ['cognitive', 'behavioral', 'mindfulness', 'acceptance'].sample,
-      urgency_assessment: ['routine', 'elevated', 'priority'].sample,
-      resource_recommendation: ['self_help', 'peer_support', 'professional'].sample
+      support_level: %w[mild moderate intensive].sample,
+      intervention_type: %w[cognitive behavioral mindfulness acceptance].sample,
+      urgency_assessment: %w[routine elevated priority].sample,
+      resource_recommendation: %w[self_help peer_support professional].sample
     }
   end
 
@@ -1303,9 +1302,9 @@ class EmotisenseController < ApplicationController
 
   def generate_coaching_data
     {
-      eq_level: ['beginner', 'intermediate', 'advanced'].sample,
-      development_focus: ['self_awareness', 'self_regulation', 'empathy', 'social_skills'].sample,
-      learning_style: ['visual', 'auditory', 'kinesthetic', 'mixed'].sample,
+      eq_level: %w[beginner intermediate advanced].sample,
+      development_focus: %w[self_awareness self_regulation empathy social_skills].sample,
+      learning_style: %w[visual auditory kinesthetic mixed].sample,
       progress_rate: 'accelerated'
     }
   end
@@ -1342,7 +1341,7 @@ class EmotisenseController < ApplicationController
       wellness_score: rand(60..85),
       risk_factors: rand(0..3),
       protective_factors: rand(3..7),
-      intervention_priority: ['low', 'moderate', 'high'].sample
+      intervention_priority: %w[low moderate high].sample
     }
   end
 
@@ -1410,18 +1409,18 @@ class EmotisenseController < ApplicationController
   end
 
   # Specialized processing methods for the new endpoints
-  def analyze_emotional_content(message, context)
+  def analyze_emotional_content(_message, context)
     {
       sentiment_score: rand(-1.0..1.0).round(3),
       confidence: rand(0.8..0.98).round(3),
-      emotions: ['joy', 'sadness', 'anger', 'fear', 'surprise', 'love'].sample(rand(1..3)),
+      emotions: %w[joy sadness anger fear surprise love].sample(rand(1..3)),
       intensity: rand(1..10),
       context_insights: generate_context_insights(context),
       processing_time: rand(0.5..1.2).round(2)
     }
   end
 
-  def perform_sentiment_analysis(content, analysis_type)
+  def perform_sentiment_analysis(content, _analysis_type)
     {
       polarity: rand(-1.0..1.0).round(3),
       subjectivity: rand(0.0..1.0).round(3),
@@ -1443,7 +1442,7 @@ class EmotisenseController < ApplicationController
     }
   end
 
-  def generate_therapeutic_support(concern, intensity, context)
+  def generate_therapeutic_support(concern, intensity, _context)
     {
       coping_strategies: suggest_coping_strategies(concern, intensity),
       mindfulness_exercises: recommend_mindfulness_exercises(intensity),
@@ -1465,7 +1464,7 @@ class EmotisenseController < ApplicationController
     }
   end
 
-  def conduct_wellness_assessment(assessment_type, symptoms, lifestyle_factors)
+  def conduct_wellness_assessment(_assessment_type, symptoms, lifestyle_factors)
     {
       mental_health_insights: assess_mental_health(symptoms),
       risk_factors: identify_risk_factors(symptoms, lifestyle_factors),
@@ -1478,15 +1477,15 @@ class EmotisenseController < ApplicationController
   end
 
   # Helper methods for processing
-  def generate_context_insights(context)
+  def generate_context_insights(_context)
     ['Context indicates high emotional awareness', 'Situational factors influence emotional state']
   end
 
-  def extract_emotional_markers(content)
+  def extract_emotional_markers(_content)
     ['positive language patterns', 'emotional intensity indicators', 'sentiment markers']
   end
 
-  def analyze_linguistic_features(content)
+  def analyze_linguistic_features(_content)
     { word_count: rand(10..100), emotional_words: rand(3..15), complexity: 'moderate' }
   end
 
@@ -1494,11 +1493,11 @@ class EmotisenseController < ApplicationController
     ['Practice emotional awareness', 'Express feelings clearly', 'Seek emotional support']
   end
 
-  def identify_mood_patterns(mood_data, period)
+  def identify_mood_patterns(_mood_data, _period)
     ['Morning mood improvement', 'Evening energy decline', 'Weekly stress pattern']
   end
 
-  def analyze_mood_trends(period)
+  def analyze_mood_trends(_period)
     { trend: 'improving', stability: 'moderate', variability: 'normal' }
   end
 
@@ -1514,11 +1513,11 @@ class EmotisenseController < ApplicationController
     { chart_type: 'line', data_points: rand(7..30), trend_line: true }
   end
 
-  def suggest_coping_strategies(concern, intensity)
+  def suggest_coping_strategies(_concern, _intensity)
     ['Deep breathing exercises', 'Progressive muscle relaxation', 'Mindful meditation']
   end
 
-  def recommend_mindfulness_exercises(intensity)
+  def recommend_mindfulness_exercises(_intensity)
     ['5-minute breathing space', 'Body scan meditation', 'Loving-kindness practice']
   end
 
@@ -1534,35 +1533,35 @@ class EmotisenseController < ApplicationController
     'Schedule check-in within 1 week'
   end
 
-  def design_learning_path(goal, level)
+  def design_learning_path(_goal, _level)
     ['Foundation building', 'Skill practice', 'Advanced application', 'Mastery integration']
   end
 
-  def select_eq_exercises(goal, preferences)
+  def select_eq_exercises(_goal, _preferences)
     ['Self-awareness journaling', 'Empathy practice', 'Emotion regulation techniques']
   end
 
   def setup_progress_tracking
-    { frequency: 'weekly', metrics: ['self-awareness', 'regulation', 'empathy'] }
+    { frequency: 'weekly', metrics: %w[self-awareness regulation empathy] }
   end
 
-  def plan_skill_development(goal)
+  def plan_skill_development(_goal)
     ['Identify emotional triggers', 'Practice regulation techniques', 'Apply in real situations']
   end
 
-  def curate_coaching_resources(level)
+  def curate_coaching_resources(_level)
     ['EQ assessment tools', 'Practice exercises', 'Learning materials', 'Community support']
   end
 
-  def assess_mental_health(symptoms)
+  def assess_mental_health(_symptoms)
     'Symptoms indicate need for professional evaluation'
   end
 
-  def identify_risk_factors(symptoms, lifestyle_factors)
+  def identify_risk_factors(_symptoms, _lifestyle_factors)
     ['Sleep disruption', 'Social isolation', 'Work stress', 'Health concerns']
   end
 
-  def suggest_lifestyle_changes(lifestyle_factors)
+  def suggest_lifestyle_changes(_lifestyle_factors)
     ['Improve sleep hygiene', 'Increase physical activity', 'Enhance social connections']
   end
 

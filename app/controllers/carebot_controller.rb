@@ -320,7 +320,7 @@ class CarebotController < ApplicationController
 
   def handle_mental_health_support(_message)
     {
-      text: "🧠 **CareBot Mental Health Support System**\n\n" \
+      text: "🌌 **CareBot Mental Health Support System**\n\n" \
             "🤗 **Compassionate Care:** Your mental health matters. I'm here to support you.\n\n" \
             "💚 **Support Services:**\n" \
             "• Mood tracking & analysis\n" \

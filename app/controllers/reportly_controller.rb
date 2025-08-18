@@ -278,7 +278,7 @@ class ReportlyController < ApplicationController
 
   def handle_business_intelligence_request(_message)
     {
-      text: "🧠 **Reportly Business Intelligence Center**\n\n" \
+      text: "🌌 **Reportly Business Intelligence Center**\n\n" \
             "Advanced business intelligence with comprehensive data analysis and strategic insights:\n\n" \
             "📊 **Intelligence Capabilities:**\n" \
             "• **Data Integration:** Multi-source data consolidation and harmonization\n" \
@@ -466,7 +466,7 @@ class ReportlyController < ApplicationController
     {
       text: "📊 **Reportly Business Intelligence Ready**\n\n" \
             "Your comprehensive business intelligence and advanced reporting platform! Here's what I offer:\n\n" \
-            "🧠 **Core Capabilities:**\n" \
+            "🌌 **Core Capabilities:**\n" \
             "• Advanced business intelligence with strategic insights\n" \
             "• Professional data visualization and interactive dashboards\n" \
             "• Intelligent automated reporting with smart scheduling\n" \

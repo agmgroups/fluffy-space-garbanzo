@@ -265,7 +265,7 @@ class DocumindController < ApplicationController
             "• Contact information & addresses\n" \
             "• Financial data & monetary values\n" \
             "• Technical terms & specifications\n\n" \
-            "🧠 **AI-Powered Recognition:**\n" \
+            "🌌 **AI-Powered Recognition:**\n" \
             "• Named Entity Recognition (NER)\n" \
             "• Relationship mapping & connections\n" \
             "• Context-aware understanding\n" \
@@ -356,7 +356,7 @@ class DocumindController < ApplicationController
             "• Academic papers (research, thesis, journals)\n" \
             "• Personal documents (letters, forms, receipts)\n" \
             "• Technical documentation (manuals, specs)\n\n" \
-            "🧠 **AI Classification Models:**\n" \
+            "🌌 **AI Classification Models:**\n" \
             "• Machine learning algorithms\n" \
             "• Pattern recognition systems\n" \
             "• Content-based classification\n" \

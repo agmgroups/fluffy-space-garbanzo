@@ -36,7 +36,7 @@ OneLastAI is an enterprise-grade AI agent network that brings together 24 specia
 
 <table>
   <tr>
-    <td align="center"><strong>🧠 Conversation</strong></td>
+    <td align="center"><strong>🌌 Conversation</strong></td>
     <td align="center"><strong>💻 Technical</strong></td>
     <td align="center"><strong>🎨 Creative</strong></td>
     <td align="center"><strong>📊 Business</strong></td>
@@ -48,7 +48,7 @@ OneLastAI is an enterprise-grade AI agent network that brings together 24 specia
       • 💕 <strong>Girlfriend</strong> - Emotional companion<br>
       • 🧘 <strong>EmotiSense</strong> - Emotion analysis<br>
       • 📞 <strong>CallGhost</strong> - Voice interactions<br>
-      • 🧠 <strong>Memora</strong> - Memory-enhanced AI
+      • 🌌 <strong>Memora</strong> - Memory-enhanced AI
     </td>
     <td>
       • 💻 <strong>ConfigAI</strong> - Technical configuration<br>

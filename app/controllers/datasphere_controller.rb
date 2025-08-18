@@ -240,7 +240,7 @@ class DatasphereController < ApplicationController
     {
       text: "🤖 **DataSphere Machine Learning Laboratory**\n\n" \
             "Advanced machine learning with cutting-edge algorithms and intelligent automation:\n\n" \
-            "🧠 **ML Capabilities:**\n" \
+            "🌌 **ML Capabilities:**\n" \
             "• **Supervised Learning:** Classification and regression with state-of-the-art algorithms\n" \
             "• **Unsupervised Learning:** Clustering, dimensionality reduction, and pattern discovery\n" \
             "• **Deep Learning:** Neural networks, CNNs, RNNs, and transformer architectures\n" \

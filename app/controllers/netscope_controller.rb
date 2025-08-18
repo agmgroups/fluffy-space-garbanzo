@@ -659,7 +659,7 @@ class NetscopeController < ApplicationController
             "• **Behavioral Analysis:** Anomaly-based threat detection\n" \
             "• **Threat Intelligence Feeds:** Global threat data integration\n" \
             "• **Zero-Day Detection:** Unknown threat identification\n\n" \
-            "🧠 **Analysis Capabilities:**\n" \
+            "🌌 **Analysis Capabilities:**\n" \
             "• Malware family classification and analysis\n" \
             "• Attack vector identification and mapping\n" \
             "• Threat actor attribution and profiling\n" \

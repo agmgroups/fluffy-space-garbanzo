@@ -348,7 +348,7 @@ class TaskmasterController < ApplicationController
             "• **Budget Optimization:** Cost-effective resource allocation\n" \
             "• **Time Management:** Efficient scheduling and priority management\n" \
             "• **Asset Utilization:** Equipment and tool optimization\n\n" \
-            "🧠 **Intelligent Analytics:**\n" \
+            "🌌 **Intelligent Analytics:**\n" \
             "• Resource utilization pattern analysis\n" \
             "• Productivity correlation and optimization\n" \
             "• Constraint identification and resolution\n" \

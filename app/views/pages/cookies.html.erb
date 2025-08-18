@@ -17,274 +17,119 @@
       box-sizing: border-box;
     }
 
-    @keyframes waveAnimation {
-      0% { transform: translateX(-100%) translateY(0px); }
-      50% { transform: translateX(0%) translateY(-20px); }
-      100% { transform: translateX(100%) translateY(0px); }
-    }
-
-    @keyframes fogDrift {
-      0% { transform: translateX(-50px) translateY(0px) scale(1); opacity: 0.3; }
-      33% { transform: translateX(50px) translateY(-30px) scale(1.2); opacity: 0.6; }
-      66% { transform: translateX(-30px) translateY(-10px) scale(0.9); opacity: 0.4; }
-      100% { transform: translateX(-50px) translateY(0px) scale(1); opacity: 0.3; }
-    }
-
-    @keyframes crystallize {
-      0% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3), 0 0 30px rgba(0, 255, 255, 0.1); }
-      50% { text-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.5), 0 0 60px rgba(0, 255, 255, 0.3); }
-      100% { text-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.3), 0 0 30px rgba(0, 255, 255, 0.1); }
-    }
-
-    @keyframes waterRipple {
-      0% { transform: scale(1); filter: blur(0px); }
-      50% { transform: scale(1.05); filter: blur(1px); }
-      100% { transform: scale(1); filter: blur(0px); }
-    }
-
     body {
       font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.4) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(75, 0, 130, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, rgba(25, 25, 112, 0.5) 0%, transparent 50%),
-        radial-gradient(circle at 60% 20%, rgba(72, 61, 139, 0.4) 0%, transparent 50%),
-        linear-gradient(135deg, #000428 0%, #004e92 25%, #000000 50%, #434343 75%, #000000 100%);
-      color: rgba(255, 255, 255, 0.9);
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      color: #eee;
       min-height: 100vh;
       line-height: 1.6;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 30% 60%, rgba(0, 255, 128, 0.08) 0%, transparent 50%);
-      animation: fogDrift 8s ease-in-out infinite;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 300%;
-      height: 100%;
-      background: 
-        repeating-linear-gradient(
-          90deg,
-          transparent,
-          transparent 100px,
-          rgba(0, 255, 255, 0.03) 100px,
-          rgba(0, 255, 255, 0.03) 200px
-        );
-      animation: waveAnimation 15s linear infinite;
-      pointer-events: none;
-      z-index: 2;
     }
 
     .hero-section {
-      background: 
-        radial-gradient(ellipse at center, rgba(0, 255, 255, 0.15) 0%, transparent 70%),
-        radial-gradient(ellipse at 20% 30%, rgba(138, 43, 226, 0.2) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 70%, rgba(255, 0, 255, 0.15) 0%, transparent 50%);
-      backdrop-filter: blur(10px) saturate(180%);
-      padding: 6rem 2rem 4rem;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 4rem 2rem;
       text-align: center;
-      color: rgba(255, 255, 255, 0.95);
-      position: relative;
-      z-index: 10;
-      border-bottom: 2px solid rgba(0, 255, 255, 0.3);
-    }
-
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
-      z-index: -1;
-    }
-
-    .hero-icon {
-      font-size: 5rem;
-      margin-bottom: 1.5rem;
-      animation: crystallize 3s ease-in-out infinite;
-      filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.6));
+      color: #fff;
     }
 
     .hero-title {
-      font-size: 4rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff88, #ffff00, #00ffff);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: crystallize 3s ease-in-out infinite, waveAnimation 6s ease-in-out infinite;
-      text-shadow: 
-        0 0 20px rgba(0, 255, 255, 0.6),
-        0 0 40px rgba(0, 255, 255, 0.4),
-        0 0 60px rgba(0, 255, 255, 0.2),
-        0 5px 15px rgba(0, 0, 0, 0.8);
-      filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
     }
 
-    .hero-tagline {
-      font-size: 1.4rem;
+    .hero-subtitle {
+      font-size: 1.3rem;
       font-weight: 300;
-      max-width: 700px;
-      margin: 0 auto 2rem;
+      max-width: 600px;
+      margin: 0 auto;
       opacity: 0.9;
-      color: rgba(255, 255, 255, 0.85);
-      text-shadow: 
-        0 0 10px rgba(255, 255, 255, 0.3),
-        0 2px 8px rgba(0, 0, 0, 0.7);
-      animation: waterRipple 4s ease-in-out infinite;
     }
 
     .container {
       max-width: 1000px;
       margin: 0 auto;
       padding: 2rem;
-      position: relative;
-      z-index: 10;
     }
 
     .content-section {
-      background: 
-        radial-gradient(circle at 30% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 70% 80%, rgba(255, 0, 255, 0.08) 0%, transparent 50%),
-        rgba(0, 0, 0, 0.85);
-      border-radius: 20px;
-      padding: 3rem;
-      margin: 3rem 0;
-      box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.7),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1),
-        0 0 50px rgba(0, 255, 255, 0.1);
-      backdrop-filter: blur(15px) saturate(150%);
-      border: 1px solid rgba(0, 255, 255, 0.2);
-      position: relative;
-      z-index: 5;
-      animation: waterRipple 6s ease-in-out infinite;
+      background: rgba(30, 30, 30, 0.85);
+      border-radius: 15px;
+      padding: 2.5rem;
+      margin: 2rem 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+      color: #ddd;
     }
 
-    .content-section::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      background: linear-gradient(45deg, 
-        rgba(0, 255, 255, 0.3), 
-        rgba(255, 0, 255, 0.3), 
-        rgba(0, 255, 128, 0.3), 
-        rgba(255, 255, 0, 0.3));
-      border-radius: 22px;
-      z-index: -1;
-      filter: blur(3px);
-      opacity: 0.5;
+    .effective-date {
+      background: linear-gradient(135deg, rgba(60, 60, 80, 0.95) 0%, rgba(40, 40, 60, 0.95) 100%);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      border-left: 5px solid #aaaaff;
     }
 
     h1 {
-      color: rgba(255, 255, 255, 0.95);
+      color: #ffd700;
       font-size: 2.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       text-align: center;
-      border-bottom: 3px solid rgba(0, 255, 255, 0.6);
+      border-bottom: 3px solid #764ba2;
       padding-bottom: 1rem;
-      text-shadow: 
-        0 0 15px rgba(0, 255, 255, 0.6),
-        0 0 30px rgba(0, 255, 255, 0.3),
-        0 3px 10px rgba(0, 0, 0, 0.8);
-      animation: crystallize 4s ease-in-out infinite;
     }
 
     h2 {
-      color: rgba(255, 255, 255, 0.95);
-      font-size: 2.2rem;
+      color: #ffd700;
+      font-size: 1.8rem;
       font-weight: 600;
-      margin-bottom: 2rem;
-      border-bottom: 3px solid rgba(0, 255, 255, 0.6);
-      padding-bottom: 1rem;
-      text-shadow: 
-        0 0 15px rgba(0, 255, 255, 0.6),
-        0 0 30px rgba(0, 255, 255, 0.3),
-        0 3px 10px rgba(0, 0, 0, 0.8);
-      animation: crystallize 4s ease-in-out infinite;
-      background: linear-gradient(45deg, #00ffff, #ffffff, #00ff88);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      margin: 2.5rem 0 1.5rem 0;
+      border-bottom: 2px solid #764ba2;
+      padding-bottom: 0.5rem;
+      scroll-margin-top: 100px;
     }
 
     h3 {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 1.6rem;
+      color: #ffcc00;
+      font-size: 1.4rem;
       font-weight: 600;
-      margin: 2rem 0 1.5rem 0;
-      text-shadow: 
-        0 0 10px rgba(255, 255, 255, 0.4),
-        0 2px 8px rgba(0, 0, 0, 0.6);
-      animation: waterRipple 5s ease-in-out infinite;
+      margin: 2rem 0 1rem 0;
     }
 
     p {
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-      color: rgba(255, 255, 255, 0.85);
-      text-shadow: 
-        0 0 8px rgba(255, 255, 255, 0.2),
-        0 1px 3px rgba(0, 0, 0, 0.8);
-      animation: waterRipple 7s ease-in-out infinite;
-      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      color: #ccc;
     }
 
     ul {
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       padding-left: 2rem;
     }
 
     ul li {
-      margin-bottom: 0.8rem;
-      color: rgba(255, 255, 255, 0.8);
-      text-shadow: 
-        0 0 5px rgba(255, 255, 255, 0.3),
-        0 1px 3px rgba(0, 0, 0, 0.7);
+      margin-bottom: 0.5rem;
+      color: #bbb;
     }
 
     .highlight {
-      background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(255, 0, 255, 0.2));
-      color: rgba(255, 255, 255, 0.95);
-      padding: 2rem;
-      border-radius: 15px;
-      margin: 2rem 0;
-      border: 1px solid rgba(0, 255, 255, 0.3);
-      animation: waterRipple 8s ease-in-out infinite;
+      background: linear-gradient(135deg, #222244 0%, #332255 100%);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 1.5rem 0;
     }
 
     .friendly-message {
-      background: linear-gradient(135deg, rgba(0, 255, 128, 0.15), rgba(0, 255, 255, 0.15));
-      border-radius: 15px;
-      padding: 2.5rem;
+      background: linear-gradient(135deg, rgba(50, 50, 70, 0.95) 0%, rgba(30, 30, 50, 0.95) 100%);
+      border-radius: 12px;
+      padding: 2rem;
       margin: 2rem 0;
-      border: 1px solid rgba(0, 255, 128, 0.3);
+      border-left: 5px solid #667eea;
+      color: #ddd;
       text-align: center;
     }
 
@@ -292,12 +137,29 @@
       font-size: 3rem;
       margin-bottom: 1rem;
       display: block;
-      animation: crystallize 3s ease-in-out infinite;
     }
 
     strong {
-      color: rgba(255, 255, 255, 0.95);
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+      color: #ffcc00;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, rgba(40, 40, 60, 0.95) 0%, rgba(20, 20, 30, 0.95) 100%);
+      border-radius: 8px;
+      padding: 1.5rem;
+      border-left: 4px solid #667eea;
+    }
+
+    .feature-card h4 {
+      color: #aaaaff;
+      margin-bottom: 0.5rem;
     }
 
     @media (max-width: 768px) {
@@ -305,13 +167,13 @@
         font-size: 2.5rem;
       }
       
-      .hero-tagline {
+      .hero-subtitle {
         font-size: 1.1rem;
       }
       
       .content-section {
-        padding: 2rem;
-        margin: 2rem 0;
+        padding: 1.5rem;
+        margin: 1rem 0;
       }
       
       h1 {
@@ -319,7 +181,7 @@
       }
       
       h2 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
       }
       
       .container {
@@ -331,13 +193,16 @@
 
 <body>
   <section class="hero-section">
-    <div class="hero-icon">🍪</div>
     <h1 class="hero-title">Cookie Policy</h1>
-    <p class="hero-tagline">Simple, transparent, and cookie-free</p>
+    <p class="hero-subtitle">Simple, transparent, and cookie-free</p>
   </section>
 
   <div class="container">
     <div class="content-section">
+      <div class="effective-date">
+        <strong>Effective Date:</strong> August 18, 2025 | <strong>Last Updated:</strong> August 18, 2025
+      </div>
+
       <div class="friendly-message">
         <span class="emoji-large">🎉</span>
         <h2>Great News! We Don't Use Cookies</h2>
@@ -351,18 +216,26 @@
         Unlike most websites that track your every move with cookies, we've built <strong>AI Digital Friend</strong> to respect your privacy from the ground up. Here's what makes us different:
       </p>
 
-      <div class="highlight">
-        <h3>✨ No Tracking Cookies</h3>
-        <p>We don't place any tracking cookies on your device. Your browsing habits and personal data stay private.</p>
-        
-        <h3>🔒 No Marketing Cookies</h3>
-        <p>We don't use cookies to build advertising profiles or share your data with third-party marketers.</p>
-        
-        <h3>📊 No Analytics Cookies</h3>
-        <p>We don't use cookies to track your usage patterns or create detailed user profiles.</p>
-        
-        <h3>🚫 No Third-Party Cookies</h3>
-        <p>We don't allow external services to place cookies through our platform.</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>✨ No Tracking Cookies</h4>
+          <p>We don't place any tracking cookies on your device. Your browsing habits and personal data stay private.</p>
+        </div>
+
+        <div class="feature-card">
+          <h4>🔒 No Marketing Cookies</h4>
+          <p>We don't use cookies to build advertising profiles or share your data with third-party marketers.</p>
+        </div>
+
+        <div class="feature-card">
+          <h4>📊 No Analytics Cookies</h4>
+          <p>We don't use cookies to track your usage patterns or create detailed user profiles.</p>
+        </div>
+
+        <div class="feature-card">
+          <h4>🚫 No Third-Party Cookies</h4>
+          <p>We don't allow external services to place cookies through our platform.</p>
+        </div>
       </div>
 
       <h2>🤖 How We Provide Personalized AI Without Cookies</h2>
@@ -388,24 +261,32 @@
         <li><strong>User Interface Preferences:</strong> To remember your theme preferences during your current session</li>
       </ul>
 
-      <p>
-        <strong>Important:</strong> These are not "cookies" in the traditional sense - they're temporary session data that expires when you close your browser.
-      </p>
+      <div class="highlight">
+        <p>
+          <strong>Important:</strong> These are not "cookies" in the traditional sense - they're temporary session data that expires when you close your browser.
+        </p>
+      </div>
 
       <h2>🌍 Why We Chose to Go Cookie-Free</h2>
       <p>
         At <strong>Grand Pa United™</strong>, we believe that powerful AI should come with powerful privacy protections. Our cookie-free approach reflects our core values:
       </p>
 
-      <div class="highlight">
-        <h3>🎯 Privacy by Design</h3>
-        <p>We built AI Digital Friend from the ground up with privacy as a fundamental feature, not an afterthought.</p>
-        
-        <h3>🤝 Trust Through Transparency</h3>
-        <p>We believe in being completely transparent about how we handle your data - and how we don't handle it.</p>
-        
-        <h3>🚀 Innovation Without Compromise</h3>
-        <p>We prove that cutting-edge AI experiences don't require sacrificing user privacy.</p>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>🎯 Privacy by Design</h4>
+          <p>We built AI Digital Friend from the ground up with privacy as a fundamental feature, not an afterthought.</p>
+        </div>
+
+        <div class="feature-card">
+          <h4>🤝 Trust Through Transparency</h4>
+          <p>We believe in being completely transparent about how we handle your data - and how we don't handle it.</p>
+        </div>
+
+        <div class="feature-card">
+          <h4>🚀 Innovation Without Compromise</h4>
+          <p>We prove that cutting-edge AI experiences don't require sacrificing user privacy.</p>
+        </div>
       </div>
 
       <h2>📱 What About Third-Party Services?</h2>
@@ -448,9 +329,7 @@
 
       <div class="highlight">
         <p>
-          <strong>Last Updated:</strong> August 18, 2025<br>
-          <strong>Effective Date:</strong> August 18, 2025<br>
-          <strong>Next Review:</strong> February 18, 2026
+          <strong>Remember:</strong> Your privacy is fundamental to our mission of building trustworthy AI companions. We're committed to transparency, security, and giving you control over your data. If you have any questions or concerns, we're here to help.
         </p>
       </div>
     </div>

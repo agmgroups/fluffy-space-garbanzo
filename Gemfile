@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 3.3.0'
+ruby '~> 3.4.0'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.5', '>= 7.1.5.2'
@@ -149,9 +149,6 @@ gem 'ransack', '~> 4.1'
 # FILE UPLOAD & STORAGE
 # =============================================================================
 
-# File uploads
-gem 'image_processing', '~> 1.2'
-
 # Cloud storage
 gem 'aws-sdk-s3', '~> 1.141'
 
@@ -175,8 +172,6 @@ gem 'rswag', '~> 2.12'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'debug', platforms: %i[mri mingw x64_mingw]
-
   # Testing framework
   gem 'factory_bot_rails', '~> 6.4'
   gem 'rspec-rails', '~> 6.1'

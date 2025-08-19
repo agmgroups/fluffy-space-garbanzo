@@ -46,7 +46,15 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ "http://example.com", /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
+
+  # Configure allowed hosts for onelastai.com
+  config.hosts << "onelastai.com"
+  config.hosts << "www.onelastai.com"
+  config.hosts << "api.onelastai.com"
+  
+  # Allow all agent subdomains
+  config.hosts << /.*\.onelastai\.com/
 
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).

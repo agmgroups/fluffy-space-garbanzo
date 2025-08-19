@@ -24,6 +24,27 @@ secrets.txt
 *.key
 *.crt
 *.p12
+roombreaker.pem
+*.ppk
+
+# AWS and Cloud credentials
+.aws/
+*.terraform
+terraform.tfstate*
+terraform.tfvars
+
+# SSH Keys and certificates
+id_rsa*
+id_dsa*
+id_ecdsa*
+id_ed25519*
+known_hosts
+authorized_keys
+
+# OneLastAI specific secrets
+onelatai_secrets/
+deployment_keys/
+production_keys/
 
 # =============================================================================
 # RAILS SPECIFIC

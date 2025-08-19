@@ -431,7 +431,7 @@ class AgentsController < ApplicationController
 
   def get_fallback_response(agent)
     fallback_responses = {
-      'mood_engine' => "I'm here to support you emotionally. Please try again and let me know how you're feeling. 🌌🧠💙",
+      'mood_engine' => "I'm here to support you emotionally. Please try again and let me know how you're feeling. 🌌🌌💙",
       'rapstar_ai' => "Yo, looks like I hit a technical snag! Drop that message again and let's get back to creating fire! 🎤",
       'storyteller' => 'Apologies, dear reader - the narrative thread was momentarily lost. Please share your request again! 📚',
       'zen_agent' => 'In this moment of technical impermanence, please breathe and try your message again. Peace. 🧘‍♀️',

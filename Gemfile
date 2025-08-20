@@ -98,7 +98,7 @@ gem 'devise', '~> 4.9'
 gem 'pundit', '~> 2.3'
 
 # JWT tokens
-gem 'jwt', '~> 2.7'
+gem 'jwt', '~> 3.1'
 
 # OAuth
 gem 'omniauth', '~> 2.1'

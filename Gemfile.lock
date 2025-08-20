@@ -492,7 +492,7 @@ GEM
       ffi (~> 1.12)
       logger
     rubyzip (2.3.2)
-    secure_headers (6.7.0)
+    secure_headers (7.1.0)
     securerandom (0.4.1)
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -644,7 +644,7 @@ DEPENDENCIES
   rubocop-rails (~> 2.22)
   rubocop-rspec (~> 2.25)
   ruby-openai (~> 6.3)
-  secure_headers (~> 6.5)
+  secure_headers (~> 7.1)
   selenium-webdriver
   sentry-rails (~> 5.15)
   sentry-ruby (~> 5.15)

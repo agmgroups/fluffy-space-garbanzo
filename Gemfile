@@ -85,7 +85,7 @@ gem 'httparty', '~> 0.21'
 gem 'oj', '~> 3.16'
 
 # OpenAI API client
-gem 'ruby-openai', '~> 6.3'
+gem 'ruby-openai', '~> 8.2'
 
 # =============================================================================
 # AUTHENTICATION & AUTHORIZATION

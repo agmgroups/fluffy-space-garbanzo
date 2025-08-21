@@ -1,5 +1,5 @@
 # Base AI Service with Enterprise Integrations
-class BaseAiService
+class BaseAiServiceEnterprise
   include HTTParty
   
   # Service configuration

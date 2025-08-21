@@ -642,7 +642,6 @@ class DatasphereController < ApplicationController
   def create_research_roadmap
     'Research roadmap with milestones, collaboration, and publication plan'
   end
-end
   
   def status
     # Agent status endpoint for monitoring

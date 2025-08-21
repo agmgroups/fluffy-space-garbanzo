@@ -27,11 +27,7 @@ SecureHeaders::Configuration.default do |config|
   # HTTP Strict Transport Security (HSTS)
   # Force HTTPS connections in production
   config.hsts = if Rails.env.production?
-                  {
-                    max_age: 31536000, # 1 year
-                    include_subdomains: true,
-                    preload: true
-                  }
+                  'max-age=31536000; includeSubDomains; preload'
                 else
                   # Disable HSTS in development
                   SecureHeaders::OPT_OUT

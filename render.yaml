@@ -1,0 +1,24 @@
+version: "1"
+
+services:
+  - type: web
+    name: onelastai
+    env: ruby
+    buildCommand: bundle install
+    startCommand: bundle exec rails server -b 0.0.0.0 -p $PORT -e production
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: RAILS_SERVE_STATIC_FILES
+        value: true
+      - key: RAILS_LOG_TO_STDOUT
+        value: true
+      - key: SECRET_KEY_BASE
+        generateValue: true
+      - key: MONGODB_URI
+        value: mongodb://localhost:27017/onelastai_production
+
+databases:
+  - name: mongodb
+    databaseName: onelastai_production
+    user: onelastai

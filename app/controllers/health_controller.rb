@@ -38,7 +38,8 @@ class HealthController < ApplicationController
   private
   
   def check_database
-    ActiveRecord::Base.connection.active?
+    Mongoid.client(:default).database.command({ ping: 1 })
+    true
   rescue => e
     Rails.logger.error "Database health check failed: #{e.message}"
     false

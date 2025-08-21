@@ -9,8 +9,8 @@ gem 'rails', '~> 7.1.5', '>= 7.1.5.2'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 2.7'
+# Use MongoDB as the database with Mongoid ODM
+gem 'mongoid', '~> 9.0'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 6'
@@ -58,6 +58,7 @@ gem 'bootsnap', require: false
 
 # Use Sass to process CSS
 # gem "sassc-rails"
+
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem 'image_processing', '~> 1.2'
@@ -135,9 +136,6 @@ gem 'redis-session-store', '~> 0.11'
 # =============================================================================
 # DATABASE & ORM
 # =============================================================================
-
-# PostgreSQL for production
-gem 'pg', '~> 1.5', group: :production
 
 # Database pagination
 gem 'kaminari', '~> 1.2'

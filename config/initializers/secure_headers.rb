@@ -28,7 +28,7 @@ SecureHeaders::Configuration.default do |config|
   # Force HTTPS connections in production
   config.hsts = if Rails.env.production?
                   {
-                    max_age: 31_536_000, # 1 year
+                    max_age: 31536000, # 1 year
                     include_subdomains: true,
                     preload: true
                   }

@@ -46,6 +46,18 @@ onelatai_secrets/
 deployment_keys/
 production_keys/
 
+# Render deployment files with API keys
+RENDER_ALL_VARIABLES.txt
+RENDER_COMPLETE_DEPLOY.txt
+RENDER_FINAL_DEPLOY.txt
+*_DEPLOY.txt
+*_VARIABLES.txt
+
+# Deployment configuration files
+deploy-*.sh
+*-deploy-*.sh
+deployment-*.txt
+
 # =============================================================================
 # RAILS SPECIFIC
 # =============================================================================

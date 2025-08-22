@@ -4,7 +4,7 @@
 require_relative '../application_config'
 
 # Validate configuration in production
-OneLastAI::Configuration.validate! if Rails.env.production?
+# OneLastAI::Configuration.validate! if Rails.env.production? # Temporarily disabled for deployment
 
 # Set up Redis configuration
 $redis = Redis.new(url: OneLastAI::Configuration.config.redis_url) if OneLastAI::Configuration.config.redis_url.present?

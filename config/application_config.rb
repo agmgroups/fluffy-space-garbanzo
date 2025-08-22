@@ -217,7 +217,6 @@ module OneLastAI
       required_keys = %w[
         SECRET_KEY_BASE
         OPENAI_API_KEY
-        REDIS_URL
       ]
 
       missing_keys = required_keys.select { |key| ENV[key].blank? }

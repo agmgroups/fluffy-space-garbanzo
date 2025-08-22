@@ -26,7 +26,7 @@ OneLastAI is an enterprise-grade AI agent network that brings together 24 specia
 - **Enterprise Authentication** - Passwordless auth powered by Passage & 1Password
 - **Multi-Payment Gateway** - Stripe, PayPal, and Lemon Squeezy support
 - **Creative AI Integration** - RunwayML for video/image generation
-- **Production Infrastructure** - MongoDB Atlas, AWS EC2, Docker orchestration
+- **Production Infrastructure** - MongoDB Atlas, Render deployment, Docker orchestration
 - **Real-time Monitoring** - Health checks, analytics, and error tracking
 - **API-First Design** - RESTful APIs for all platform features
 
@@ -122,8 +122,6 @@ GOOGLE_AI_API_KEY=...                    # Gemini models
 
 # Database & Infrastructure
 MONGODB_URI=mongodb+srv://...            # MongoDB Atlas
-AWS_ACCESS_KEY_ID=...                    # AWS services
-AWS_SECRET_ACCESS_KEY=...                # AWS services
 
 # Authentication
 PASSAGE_APP_ID=...                       # Passage auth
@@ -156,8 +154,8 @@ docker-compose up -d
 ### **Cloud Architecture**
 
 - **Database**: MongoDB Atlas with automatic backups
-- **Compute**: AWS EC2 with auto-scaling groups
-- **Storage**: AWS S3 with CloudFront CDN
+- **Compute**: Render with automatic scaling
+- **Storage**: Cloudinary for media assets
 - **Caching**: Redis for sessions and data caching
 - **Monitoring**: New Relic, Sentry error tracking
 - **Security**: Passage authentication, 1Password integration
@@ -306,7 +304,7 @@ docker-compose up -d
 docker-compose up -d --scale web=3
 ```
 
-### **AWS EC2 Deployment**
+### **Production Deployment**
 
 ```bash
 # Production setup script
@@ -382,7 +380,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **RunwayML** - Creative AI capabilities
 - **Passage** - Authentication infrastructure
 - **MongoDB** - Database platform
-- **AWS** - Cloud infrastructure
+- **Render** - Cloud deployment platform
 
 ---
 

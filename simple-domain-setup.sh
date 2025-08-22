@@ -1,13 +1,13 @@
 #!/bin/bash
 
-echo "🚀 SIMPLE DOMAIN SETUP: Hostinger → Route 53 → EC2"
-echo "=================================================="
+echo "🚀 SIMPLE DOMAIN SETUP: Hostinger → Render"
+echo "=========================================="
 
-# Step 1: Get our EC2 IP
-EC2_IP="122.248.242.170"
+# Step 1: Get our Render deployment
+RENDER_URL="onelastai.onrender.com"
 DOMAIN="onelastai.com"
 
-echo "🎯 TARGET: $DOMAIN → $EC2_IP"
+echo "🎯 TARGET: $DOMAIN → $RENDER_URL"
 echo ""
 
 echo "📋 STEP-BY-STEP SIMPLE SETUP:"
@@ -15,23 +15,23 @@ echo "============================="
 
 echo "1️⃣ HOSTINGER DOMAIN SETTINGS:"
 echo "   - Login to Hostinger Domain Panel"
-echo "   - Go to DNS/Nameservers for onelastai.com"
-echo "   - Change nameservers to AWS Route 53:"
+echo "   - Go to DNS settings for onelastai.com"
+echo "   - Add CNAME record pointing to Render:"
 echo ""
 
-echo "2️⃣ ROUTE 53 HOSTED ZONE (Create these records):"
-echo "   A Record: onelastai.com → $EC2_IP"
-echo "   A Record: www.onelastai.com → $EC2_IP"
-echo "   CNAME: *.onelastai.com → onelastai.com"
+echo "2️⃣ DNS RECORDS (Add these in Hostinger):"
+echo "   CNAME: onelastai.com → onelastai.onrender.com"
+echo "   CNAME: www.onelastai.com → onelastai.onrender.com"
+echo "   CNAME: *.onelastai.com → onelastai.onrender.com"
 echo ""
 
-echo "3️⃣ EC2 NGINX SIMPLE CONFIG:"
-echo "   - No SSL complications"
-echo "   - Direct domain pointing"
-echo "   - Simple proxy setup"
+echo "3️⃣ RENDER CUSTOM DOMAIN:"
+echo "   - Add onelastai.com in Render dashboard"
+echo "   - SSL automatically configured"
+echo "   - Domain verification via DNS"
 echo ""
 
-echo "🎯 RESULT: onelastai.com → $EC2_IP:3000 (via Nginx)"
+echo "🎯 RESULT: onelastai.com → Render deployment"
 echo ""
 
 echo "⚡ EXECUTING SIMPLE SETUP..."

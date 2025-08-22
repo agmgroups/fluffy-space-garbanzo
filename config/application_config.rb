@@ -71,12 +71,6 @@ module OneLastAI
     # CLOUD STORAGE & CDN
     # =============================================================================
 
-    # AWS S3 Configuration
-    config_accessor :aws_access_key_id, default: ENV['AWS_ACCESS_KEY_ID']
-    config_accessor :aws_secret_access_key, default: ENV['AWS_SECRET_ACCESS_KEY']
-    config_accessor :aws_region, default: ENV['AWS_REGION'] || 'us-west-2'
-    config_accessor :aws_s3_bucket, default: ENV['AWS_S3_BUCKET']
-
     # Cloudflare Configuration
     config_accessor :cloudflare_api_token, default: ENV['CLOUDFLARE_API_TOKEN']
     config_accessor :cloudflare_zone_id, default: ENV['CLOUDFLARE_ZONE_ID']

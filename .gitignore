@@ -27,8 +27,7 @@ secrets.txt
 roombreaker.pem
 *.ppk
 
-# AWS and Cloud credentials
-.aws/
+# Cloud credentials and configurations
 *.terraform
 terraform.tfstate*
 terraform.tfvars
@@ -265,10 +264,6 @@ terraform.tfvars
 # =============================================================================
 # CLOUD & INFRASTRUCTURE
 # =============================================================================
-
-# AWS
-.aws/
-aws-exports.js
 
 # Google Cloud
 .gcloud/

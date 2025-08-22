@@ -54,14 +54,11 @@ COHERE_API_KEY=...
 
 #### Database & Storage
 ```bash
-# Database (SQLite for dev, PostgreSQL for production)
-DATABASE_URL=postgresql://user:password@localhost/onelastai_production
+# Database (MongoDB for production)
+MONGODB_URI=mongodb+srv://user:password@cluster.mongodb.net/onelastai
 
-# Storage (AWS S3 recommended for production)
-AWS_ACCESS_KEY_ID=...
-AWS_SECRET_ACCESS_KEY=...
-AWS_REGION=us-east-1
-S3_BUCKET_NAME=onelastai-storage
+# Storage (Cloudinary recommended for production)
+CLOUDINARY_URL=cloudinary://api_key:api_secret@cloud_name
 ```
 
 #### Security & Monitoring

@@ -232,7 +232,7 @@ module OneLastAI
       ai_apis = [
         ENV['OPENAI_API_KEY'],
         ENV['ANTHROPIC_API_KEY'],
-        ENV['GOOGLE_AI_API_KEY'],
+        # ENV['GOOGLE_AI_API_KEY'], # Disabled for deployment
         ENV['HUGGINGFACE_API_KEY'],
         ENV['COHERE_API_KEY']
       ]

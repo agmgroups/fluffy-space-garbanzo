@@ -47,9 +47,9 @@ end
 
 # Validation - Ensure required keys are present
 required_keys = {
-  'OPENAI_API_KEY' => ENV['OPENAI_API_KEY'],
-  'GOOGLE_AI_API_KEY' => ENV['GOOGLE_AI_API_KEY'],
-  'RUNWAYML_API_KEY' => ENV['RUNWAYML_API_KEY']
+  'OPENAI_API_KEY' => ENV['OPENAI_API_KEY']
+  # 'GOOGLE_AI_API_KEY' => ENV['GOOGLE_AI_API_KEY'], # Disabled for deployment
+  # 'RUNWAYML_API_KEY' => ENV['RUNWAYML_API_KEY'] # Disabled for deployment
 }
 
 missing_keys = required_keys.select { |_key, value| value.blank? }

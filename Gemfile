@@ -124,7 +124,7 @@ gem 'secure_headers', '~> 7.1'
 # =============================================================================
 
 # Background job processing
-gem 'sidekiq', '~> 7.2'
+gem 'sidekiq', '~> 8.0'
 
 # Caching
 gem 'redis-rails', '~> 5.0'

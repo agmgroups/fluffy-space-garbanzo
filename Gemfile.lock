@@ -81,25 +81,6 @@ GEM
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     ast (2.4.3)
-    aws-eventstream (1.4.0)
-    aws-partitions (1.1149.0)
-    aws-sdk-core (3.229.0)
-      aws-eventstream (~> 1, >= 1.3.0)
-      aws-partitions (~> 1, >= 1.992.0)
-      aws-sigv4 (~> 1.9)
-      base64
-      bigdecimal
-      jmespath (~> 1, >= 1.6.1)
-      logger
-    aws-sdk-kms (1.110.0)
-      aws-sdk-core (~> 3, >= 3.228.0)
-      aws-sigv4 (~> 1.5)
-    aws-sdk-s3 (1.197.0)
-      aws-sdk-core (~> 3, >= 3.228.0)
-      aws-sdk-kms (~> 1)
-      aws-sigv4 (~> 1.5)
-    aws-sigv4 (1.12.1)
-      aws-eventstream (~> 1, >= 1.0.2)
     backport (1.2.0)
     base64 (0.3.0)
     bcrypt (3.1.20)
@@ -214,7 +195,6 @@ GEM
     jbuilder (2.14.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
-    jmespath (1.6.2)
     json (2.13.2)
     json-schema (5.2.2)
       addressable (~> 2.8)
@@ -253,7 +233,6 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.3)
-    method_source (1.1.0)
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
@@ -588,10 +567,9 @@ GEM
     unicode-emoji (4.0.4)
     uri (1.0.3)
     version_gem (1.1.8)
-    view_component (3.23.2)
-      activesupport (>= 5.2.0, < 8.1)
+    view_component (4.0.2)
+      activesupport (>= 7.1.0, < 8.1)
       concurrent-ruby (~> 1)
-      method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     webdrivers (5.3.1)
@@ -622,7 +600,6 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  aws-sdk-s3 (~> 1.141)
   bcrypt (~> 3.1.7)
   bootsnap
   capybara
@@ -683,7 +660,7 @@ DEPENDENCIES
   thor (>= 1.4.0)
   turbo-rails
   tzinfo-data
-  view_component (~> 3.0)
+  view_component (~> 4.0)
   webdrivers
 
 RUBY VERSION

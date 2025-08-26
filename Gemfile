@@ -170,7 +170,7 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   # Testing framework
   gem 'factory_bot_rails', '~> 6.4'
-  gem 'rspec-rails', '~> 6.1'
+  gem 'rspec-rails', '~> 7.1'
 
   # Test data generation
   gem 'faker', '~> 3.2'

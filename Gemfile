@@ -67,7 +67,7 @@ gem 'image_processing', '~> 1.2'
 # =============================================================================
 
 # Environment variables management
-gem 'dotenv-rails', '~> 2.8'
+gem 'dotenv-rails', '~> 3.1'
 
 # Configuration management
 gem 'figaro', '~> 1.2'

@@ -461,6 +461,22 @@ Rails.application.routes.draw do
   post '/login', to: 'pages#login_submit'
   get '/logout', to: 'pages#logout'
 
+  # Missing Platform Routes from Header/Footer Navigation
+  get '/features', to: 'features#index'
+  get '/infrastructure', to: 'infrastructure#index'
+  get '/api-docs', to: 'pages#api_docs'
+  get '/integrations', to: 'pages#integrations'
+  get '/templates', to: 'pages#templates'
+  get '/marketplace', to: 'pages#marketplace'
+  get '/tutorials', to: 'pages#tutorials'
+  get '/support', to: 'pages#support'
+  get '/status-page', to: 'pages#status'
+  get '/changelog', to: 'pages#changelog'
+  get '/careers', to: 'pages#careers'
+  get '/partners', to: 'pages#partners'
+  get '/developers', to: 'pages#developers'
+  get '/press', to: 'press#index'
+
   # CTA Section Routes
   get '/get-started', to: 'pages#get_started'
   get '/schedule-demo', to: 'pages#schedule_demo'
@@ -470,7 +486,7 @@ Rails.application.routes.draw do
   # User Dashboard & Account
   get '/dashboard', to: 'pages#dashboard'
   get '/my-agents', to: 'pages#my_agents'
-  get '/agents', to: 'pages#agents'
+  get '/agents', to: 'agents#index' # Changed to use agents controller
   get '/settings', to: 'pages#settings'
   post '/settings', to: 'pages#settings_update'
   get '/billing', to: 'pages#billing'

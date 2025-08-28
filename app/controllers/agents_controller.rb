@@ -29,12 +29,17 @@ class AgentsController < ApplicationController
       }
     end
 
-    render json: {
-      success: true,
-      agents: agents_data,
-      total_count: @agents.count,
-      featured_agent: get_featured_agent
-    }
+    respond_to do |format|
+      format.html { render :index } # Render HTML view for browser requests
+      format.json do
+        render json: {
+          success: true,
+          agents: agents_data,
+          total_count: @agents.count,
+          featured_agent: get_featured_agent
+        }
+      end
+    end
   end
 
   # GET /agents/:id

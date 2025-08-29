@@ -1,93 +1,53 @@
-<!-- Technology Stack / Infrastructure -->
-<section class="infrastructure-section py-20 relative">
-  <!-- Border Transition Layers -->
-  <div class="infrastructure-border-transition-top"></div>
-  <div class="infrastructure-border-transition-bottom"></div>
-  
-  <!-- Smoky Fog Effects -->
+<section class="infrastructure-section relative overflow-hidden py-24">
+  <!-- Fog effects -->
   <div class="infrastructure-smoky-fog"></div>
   <div class="infrastructure-ambient-fog"></div>
-  
-  <!-- Multi-Layer Background -->
-  <div class="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-gray-900/60 via-zinc-900/50 to-black/70"></div>
-  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40"></div>
-  
-  <div class="container mx-auto px-6 relative z-10">
+
+  <div class="relative container mx-auto px-6 lg:px-12">
+    <!-- Heading -->
     <div class="text-center mb-16">
-      <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">Enterprise-Grade Infrastructure</h2>
-      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-        Built on proven technologies with enterprise security, scalability, and reliability at its core.
+      <h2 class="text-4xl font-bold text-white mb-4">AI-Powered Infrastructure</h2>
+      <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+        Secure, scalable, and optimized environments built for AI, automation, and real-time intelligence.
       </p>
     </div>
-    
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
-      <!-- Left Side - Tech Stack Info -->
-      <div>
-        <h3 class="text-2xl font-bold text-white mb-8 text-center">Powered by Modern Tech Stack</h3>
-        <div class="space-y-6">
-          <div class="tech-stack-card p-6">
-            <div class="flex items-center gap-4">
-              <div class="tech-icon">
-                <span class="text-2xl">☁️</span>
-              </div>
-              <div class="text-center flex-1">
-                <h4 class="text-white font-semibold text-lg mb-2">AWS EC2 Infrastructure</h4>
-                <p class="text-gray-300">Auto-scaling deployment with 99.9% uptime guarantee</p>
-                <a href="/infrastructure/deployment" class="text-green-400 hover:text-green-300 text-sm font-medium mt-2 inline-block">
-                  View Deployment →
-                </a>
-              </div>
-            </div>
+
+    <!-- Grid Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <!-- Tech Stack Cards -->
+      <div class="space-y-6">
+        <div class="tech-stack-card p-6">
+          <div class="flex items-center gap-4 mb-3">
+            <div class="tech-icon">⚡</div>
+            <h3 class="text-xl font-semibold text-white">High-Performance Compute</h3>
           </div>
-          
-          <div class="tech-stack-card p-6">
-            <div class="flex items-center gap-4">
-              <div class="tech-icon">
-                <span class="text-2xl">🍃</span>
-              </div>
-              <div class="text-center flex-1">
-                <h4 class="text-white font-semibold text-lg mb-2">MongoDB Atlas</h4>
-                <p class="text-gray-300">Secure, scalable database with automated backups</p>
-                <a href="/infrastructure/tech-stack" class="text-green-400 hover:text-green-300 text-sm font-medium mt-2 inline-block">
-                  Tech Details →
-                </a>
-              </div>
-            </div>
+          <p class="text-gray-300">
+            AI workloads optimized with GPU acceleration and distributed computing.
+          </p>
+        </div>
+
+        <div class="tech-stack-card p-6">
+          <div class="flex items-center gap-4 mb-3">
+            <div class="tech-icon">🔒</div>
+            <h3 class="text-xl font-semibold text-white">Security First</h3>
           </div>
-          
-          <div class="tech-stack-card p-6">
-            <div class="flex items-center gap-4">
-              <div class="tech-icon">
-                <span class="text-2xl">🔐</span>
-              </div>
-              <div class="text-center flex-1">
-                <h4 class="text-white font-semibold text-lg mb-2">Passage Authentication</h4>
-                <p class="text-gray-300">Passwordless security powered by 1Password</p>
-                <a href="/infrastructure/security" class="text-green-400 hover:text-green-300 text-sm font-medium mt-2 inline-block">
-                  Security Info →
-                </a>
-              </div>
-            </div>
+          <p class="text-gray-300">
+            Enterprise-grade security protocols, encrypted pipelines, and zero-trust architecture.
+          </p>
+        </div>
+
+        <div class="tech-stack-card p-6">
+          <div class="flex items-center gap-4 mb-3">
+            <div class="tech-icon">🌐</div>
+            <h3 class="text-xl font-semibold text-white">Global Scalability</h3>
           </div>
-          
-          <div class="tech-stack-card p-6">
-            <div class="flex items-center gap-4">
-              <div class="tech-icon">
-                <span class="text-2xl">💳</span>
-              </div>
-              <div class="text-center flex-1">
-                <h4 class="text-white font-semibold text-lg mb-2">Multiple Payment Providers</h4>
-                <p class="text-gray-300">Stripe, PayPal, and Lemon Squeezy integration</p>
-                <a href="/infrastructure" class="text-green-400 hover:text-green-300 text-sm font-medium mt-2 inline-block">
-                  Learn More →
-                </a>
-              </div>
-            </div>
-          </div>
+          <p class="text-gray-300">
+            Deploy anywhere with cloud-native orchestration and edge computing support.
+          </p>
         </div>
       </div>
-      
-      <!-- Right Side - Enhanced Linux Terminal -->
+
+      <!-- Linux Terminal -->
       <div class="linux-terminal">
         <div class="terminal-header">
           <div class="terminal-dots">
@@ -95,100 +55,26 @@
             <div class="terminal-dot bg-yellow-500"></div>
             <div class="terminal-dot bg-green-500"></div>
           </div>
-          <div class="terminal-title">
-            <span class="linux-logo"></span>
-            <span>ubuntu@onelast-ai:~/infrastructure</span>
-          </div>
+          <div class="terminal-title">root@onelastAI:~</div>
         </div>
         <div class="terminal-content">
-          <div class="terminal-prompt">
-            <span class="terminal-user">onelastai</span>
-            <span class="text-gray-400">@</span>
-            <span class="terminal-host">production</span>
-            <span class="text-gray-400">:</span>
-            <span class="terminal-path">~/system</span>
-            <span class="text-gray-400">$</span>
-          </div>
-          
-          <div class="terminal-command">cat infrastructure.yml</div>
+          <div class="terminal-prompt">$ <span class="terminal-command">systemctl status ai-core</span></div>
           <div class="terminal-output">
-            <div class="mb-2">
-              <span class="terminal-key">platform:</span> 
-              <span class="terminal-value">aws-ec2</span>
-            </div>
-            <div class="mb-2">
-              <span class="terminal-key">database:</span> 
-              <span class="terminal-value">mongodb-atlas</span>
-            </div>
-            <div class="mb-2">
-              <span class="terminal-key">auth:</span> 
-              <span class="terminal-value">passage-by-1password</span>
-            </div>
-            <div class="mb-2">
-              <span class="terminal-key">payments:</span>
-            </div>
-            <div class="mb-2 ml-4">
-              - <span class="terminal-value">stripe</span>
-            </div>
-            <div class="mb-2 ml-4">
-              - <span class="terminal-value">paypal</span>
-            </div>
-            <div class="mb-2 ml-4">
-              - <span class="terminal-value">lemon-squeezy</span>
-            </div>
-            <div class="mb-2">
-              <span class="terminal-key">ai_providers:</span>
-            </div>
-            <div class="mb-2 ml-4">
-              - <span class="terminal-value">openai</span>
-            </div>
-            <div class="mb-2 ml-4">
-              - <span class="terminal-value">anthropic</span>
-            </div>
-            <div class="mb-2 ml-4">
-              - <span class="terminal-value">google-ai</span>
-            </div>
-            <div class="mb-2 ml-4">
-              - <span class="terminal-value">runway-ml</span>
-            </div>
-            <div class="mb-2">
-              <span class="terminal-key">container:</span> 
-              <span class="terminal-value">docker</span>
-            </div>
-            <div class="mb-2">
-              <span class="terminal-key">security:</span> 
-              <span class="terminal-value">enterprise-grade</span>
-            </div>
-            <div class="mb-4">
-              <span class="terminal-key">uptime:</span> 
-              <span class="terminal-value">99.9%</span>
-            </div>
+            ● ai-core.service - AI Core Engine<br>
+            &nbsp;&nbsp;Loaded: <span class="terminal-key">enabled</span><br>
+            &nbsp;&nbsp;Active: <span class="terminal-success">running</span> since Fri 2025-08-28 21:10:32 UTC
           </div>
-          
-          <div class="terminal-prompt">
-            <span class="terminal-user">onelastai</span>
-            <span class="text-gray-400">@</span>
-            <span class="terminal-host">production</span>
-            <span class="text-gray-400">:</span>
-            <span class="terminal-path">~/system</span>
-            <span class="text-gray-400">$</span>
-            <span class="terminal-success">systemctl status onelast-ai</span>
-          </div>
+
+          <div class="terminal-prompt mt-4">$ <span class="terminal-command">kubectl get pods</span></div>
           <div class="terminal-output">
-            <div class="terminal-success">● onelast-ai.service - OneLast AI Platform</div>
-            <div class="text-gray-300 ml-4">Loaded: loaded (/etc/systemd/system/onelast-ai.service; enabled)</div>
-            <div class="text-gray-300 ml-4">Active: <span class="terminal-success">active (running)</span> since Mon 2024-08-16 12:00:00 UTC</div>
-            <div class="text-gray-300 ml-4">Main PID: 1337 (rails)</div>
+            NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATUS&nbsp;&nbsp;&nbsp;&nbsp;RESTARTS&nbsp;&nbsp;&nbsp;&nbsp;AGE<br>
+            ai-core-1&nbsp;&nbsp;&nbsp;Running&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;12m<br>
+            ai-core-2&nbsp;&nbsp;&nbsp;Running&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;12m
           </div>
-          
-          <div class="terminal-prompt mt-4">
-            <span class="terminal-user">onelast</span>
-            <span class="text-gray-400">@</span>
-            <span class="terminal-host">production</span>
-            <span class="text-gray-400">:</span>
-            <span class="terminal-path">~/system</span>
-            <span class="text-gray-400">$</span>
-            <span class="terminal-cursor"></span>
+
+          <div class="terminal-prompt mt-4">$ <span class="terminal-command">echo "AI Infrastructure Ready"</span></div>
+          <div class="terminal-output terminal-success">
+            AI Infrastructure Ready<span class="terminal-cursor"></span>
           </div>
         </div>
       </div>

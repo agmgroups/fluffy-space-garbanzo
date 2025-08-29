@@ -3,7 +3,7 @@
 # Agents Controller - Main API endpoint for AI agent interactions
 # This controller handles all communication with the AI multiverse platform
 
-class AgentsController < ApplicationController
+class AgentsController < AgentController
   before_action :set_agent, only: %i[show chat status]
   before_action :authenticate_user!, only: %i[chat personal_stats]
 

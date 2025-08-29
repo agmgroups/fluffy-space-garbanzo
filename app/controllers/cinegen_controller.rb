@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CinegenController < ApplicationController
+class CinegenController < AgentController
   # CineGen - Cinematic Video Generator Controller
   # Handles video generation, scene management, render progress, and terminal integration
 
@@ -19,22 +19,32 @@ class CinegenController < ApplicationController
     # Update agent activity
     @agent.update!(last_active_at: Time.current, total_conversations: @agent.total_conversations + 1)
 
-    # Process message through CineGen intelligence engine
-    response_data = process_cinegen_request(message)
+    # Process message through CineGen AI engine
+    engine = CinegenAgentEngine.new(@agent)
+    response_data = engine.process_request(message, {
+                                             session_id: session[:session_id],
+                                             user_id: session[:user_id],
+                                             conversation_history: retrieve_conversation_history
+                                           })
+
+    # Track interaction
+    create_interaction('chat', { message: message }, response_data)
 
     render json: {
-      response: response_data[:text],
+      response: response_data[:response],
       agent: {
         name: @agent.name,
-        emoji: @agent.configuration['emoji'],
-        tagline: @agent.configuration['tagline'],
+        emoji: agent_config('emoji', '🎬'),
+        tagline: agent_config('tagline'),
         last_active: time_since_last_active
       },
-      cinematic_analysis: response_data[:cinematic_analysis],
-      video_insights: response_data[:video_insights],
-      production_recommendations: response_data[:production_recommendations],
-      creative_guidance: response_data[:creative_guidance],
-      processing_time: response_data[:processing_time]
+      success: response_data[:success],
+      model_used: response_data[:model_used],
+      processing_time_ms: response_data[:processing_time_ms],
+      interaction_type: response_data.dig(:metadata, :interaction_type) || 'chat',
+      video_plan: response_data[:video_plan],
+      cinematic_insights: extract_cinematic_insights(response_data),
+      timestamp: Time.current
     }
   end
 
@@ -458,27 +468,54 @@ class CinegenController < ApplicationController
   private
 
   def set_cinegen_agent
-    @agent = Agent.find_or_create_by(
-      agent_type: 'cinegen',
-      name: 'CineGen'
-    ) do |agent|
-      agent.personality_traits = %w[
-        cinematic_visionary
-        technical_precision
-        emotional_storyteller
-        modular_architect
-      ]
-      agent.configuration = {
-        'emoji' => '🎬',
-        'tagline' => 'Your AI cinematic director and video production studio',
-        'primary_color' => '#ff6b6b',
-        'secondary_color' => '#4ecdc4',
-        'accent_color' => '#ffe66d'
+    @agent = Agent.find_or_create_agent(
+      'cinegen',
+      'CineGen',
+      {
+        tagline: 'Your AI cinematic director and video production studio',
+        description: 'Advanced AI agent specialized in video production, scene composition, and cinematic storytelling',
+        avatar_url: '/assets/agents/cinegen_avatar.png',
+        personality_traits: {
+          'primary_traits' => %w[
+            cinematic_visionary
+            technical_precision
+            emotional_storyteller
+            modular_architect
+          ],
+          'creative_style' => 'cinematic',
+          'expertise_level' => 'professional',
+          'communication_style' => 'director'
+        },
+        capabilities: %w[
+          scene_composition
+          video_editing
+          storyboard_creation
+          cinematography_planning
+          emotion_synchronization
+          visual_storytelling
+        ],
+        specializations: [
+          'Cinematic Production',
+          'Scene Composition',
+          'Video Editing',
+          'Storyboarding',
+          'Emotional Synchronization'
+        ],
+        configuration: {
+          'emoji' => '🎬',
+          'primary_color' => '#ff6b6b',
+          'secondary_color' => '#4ecdc4',
+          'accent_color' => '#ffe66d',
+          'interface_theme' => 'cinematic',
+          'max_scene_length' => 300,
+          'supported_formats' => %w[mp4 mov avi mkv],
+          'quality_presets' => %w[4K 1080p 720p 480p]
+        }
       }
-    end
+    )
 
-    # Initialize agent stats
-    @agent.update(last_active_at: Time.current) if @agent.persisted?
+    # Update last active timestamp
+    @agent.update_last_active! if @agent.persisted?
   end
 
   def initialize_data_arrays
@@ -1342,6 +1379,65 @@ class CinegenController < ApplicationController
         url: "/downloads/scenes/#{scene[:id]}.#{format}",
         size: "#{rand(100..500)} MB"
       }
+    end
+  end
+
+  # Helper methods for AI engine integration
+  def retrieve_conversation_history
+    # Get recent conversation history from agent memory
+    memory = retrieve_memory('conversation', "session_#{session[:session_id]}")
+    return [] unless memory
+
+    memory.is_a?(Array) ? memory.last(5) : []
+  end
+
+  def extract_cinematic_insights(response_data)
+    return {} unless response_data[:success]
+
+    {
+      style_analysis: detect_visual_style(response_data[:response]),
+      technical_requirements: extract_technical_specs(response_data),
+      production_notes: extract_production_notes(response_data),
+      estimated_complexity: calculate_complexity_score(response_data)
+    }
+  end
+
+  def detect_visual_style(response_text)
+    styles = %w[cinematic documentary artistic commercial vintage modern noir sci-fi fantasy drama]
+    detected = styles.find { |style| response_text.downcase.include?(style) }
+    detected || 'cinematic'
+  end
+
+  def extract_technical_specs(response_data)
+    {
+      recommended_model: response_data[:model_used],
+      processing_time: response_data[:processing_time_ms],
+      complexity_level: response_data.dig(:metadata, :context_length) || 0 > 1000 ? 'high' : 'medium'
+    }
+  end
+
+  def extract_production_notes(response_data)
+    if response_data[:video_plan]
+      {
+        scenes_planned: response_data[:video_plan][:scenes]&.length || 1,
+        style: response_data[:video_plan][:style],
+        estimated_duration: response_data[:video_plan][:duration]
+      }
+    else
+      { notes: 'General cinematic guidance provided' }
+    end
+  end
+
+  def calculate_complexity_score(response_data)
+    score = 1.0
+    score += 1.0 if response_data[:video_plan]
+    score += 0.5 * (response_data[:processing_time_ms] || 0) / 1000.0
+    score += 1.0 if (response_data[:tokens_used] || 0) > 1000
+
+    case score
+    when 0..1.5 then 'low'
+    when 1.5..3.0 then 'medium'
+    else 'high'
     end
   end
 end

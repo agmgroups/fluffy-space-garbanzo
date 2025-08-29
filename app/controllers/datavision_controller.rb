@@ -3,6 +3,8 @@
 class DatavisionController < ApplicationController
   include AgentConnectionConcern
 
+  layout false # Use custom HTML layout in view instead of application layout
+
   before_action :load_agent_for_controller, only: %i[index chat]
   before_action :ensure_demo_user
 

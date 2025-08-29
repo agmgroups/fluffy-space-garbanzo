@@ -2,7 +2,9 @@
 
 class InfoseekController < ApplicationController
   include AgentConnectionConcern
-  
+
+  layout false # Use custom HTML layout in view instead of application layout
+
   # Remove before_action call since we don't need agent loading for InfoSeek
 
   def index
@@ -124,8 +126,8 @@ class InfoseekController < ApplicationController
   def current_user
     @current_user ||= OpenStruct.new(
       id: "demo_user_#{session.id}",
-      name: "InfoSeek User",
-      email: "demo@infoseek.onelastai.com"
+      name: 'InfoSeek User',
+      email: 'demo@infoseek.onelastai.com'
     )
   end
 
@@ -365,7 +367,7 @@ class InfoseekController < ApplicationController
     # Check if message contains an IP address pattern
     ip_pattern = /\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b/
     domain_pattern = /\b[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b/
-    
+
     if message.match?(ip_pattern) || message.match?(domain_pattern)
       handle_ip_lookup_request(message)
     else
@@ -406,9 +408,13 @@ class InfoseekController < ApplicationController
     # Extract IP or domain from message
     ip_match = message.match(/\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b/)
     domain_match = message.match(/\b[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b/)
-    
-    target = ip_match ? ip_match[0] : (domain_match ? domain_match[0] : 'target')
-    
+
+    target = if ip_match
+               ip_match[0]
+             else
+               (domain_match ? domain_match[0] : 'target')
+             end
+
     {
       text: "🌍 **IP Intelligence Report for #{target}**\n\n" \
             "📍 **Geolocation Information:**\n" \
@@ -452,7 +458,7 @@ class InfoseekController < ApplicationController
   def generate_ip_analysis_response(ip_address)
     # Generate different responses based on IP patterns
     location_data = get_mock_location_data(ip_address)
-    
+
     {
       text: "🌍 **Comprehensive IP Intelligence Report for #{ip_address}**\n\n" \
             "📍 **Geolocation Information:**\n" \
@@ -489,7 +495,7 @@ class InfoseekController < ApplicationController
             "• 'trace #{ip_address}' - Network route analysis\n" \
             "• 'security #{ip_address}' - Deep threat assessment\n" \
             "• 'ports #{ip_address}' - Open port scanning\n\n" \
-            "📋 **Data Sources:** IPinfo.io, MaxMind GeoIP2, ARIN Registry, Threat Intelligence Feeds",
+            '📋 **Data Sources:** IPinfo.io, MaxMind GeoIP2, ARIN Registry, Threat Intelligence Feeds',
       processing_time: rand(1.2..2.8).round(2),
       sources: [
         { title: 'IPinfo.io', type: 'IP Geolocation API', credibility: 97 },
@@ -505,7 +511,7 @@ class InfoseekController < ApplicationController
 
   def generate_domain_analysis_response(domain)
     domain_data = get_mock_domain_data(domain)
-    
+
     {
       text: "🌐 **Comprehensive Domain Intelligence Report for #{domain}**\n\n" \
             "📋 **Domain Registration:**\n" \
@@ -542,7 +548,7 @@ class InfoseekController < ApplicationController
             "• 'subdomains #{domain}' - Subdomain enumeration\n" \
             "• 'security #{domain}' - Deep security analysis\n" \
             "• 'tech #{domain}' - Technology stack analysis\n\n" \
-            "📋 **Data Sources:** WHOIS Databases, DNS Resolvers, Security Scanners, Performance Monitors",
+            '📋 **Data Sources:** WHOIS Databases, DNS Resolvers, Security Scanners, Performance Monitors',
       processing_time: rand(1.5..3.2).round(2),
       sources: [
         { title: 'WHOIS Registry', type: 'Domain Registration Data', credibility: 99 },
@@ -608,7 +614,7 @@ class InfoseekController < ApplicationController
       primary_ip: '192.0.2.1',
       nameservers: ['ns1.example.com', 'ns2.example.com'],
       mx_records: ['mail.example.com', 'mail2.example.com'],
-      txt_records: ['SPF', 'DKIM', 'DMARC'],
+      txt_records: %w[SPF DKIM DMARC],
       dnssec: 'Enabled',
       hosting_provider: 'Example Hosting Co.',
       server_location: 'United States',
@@ -656,7 +662,7 @@ class InfoseekController < ApplicationController
             "• Try public DNS servers: 8.8.8.8, 1.1.1.1, 9.9.9.9\n" \
             "• Analyze suspicious domains for security assessment\n" \
             "• Export results for further investigation\n\n" \
-            "🚀 **Ready to investigate? Try entering an IP or domain!**",
+            '🚀 **Ready to investigate? Try entering an IP or domain!**',
       processing_time: 0.5,
       sources: [
         { title: 'InfoSeek Documentation', type: 'User Guide', credibility: 100 }

@@ -19,10 +19,139 @@
     body {
       font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace;
       background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-      color: #00d4ff;
+     <div class="terminal-header">
+      <h2 class="terminal-title">📊 DataVision Analytics Terminal</h2>
+      <p class="terminal-subtitle">Enter commands or upload data to create stunning visualizations and insights</p>
+    </div>
+
+    <!-- DataVision Menu Bar -->
+    <nav class="datavision-menu-bar">
+      <div class="datavision-menu-items">
+        <div class="datavision-menu-item">
+          <button class="datavision-menu-button" onclick="toggleDropdown('file-menu')">File</button>
+          <div id="file-menu" class="dropdown">
+            <div class="dropdown-header">Data Operations</div>
+            <div class="tree-container">
+              <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
+                datasets
+                <div class="tree-children">
+                  <div class="tree-item executable" onclick="uploadData()">upload_data.sh</div>
+                  <div class="tree-item config" onclick="loadDataset()">sample_data.csv</div>
+                  <div class="tree-item config" onclick="exportChart()">chart_export.json</div>
+                  <div class="tree-item last config" onclick="clearData()">clear_cache.sh</div>
+                </div>
+              </div>
+              <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
+                settings
+                <div class="tree-children">
+                  <div class="tree-item config" onclick="openSettings()">datavision_config.yml</div>
+                  <div class="tree-item config" onclick="openPreferences()">chart_preferences.ini</div>
+                  <div class="tree-item last link" onclick="openThemes()">chart_themes.conf → /usr/share/themes/</div>
+                </div>
+              </div>
+              <div class="tree-item last executable" onclick="exitDataVision()">exit.sh</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="datavision-menu-item">
+          <button class="datavision-menu-button" onclick="toggleDropdown('charts-menu')">Charts</button>
+          <div id="charts-menu" class="dropdown">
+            <div class="dropdown-header">Visualization Types</div>
+            <div class="tree-container">
+              <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
+                basic_charts
+                <div class="tree-children">
+                  <div class="tree-item executable" onclick="createChart('bar')">bar_chart.py</div>
+                  <div class="tree-item executable" onclick="createChart('line')">line_chart.py</div>
+                  <div class="tree-item executable" onclick="createChart('pie')">pie_chart.py</div>
+                  <div class="tree-item last executable" onclick="createChart('scatter')">scatter_plot.py</div>
+                </div>
+              </div>
+              <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
+                advanced_charts
+                <div class="tree-children">
+                  <div class="tree-item executable" onclick="createChart('heatmap')">heatmap.py</div>
+                  <div class="tree-item executable" onclick="createChart('treemap')">treemap.py</div>
+                  <div class="tree-item executable" onclick="createChart('bubble')">bubble_chart.py</div>
+                  <div class="tree-item last executable" onclick="createChart('candlestick')">candlestick.py</div>
+                </div>
+              </div>
+              <div class="tree-item last folder has-submenu" onclick="toggleSubmenu(this)">
+                interactive
+                <div class="tree-children">
+                  <div class="tree-item executable" onclick="createDashboard()">dashboard_builder.js</div>
+                  <div class="tree-item last config" onclick="createRealtime()">realtime_charts.conf</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="datavision-menu-item">
+          <button class="datavision-menu-button" onclick="toggleDropdown('analysis-menu')">Analysis</button>
+          <div id="analysis-menu" class="dropdown">
+            <div class="dropdown-header">Statistical Analysis</div>
+            <div class="tree-container">
+              <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
+                statistics
+                <div class="tree-children">
+                  <div class="tree-item executable" onclick="runAnalysis('descriptive')">descriptive_stats.py</div>
+                  <div class="tree-item executable" onclick="runAnalysis('correlation')">correlation_matrix.py</div>
+                  <div class="tree-item executable" onclick="runAnalysis('regression')">regression_analysis.py</div>
+                  <div class="tree-item last executable" onclick="runAnalysis('timeseries')">time_series.py</div>
+                </div>
+              </div>
+              <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
+                machine_learning
+                <div class="tree-children">
+                  <div class="tree-item executable" onclick="runML('clustering')">clustering.py</div>
+                  <div class="tree-item executable" onclick="runML('classification')">classification.py</div>
+                  <div class="tree-item last executable" onclick="runML('forecasting')">forecasting.py</div>
+                </div>
+              </div>
+              <div class="tree-item last folder has-submenu" onclick="toggleSubmenu(this)">
+                insights
+                <div class="tree-children">
+                  <div class="tree-item config" onclick="generateInsights()">auto_insights.engine</div>
+                  <div class="tree-item last link" onclick="exportReports()">report_generator.rb → /reports/</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="datavision-menu-item">
+          <button class="datavision-menu-button" onclick="toggleDropdown('help-menu')">Help</button>
+          <div id="help-menu" class="dropdown">
+            <div class="dropdown-header">Documentation & Support</div>
+            <div class="tree-container">
+              <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
+                docs
+                <div class="tree-children">
+                  <div class="tree-item config" onclick="showDocs('getting-started')">getting_started.md</div>
+                  <div class="tree-item config" onclick="showDocs('chart-types')">chart_types.md</div>
+                  <div class="tree-item config" onclick="showDocs('data-formats')">data_formats.md</div>
+                  <div class="tree-item last config" onclick="showDocs('api')">api_reference.html</div>
+                </div>
+              </div>
+              <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
+                support
+                <div class="tree-children">
+                  <div class="tree-item link" onclick="openSupport()">github.com/onelastai/datavision</div>
+                  <div class="tree-item link" onclick="openDiscord()">discord.gg/onelastai</div>
+                  <div class="tree-item last config" onclick="reportBug()">bug_report.template</div>
+                </div>
+              </div>
+              <div class="tree-item last executable" onclick="showAbout()">about.sh</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav> color: #00d4ff;
       min-height: 100vh;
       overflow-x: hidden;
-      padding-top: 0; /* NeoChat has its own menu, no global menu needed */
+      padding-top: 0;
     }
     
     /* Hide global menu for terminal interface */
@@ -215,32 +344,29 @@
       background: #00a8cc;
     }
 
-    /* Sticky Menu Bar */
-    .menu-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+    /* DataVision Menu Bar (positioned below terminal header) */
+    .datavision-menu-bar {
       background: linear-gradient(90deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+      border-top: 1px solid #333;
       border-bottom: 2px solid #00d4ff;
       box-shadow: 0 2px 10px rgba(0, 212, 255, 0.3);
-      z-index: 1000;
       padding: 0.5rem 1rem;
       font-family: 'Consolas', 'Monaco', monospace;
+      margin-bottom: 1rem;
     }
 
-    .menu-items {
+    .datavision-menu-items {
       display: flex;
       gap: 0;
       align-items: center;
     }
 
-    .menu-item {
+    .datavision-menu-item {
       position: relative;
       display: inline-block;
     }
 
-    .menu-button {
+    .datavision-menu-button {
       background: transparent;
       border: 1px solid transparent;
       color: #00d4ff;
@@ -252,13 +378,13 @@
       border-radius: 4px;
     }
 
-    .menu-button:hover {
+    .datavision-menu-button:hover {
       background: rgba(0, 212, 255, 0.1);
       border-color: #00d4ff;
       box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
     }
 
-    .menu-button.active {
+    .datavision-menu-button.active {
       background: rgba(0, 212, 255, 0.2);
       border-color: #00d4ff;
     }
@@ -524,132 +650,6 @@
 </head>
 
 <body>
-  <!-- Sticky Menu Bar -->
-  <nav class="menu-bar">
-    <div class="menu-items">
-      <div class="menu-item">
-        <button class="menu-button" onclick="toggleDropdown('file-menu')">File</button>
-        <div id="file-menu" class="dropdown">
-          <div class="dropdown-header">File Operations</div>
-          <div class="tree-container">
-            <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
-              conversations
-              <div class="tree-children">
-                <div class="tree-item executable" onclick="newConversation()">new_chat.sh</div>
-                <div class="tree-item config" onclick="loadHistory()">history.log</div>
-                <div class="tree-item config" onclick="exportChat()">export.json</div>
-                <div class="tree-item last config" onclick="clearHistory()">clear.sh</div>
-              </div>
-            </div>
-            <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
-              settings
-              <div class="tree-children">
-                <div class="tree-item config" onclick="openSettings()">config.yml</div>
-                <div class="tree-item config" onclick="openPreferences()">preferences.ini</div>
-                <div class="tree-item last link" onclick="openThemes()">themes.conf → /usr/share/themes/</div>
-              </div>
-            </div>
-            <div class="tree-item last executable" onclick="exitChat()">exit.sh</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <button class="menu-button" onclick="toggleDropdown('features-menu')">Features</button>
-        <div id="features-menu" class="dropdown">
-          <div class="dropdown-header">AI Capabilities</div>
-          <div class="tree-container">
-            <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
-              intelligence
-              <div class="tree-children">
-                <div class="tree-item executable" onclick="setMode('question')">question_answering.py</div>
-                <div class="tree-item executable" onclick="setMode('creative')">creative_writing.py</div>
-                <div class="tree-item executable" onclick="setMode('problem')">problem_solving.py</div>
-                <div class="tree-item last executable" onclick="setMode('analysis')">data_analysis.py</div>
-              </div>
-            </div>
-            <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
-              tools
-              <div class="tree-children">
-                <div class="tree-item executable" onclick="openCodeGen()">code_generator.sh</div>
-                <div class="tree-item executable" onclick="openTranslator()">translator.py</div>
-                <div class="tree-item executable" onclick="openSummarizer()">summarizer.rb</div>
-                <div class="tree-item last config" onclick="openCalculator()">calculator.js</div>
-              </div>
-            </div>
-            <div class="tree-item last folder has-submenu" onclick="toggleSubmenu(this)">
-              memory
-              <div class="tree-children">
-                <div class="tree-item config" onclick="showMemory()">context.db</div>
-                <div class="tree-item last link" onclick="showKnowledge()">knowledge_base.sqlite → /var/lib/neochat/</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <button class="menu-button" onclick="toggleDropdown('agents-menu')">Agents</button>
-        <div id="agents-menu" class="dropdown">
-          <div class="dropdown-header">Agent Network</div>
-          <div class="tree-container">
-            <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
-              active
-              <div class="tree-children">
-                <div class="tree-item executable config">neochat.service ● running</div>
-                <div class="tree-item last link" onclick="switchAgent('mood')">mood_engine.agent → /agents/mood/</div>
-              </div>
-            </div>
-            <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
-              available
-              <div class="tree-children">
-                <div class="tree-item executable" onclick="switchAgent('rapstar')">rapstar_ai.agent</div>
-                <div class="tree-item executable" onclick="switchAgent('storyteller')">storyteller.agent</div>
-                <div class="tree-item executable" onclick="switchAgent('zen')">zen_agent.agent</div>
-                <div class="tree-item last config" onclick="createAgent()">custom.template</div>
-              </div>
-            </div>
-            <div class="tree-item last folder has-submenu" onclick="toggleSubmenu(this)">
-              network
-              <div class="tree-children">
-                <div class="tree-item config">agents.onelastai.com</div>
-                <div class="tree-item config">cluster.status</div>
-                <div class="tree-item last link">api.endpoint → https://api.onelastai.com/</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <button class="menu-button" onclick="toggleDropdown('help-menu')">Help</button>
-        <div id="help-menu" class="dropdown">
-          <div class="dropdown-header">Documentation & Support</div>
-          <div class="tree-container">
-            <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
-              docs
-              <div class="tree-children">
-                <div class="tree-item config" onclick="showDocs('getting-started')">getting_started.md</div>
-                <div class="tree-item config" onclick="showDocs('commands')">commands.txt</div>
-                <div class="tree-item config" onclick="showDocs('api')">api_reference.html</div>
-                <div class="tree-item last config" onclick="showDocs('examples')">examples.json</div>
-              </div>
-            </div>
-            <div class="tree-item expandable folder has-submenu" onclick="toggleSubmenu(this)">
-              support
-              <div class="tree-children">
-                <div class="tree-item link" onclick="openSupport()">github.com/onelastai/neochat</div>
-                <div class="tree-item link" onclick="openDiscord()">discord.gg/onelastai</div>
-                <div class="tree-item last config" onclick="reportBug()">bug_report.template</div>
-              </div>
-            </div>
-            <div class="tree-item last executable" onclick="showAbout()">about.sh</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="hero-content">
@@ -755,6 +755,14 @@ Upload your CSV/Excel files or describe your visualization needs!
         }
       });
       
+      // Remove active state from all menu buttons
+      const allButtons = document.querySelectorAll('.datavision-menu-button');
+      allButtons.forEach(button => {
+        if (button.nextElementSibling.id !== menuId) {
+          button.classList.remove('active');
+        }
+      });
+      
       // Toggle the target dropdown
       const dropdown = document.getElementById(menuId);
       dropdown.classList.toggle('active');
@@ -774,9 +782,9 @@ Upload your CSV/Excel files or describe your visualization needs!
 
     // Close dropdowns when clicking outside
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('.menu-item')) {
+      if (!e.target.closest('.datavision-menu-item')) {
         const allDropdowns = document.querySelectorAll('.dropdown');
-        const allButtons = document.querySelectorAll('.menu-button');
+        const allButtons = document.querySelectorAll('.datavision-menu-button');
         
         allDropdowns.forEach(dropdown => {
           dropdown.classList.remove('active');
@@ -787,6 +795,103 @@ Upload your CSV/Excel files or describe your visualization needs!
         });
       }
     });
+
+    // DataVision Menu Action Functions
+    function uploadData() {
+      if (window.terminal) {
+        window.terminal.addMessage('system', '$ ./upload_data.sh\nOpening file browser for data upload...\n[File upload interface coming soon]');
+      }
+    }
+
+    function loadDataset() {
+      if (window.terminal) {
+        window.terminal.addMessage('system', '$ cat sample_data.csv\nLoading sample dataset...\nSample data loaded! Try: "analyze data" or "create chart"');
+      }
+    }
+
+    function exportChart() {
+      if (window.terminal) {
+        window.terminal.addMessage('system', '$ ./chart_export.json\nExporting current chart...\n[Chart export functionality coming soon]');
+      }
+    }
+
+    function clearData() {
+      if (window.terminal && confirm('Clear all data cache? This will remove uploaded datasets.')) {
+        window.terminal.addMessage('system', '$ ./clear_cache.sh\nClearing data cache...\nData cache cleared successfully!');
+      }
+    }
+
+    function createChart(chartType) {
+      if (window.terminal) {
+        const chartMessages = {
+          bar: '$ python3 bar_chart.py\nInitializing bar chart generator...\nReady to create bar chart! Upload data or describe your requirements.',
+          line: '$ python3 line_chart.py\nInitializing line chart generator...\nReady to create line chart! Ideal for time series and trends.',
+          pie: '$ python3 pie_chart.py\nInitializing pie chart generator...\nReady to create pie chart! Perfect for showing proportions.',
+          scatter: '$ python3 scatter_plot.py\nInitializing scatter plot generator...\nReady to create scatter plot! Great for correlation analysis.',
+          heatmap: '$ python3 heatmap.py\nInitializing heatmap generator...\nReady to create heatmap! Excellent for correlation matrices.',
+          treemap: '$ python3 treemap.py\nInitializing treemap generator...\nReady to create treemap! Perfect for hierarchical data.',
+          bubble: '$ python3 bubble_chart.py\nInitializing bubble chart generator...\nReady to create bubble chart! Great for 3D data visualization.',
+          candlestick: '$ python3 candlestick.py\nInitializing candlestick chart generator...\nReady to create candlestick chart! Perfect for financial data.'
+        };
+        
+        window.terminal.addMessage('system', chartMessages[chartType] || 'Chart generator activated');
+      }
+    }
+
+    function createDashboard() {
+      if (window.terminal) {
+        window.terminal.addMessage('system', '$ node dashboard_builder.js\nLaunching interactive dashboard builder...\n[Dashboard builder interface coming soon]');
+      }
+    }
+
+    function createRealtime() {
+      if (window.terminal) {
+        window.terminal.addMessage('system', '$ nano realtime_charts.conf\nConfiguring real-time chart settings...\n[Real-time charts coming soon]');
+      }
+    }
+
+    function runAnalysis(analysisType) {
+      if (window.terminal) {
+        const analysisMessages = {
+          descriptive: '$ python3 descriptive_stats.py\nRunning descriptive statistics analysis...\nCalculating mean, median, mode, std dev, and distributions.',
+          correlation: '$ python3 correlation_matrix.py\nGenerating correlation matrix...\nAnalyzing relationships between variables.',
+          regression: '$ python3 regression_analysis.py\nPerforming regression analysis...\nFitting models and calculating R-squared values.',
+          timeseries: '$ python3 time_series.py\nAnalyzing time series data...\nDetecting trends, seasonality, and patterns.'
+        };
+        
+        window.terminal.addMessage('system', analysisMessages[analysisType] || 'Analysis started');
+      }
+    }
+
+    function runML(mlType) {
+      if (window.terminal) {
+        const mlMessages = {
+          clustering: '$ python3 clustering.py\nInitializing clustering algorithms...\nApplying K-means, hierarchical, and DBSCAN clustering.',
+          classification: '$ python3 classification.py\nTraining classification models...\nTesting Random Forest, SVM, and Neural Networks.',
+          forecasting: '$ python3 forecasting.py\nBuilding forecasting models...\nApplying ARIMA, Prophet, and LSTM models.'
+        };
+        
+        window.terminal.addMessage('system', mlMessages[mlType] || 'Machine learning process started');
+      }
+    }
+
+    function generateInsights() {
+      if (window.terminal) {
+        window.terminal.addMessage('system', '$ ./auto_insights.engine\nGenerating automated insights...\nAnalyzing patterns and generating recommendations.');
+      }
+    }
+
+    function exportReports() {
+      if (window.terminal) {
+        window.terminal.addMessage('system', '$ ruby report_generator.rb\nGenerating comprehensive reports...\n[Report generation coming soon]');
+      }
+    }
+
+    function exitDataVision() {
+      if (confirm('Exit DataVision? Any unsaved work will be lost.')) {
+        window.location.href = '/';
+      }
+    }
 
     // Menu Action Functions
     function newConversation() {
@@ -911,15 +1016,16 @@ Upload your CSV/Excel files or describe your visualization needs!
       if (window.terminal) {
         window.terminal.addMessage('system', `$ ./about.sh
 ╔══════════════════════════════════════╗
-║              NeoChat v1.0            ║
+║            DataVision v2.0           ║
 ║                                      ║
-║     AI Conversation Terminal         ║
+║     AI Data Analytics Terminal       ║
 ║     Built by onelastai.com          ║
 ║                                      ║
-║  • Intelligent conversation AI       ║
-║  • Terminal-style interface          ║
-║  • Multi-modal capabilities          ║
-║  • Real-time responses              ║
+║  • Advanced chart generation         ║
+║  • Statistical analysis              ║
+║  • Machine learning insights         ║
+║  • Interactive dashboards            ║
+║  • Real-time data visualization      ║
 ║                                      ║
 ║  © 2025 onelastai.com               ║
 ╚══════════════════════════════════════╝`);
@@ -927,7 +1033,7 @@ Upload your CSV/Excel files or describe your visualization needs!
     }
 
     // Terminal Chat Functionality
-    class NeoChatTerminal {
+    class DataVisionTerminal {
       constructor() {
         this.output = document.getElementById('terminal-output');
         this.input = document.getElementById('user-input');
@@ -1094,7 +1200,7 @@ Upload your CSV/Excel files or describe your visualization needs!
     
     // Initialize terminal when page loads
     document.addEventListener('DOMContentLoaded', () => {
-      window.terminal = new NeoChatTerminal();
+      window.terminal = new DataVisionTerminal();
     });
   </script>
 </body>

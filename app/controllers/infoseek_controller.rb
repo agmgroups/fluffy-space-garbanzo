@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class InfoseekController < ApplicationController
-  # before_action :find_infoseek_agent
-  # before_action :ensure_demo_user
+  include AgentConnectionConcern
+  
+  # Remove before_action call since we don't need agent loading for InfoSeek
 
   def index
     # Main agent page with hero section and terminal interface

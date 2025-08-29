@@ -2,42 +2,40 @@
 development:
   clients:
     default:
-      database: onelastai_development
-      hosts:
-        - localhost:27017
+      uri: mongodb+srv://miczugamark:WSTbNCDS7zfh3e0D@pawns.pwzfji.mongodb.net/onelastai_development?retryWrites=true&w=majority&appName=Pawns
       options:
-        server_selection_timeout: 1
+        server_selection_timeout: 5
+        connect_timeout: 10
+        socket_timeout: 5
+        max_pool_size: 10
+        min_pool_size: 1
 
 test:
   clients:
     default:
-      database: onelastai_test
-      hosts:
-        - localhost:27017
+      uri: mongodb+srv://miczugamark:WSTbNCDS7zfh3e0D@pawns.pwzfji.mongodb.net/onelastai_test?retryWrites=true&w=majority&appName=Pawns
       options:
+        server_selection_timeout: 5
+        connect_timeout: 10
+        socket_timeout: 5
+        max_pool_size: 5
+        min_pool_size: 1
         read:
           mode: :primary
-        max_pool_size: 1
 
 production:
   clients:
     default:
-      uri: <%= ENV['MONGODB_URI'] %>
+      uri: <%= ENV['MONGODB_URI'] || 'mongodb+srv://miczugamark:WSTbNCDS7zfh3e0D@pawns.pwzfji.mongodb.net/onelastai_production?retryWrites=true&w=majority&appName=Pawns' %>
       options:
         max_pool_size: <%= ENV['MONGODB_POOL_SIZE'] || 20 %>
-        min_pool_size: 1
+        min_pool_size: 2
         wait_queue_timeout: <%= ENV['MONGODB_TIMEOUT'] || 10 %>
         connect_timeout: 10
         socket_timeout: 5
         ssl: true
         ssl_verify: true
         heartbeat_frequency: 10
-        # Retry writes for better reliability
-        retry_writes: true
-        # Write concern for data durability
-        write:
-          w: :majority
-          j: true
         # Read preference for performance
         read:
           mode: :secondary_preferred

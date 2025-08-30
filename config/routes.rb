@@ -364,10 +364,12 @@ Rails.application.routes.draw do
   # TaskMaster routes
   get '/taskmaster', to: 'taskmaster#index'
   post '/taskmaster/chat', to: 'taskmaster#chat'
+  get '/taskmaster/status', to: 'taskmaster#status'
 
   # Reportly routes
   get '/reportly', to: 'reportly#index'
   post '/reportly/chat', to: 'reportly#chat'
+  get '/reportly/status', to: 'reportly#status'
 
   # DataSphere routes
   get '/datasphere', to: 'datasphere#index'
@@ -502,14 +504,12 @@ Rails.application.routes.draw do
   post '/support/ticket', to: 'pages#support_ticket'
 
   # Community Routes
-  namespace :community do
-    get '/', to: 'community#index', as: :root
-    get '/forum', to: 'community#forum'
-    get '/forum/:category', to: 'community#forum_category'
-    post '/forum/post', to: 'community#create_post'
-    get '/forum/post/:id', to: 'community#show_post'
-    post '/forum/reply', to: 'community#create_reply'
-  end
+  get '/community', to: 'community#index', as: :community_root
+  get '/community/forum', to: 'community#forum'
+  get '/community/forum/:category', to: 'community#forum_category'
+  post '/community/forum/post', to: 'community#create_post'
+  get '/community/forum/post/:id', to: 'community#show_post'
+  post '/community/forum/reply', to: 'community#create_reply'
 
   # Documentation Routes
   get '/docs', to: 'docs#index'
@@ -603,7 +603,7 @@ Rails.application.routes.draw do
   end
 
   # Girlfriend Companion & Wellness Agent
-  scope module: 'girlfriend', path: 'girlfriend' do
+  scope path: 'girlfriend' do
     root 'girlfriend#index', as: 'girlfriend_root'
     post 'chat', to: 'girlfriend#chat', as: 'girlfriend_chat'
     post 'emotional_support', to: 'girlfriend#emotional_support', as: 'girlfriend_emotional_support'

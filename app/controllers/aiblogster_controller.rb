@@ -13,8 +13,8 @@ class AiblogsterController < ApplicationController
       average_rating: 96.1,      # Content quality score
       response_time: '< 2.1s',   # Generation speed
       articles_generated: 4293,  # Total articles written
-      words_written: 1847352,    # Total words generated
-      engagement_rate: 87.4,     # Average reader engagement
+      words_written: 1_847_352, # Total words generated
+      engagement_rate: 87.4, # Average reader engagement
       specializations: [
         'Content Creation',
         'SEO Optimization',
@@ -185,7 +185,7 @@ class AiblogsterController < ApplicationController
         'Content Analytics',
         'Audience Targeting'
       ],
-      configuration: { 
+      configuration: {
         'response_style' => 'creative',
         'processing_mode' => 'content_focused',
         'seo_optimization' => true,
@@ -339,7 +339,7 @@ class AiblogsterController < ApplicationController
             "• **Landing Pages:** High-converting page copy and CTAs\n" \
             "• **Ad Copy:** PPC and social media advertising content\n" \
             "• **Marketing Materials:** Brochures, flyers, and promotional content\n\n" \
-            "🧠 **Persuasion Techniques:**\n" \
+            "🌌 **Persuasion Techniques:**\n" \
             "• Psychological triggers and persuasion principles\n" \
             "• Emotional storytelling and narrative techniques\n" \
             "• Social proof and credibility building\n" \

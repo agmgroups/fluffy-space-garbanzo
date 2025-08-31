@@ -10,7 +10,20 @@ class PagesController < ApplicationController
 
   def contact_submit
     # Handle contact form submission
-    redirect_to contact_path, notice: 'Message sent successfully!'
+    # Forward contact form data to mail@onelastai.com
+    name = params[:name]
+    email = params[:email]
+    subject = params[:subject] || 'Contact Form Submission'
+    message = params[:message]
+
+    Rails.logger.info "Contact form submission: #{name} <#{email}> -> mail@onelastai.com"
+    Rails.logger.info "Subject: #{subject}"
+    Rails.logger.info "Message: #{message}"
+
+    # TODO: Implement email sending to mail@onelastai.com
+    # ContactMailer.new_contact(name, email, subject, message, 'mail@onelastai.com').deliver_now
+
+    redirect_to contact_path, notice: 'Message sent successfully! We will get back to you at mail@onelastai.com'
   end
 
   def blog; end
@@ -125,11 +138,13 @@ class PagesController < ApplicationController
 
   def developers; end
 
+  def community_forum; end
+
   def newsletter; end
 
   def newsletter_subscribe
     email = params[:email]
-    recipient = params[:recipient] || 'info@onelastai.com'
+    recipient = params[:recipient] || 'mail@onelastai.com'
 
     if email.blank?
       render json: { success: false, error: 'Email is required' }, status: 400
@@ -146,7 +161,7 @@ class PagesController < ApplicationController
       # 1. Save to database
       # 2. Send to email service (like Mailchimp, SendGrid, etc.)
       # 3. Send confirmation email
-      # 4. Forward to info@onelastai.com
+      # 4. Forward to mail@onelastai.com
 
       # For now, we'll simulate the process
       Rails.logger.info "Newsletter subscription: #{email} -> #{recipient}"

@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
         successText.textContent = result.message;
         successMessage.classList.remove('hidden');
         form.reset();
-        form.querySelector('#recipient').value = 'info@onelastai.com'; // Reset default value
+        form.querySelector('#recipient').value = 'mail@onelastai.com'; // Reset default value
       } else {
         errorText.textContent = result.error || 'An error occurred. Please try again.';
         errorMessage.classList.remove('hidden');

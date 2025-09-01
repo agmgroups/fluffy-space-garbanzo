@@ -286,6 +286,190 @@
       50% { opacity: 0.5; }
     }
 
+    /* Support Forms */
+    .support-form {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      backdrop-filter: blur(10px);
+    }
+
+    .form-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    .form-header h3 {
+      color: #00d4ff;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .close-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      color: #e0e0e0;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: 8px;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #00d4ff;
+      box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .submit-btn {
+      flex: 1;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(45deg, #00d4ff, #0099cc);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+    }
+
+    .cancel-btn {
+      flex: 1;
+      padding: 0.75rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cancel-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Live Chat Styles */
+    .chat-container {
+      max-width: 100%;
+    }
+
+    .chat-messages {
+      height: 300px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+    }
+
+    .system-message {
+      background: rgba(0, 212, 255, 0.1);
+      border-left: 3px solid #00d4ff;
+      padding: 0.75rem;
+      border-radius: 4px;
+      color: #e0e0e0;
+      margin-bottom: 1rem;
+    }
+
+    .user-message {
+      background: rgba(0, 255, 136, 0.1);
+      border-left: 3px solid #00ff88;
+      padding: 0.75rem;
+      border-radius: 4px;
+      color: #e0e0e0;
+      margin-bottom: 1rem;
+      margin-left: 2rem;
+    }
+
+    .chat-input-container {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .chat-input-container input {
+      flex: 1;
+      padding: 0.75rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      border-radius: 8px;
+      color: white;
+    }
+
+    .send-btn {
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(45deg, #00d4ff, #0099cc);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .send-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0, 212, 255, 0.4);
+    }
+
     /* Knowledge Base */
     .knowledge-grid {
       display: grid;
@@ -341,6 +525,10 @@
       
       .container {
         padding: 0 1rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -502,7 +690,7 @@
           <div class="contact-icon">📧</div>
           <h3 class="contact-title">Email Support</h3>
           <p class="contact-info">Get help via email for any questions or issues. We typically respond within 24 hours.</p>
-          <a href="mailto:mail@onelastai.com" class="contact-button">Send Email</a>
+          <button class="contact-button" onclick="showEmailForm()">Send Email</button>
           <div class="status-indicator">
             <span class="status-dot"></span>
             <span>Response time: 24 hours</span>
@@ -513,7 +701,7 @@
           <div class="contact-icon">💬</div>
           <h3 class="contact-title">Live Chat</h3>
           <p class="contact-info">Chat with our support team in real-time. Available for Pro and Enterprise users.</p>
-          <button class="contact-button" onclick="openLiveChat()">Start Chat</button>
+          <button class="contact-button" onclick="showLiveChat()">Start Chat</button>
           <div class="status-indicator">
             <span class="status-dot"></span>
             <span>Available: 9 AM - 6 PM EST</span>
@@ -524,11 +712,102 @@
           <div class="contact-icon">🎫</div>
           <h3 class="contact-title">Support Tickets</h3>
           <p class="contact-info">Submit detailed support tickets for complex issues that require investigation.</p>
-          <button class="contact-button" onclick="openTicketForm()">Create Ticket</button>
+          <button class="contact-button" onclick="showTicketForm()">Create Ticket</button>
           <div class="status-indicator">
             <span class="status-dot"></span>
             <span>Priority support available</span>
           </div>
+        </div>
+      </div>
+
+      <!-- Support Forms Container -->
+      <div id="support-forms-container" style="display: none; margin-top: 3rem;">
+        <!-- Email Form -->
+        <div id="email-form" class="support-form" style="display: none;">
+          <div class="form-header">
+            <h3>📧 Email Support</h3>
+            <button onclick="hideForms()" class="close-btn">×</button>
+          </div>
+          <form id="email-support-form" action="/send_support_email" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <div class="form-group">
+              <label for="email-name">Your Name</label>
+              <input type="text" id="email-name" name="sender_name" required>
+            </div>
+            <div class="form-group">
+              <label for="email-address">Email Address</label>
+              <input type="email" id="email-address" name="sender_email" required>
+            </div>
+            <div class="form-group">
+              <label for="email-subject">Subject</label>
+              <input type="text" id="email-subject" name="subject" required>
+            </div>
+            <div class="form-group">
+              <label for="email-message">Message</label>
+              <textarea id="email-message" name="message" rows="6" required></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="submit-btn">Send Email</button>
+              <button type="button" onclick="hideForms()" class="cancel-btn">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Live Chat Form -->
+        <div id="chat-form" class="support-form" style="display: none;">
+          <div class="form-header">
+            <h3>💬 Live Chat</h3>
+            <button onclick="hideForms()" class="close-btn">×</button>
+          </div>
+          <div class="chat-container">
+            <div class="chat-messages" id="chat-messages">
+              <div class="system-message">Welcome to OneLastAI Support! How can we help you today?</div>
+            </div>
+            <div class="chat-input-container">
+              <input type="text" id="chat-input" placeholder="Type your message..." onkeypress="handleChatKeyPress(event)">
+              <button onclick="sendChatMessage()" class="send-btn">Send</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Support Ticket Form -->
+        <div id="ticket-form" class="support-form" style="display: none;">
+          <div class="form-header">
+            <h3>🎫 Support Ticket</h3>
+            <button onclick="hideForms()" class="close-btn">×</button>
+          </div>
+          <form id="ticket-support-form" action="/send_support_email" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <div class="form-group">
+              <label for="ticket-name">Your Name</label>
+              <input type="text" id="ticket-name" name="sender_name" required>
+            </div>
+            <div class="form-group">
+              <label for="ticket-email">Email Address</label>
+              <input type="email" id="ticket-email" name="sender_email" required>
+            </div>
+            <div class="form-group">
+              <label for="ticket-priority">Priority Level</label>
+              <select id="ticket-priority" name="priority" required>
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+                <option value="urgent">Urgent</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="ticket-subject">Subject</label>
+              <input type="text" id="ticket-subject" name="subject" required>
+            </div>
+            <div class="form-group">
+              <label for="ticket-description">Issue Description</label>
+              <textarea id="ticket-description" name="message" rows="8" placeholder="Please describe your issue in detail..." required></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="submit-btn">Submit Ticket</button>
+              <button type="button" onclick="hideForms()" class="cancel-btn">Cancel</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -605,12 +884,70 @@
       });
     }
 
-    function openLiveChat() {
-      alert('Live chat feature coming soon! For now, please email us at mail@onelastai.com');
+    function showEmailForm() {
+      document.getElementById('support-forms-container').style.display = 'block';
+      document.getElementById('email-form').style.display = 'block';
+      document.getElementById('chat-form').style.display = 'none';
+      document.getElementById('ticket-form').style.display = 'none';
+      document.getElementById('email-form').scrollIntoView({ behavior: 'smooth' });
     }
 
-    function openTicketForm() {
-      window.location.href = 'mailto:mail@onelastai.com?subject=Support Ticket - [Describe your issue]&body=Please describe your issue in detail:%0D%0A%0D%0ASteps to reproduce:%0D%0A1. %0D%0A2. %0D%0A3. %0D%0A%0D%0AExpected behavior:%0D%0A%0D%0AActual behavior:%0D%0A%0D%0AAdditional information:';
+    function showLiveChat() {
+      document.getElementById('support-forms-container').style.display = 'block';
+      document.getElementById('chat-form').style.display = 'block';
+      document.getElementById('email-form').style.display = 'none';
+      document.getElementById('ticket-form').style.display = 'none';
+      document.getElementById('chat-form').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showTicketForm() {
+      document.getElementById('support-forms-container').style.display = 'block';
+      document.getElementById('ticket-form').style.display = 'block';
+      document.getElementById('email-form').style.display = 'none';
+      document.getElementById('chat-form').style.display = 'none';
+      document.getElementById('ticket-form').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function hideForms() {
+      document.getElementById('support-forms-container').style.display = 'none';
+      document.getElementById('email-form').style.display = 'none';
+      document.getElementById('chat-form').style.display = 'none';
+      document.getElementById('ticket-form').style.display = 'none';
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById('chat-input');
+      const messages = document.getElementById('chat-messages');
+      const message = input.value.trim();
+      
+      if (message) {
+        // Add user message
+        const userMessage = document.createElement('div');
+        userMessage.className = 'user-message';
+        userMessage.textContent = `You: ${message}`;
+        messages.appendChild(userMessage);
+        
+        // Clear input
+        input.value = '';
+        
+        // Scroll to bottom
+        messages.scrollTop = messages.scrollHeight;
+        
+        // Simulate support response (in real implementation, this would connect to live chat system)
+        setTimeout(() => {
+          const response = document.createElement('div');
+          response.className = 'system-message';
+          response.textContent = 'Support: Thank you for your message. A support agent will respond shortly. For immediate assistance, please email mail@onelastai.com';
+          messages.appendChild(response);
+          messages.scrollTop = messages.scrollHeight;
+        }, 1000);
+      }
+    }
+
+    function handleChatKeyPress(event) {
+      if (event.key === 'Enter') {
+        sendChatMessage();
+      }
     }
 
     // Search functionality

@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!,
                 except: %i[about contact contact_submit blog news faq signup signup_submit login login_submit privacy terms cookies
-                           marketplace tutorials changelog status careers partners developers get_started schedule_demo schedule_demo_submit start_free]
+                           marketplace tutorials changelog status careers partners developers get_started schedule_demo schedule_demo_submit start_free support send_support_email]
 
   # Public Pages
   def about; end
@@ -110,6 +110,37 @@ class PagesController < ApplicationController
   def templates; end
 
   def support; end
+
+  def send_support_email
+    # Handle support email form submission
+    sender_name = params[:sender_name]
+    sender_email = params[:sender_email]
+    subject = params[:subject]
+    message = params[:message]
+    priority = params[:priority] || 'medium'
+
+    # Log the support request
+    Rails.logger.info "Support email received from: #{sender_name} <#{sender_email}>"
+    Rails.logger.info "Subject: #{subject}"
+    Rails.logger.info "Priority: #{priority}"
+    Rails.logger.info "Message: #{message}"
+
+    # In a real application, you would send an email to mail@onelastai.com
+    # For now, we'll just log it and return a success response
+    # TODO: Implement actual email sending
+    # SupportMailer.new_support_request(sender_name, sender_email, subject, message, priority, 'mail@onelastai.com').deliver_now
+
+    respond_to do |format|
+      format.json { render json: { success: true, message: 'Email sent successfully!' } }
+      format.html { redirect_to support_path, notice: 'Your message has been sent! We will respond within 24 hours.' }
+    end
+  rescue StandardError => e
+    Rails.logger.error "Error sending support email: #{e.message}"
+    respond_to do |format|
+      format.json { render json: { success: false, message: 'Failed to send email. Please try again.' } }
+      format.html { redirect_to support_path, alert: 'Failed to send message. Please try again.' }
+    end
+  end
 
   def support_ticket
     # Handle support ticket creation

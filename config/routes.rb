@@ -505,7 +505,7 @@ Rails.application.routes.draw do
 
   # Community Routes
   get '/community', to: 'community#index', as: :community_root
-  get '/community/forum', to: 'pages#community_forum'
+  get '/community/forum', to: 'community#forum'
   get '/community/forum/:category', to: 'community#forum_category'
   post '/community/forum/post', to: 'community#create_post'
   get '/community/forum/post/:id', to: 'community#show_post'
@@ -567,12 +567,6 @@ Rails.application.routes.draw do
   get '/careers', to: 'pages#careers'
   get '/partners', to: 'pages#partners'
   get '/developers', to: 'pages#developers'
-
-  # Community & Support Features
-  get '/support', to: 'pages#support'
-  get '/docs', to: 'pages#api_docs'
-  get '/learn', to: 'pages#tutorials'
-  get '/community/forum', to: 'pages#community_forum'
 
   # Main domain root - Modern Landing Page
   root 'home#index'

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OneLastAI News & Updates</title>
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .hero-section {
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.15) 0%, rgba(0, 0, 0, 0.3) 70%);
+      border-bottom: 2px solid #00d4ff;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 20px #00d4ff;
+      background: linear-gradient(45deg, #00d4ff, #0099cc, #66d9ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 30px #00d4ff;
+    }
+
+    .hero-tagline {
+      font-size: 1.5rem;
+      color: #e0e0e0;
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+
+    .launch-badge {
+      background: linear-gradient(45deg, #ff6b6b, #ff5722);
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border-radius: 25px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 2rem;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .content-section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .update-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: 20px;
+      padding: 3rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .update-card:hover {
+      border-color: #00d4ff;
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+    }
+
+    .card-title {
+      font-size: 2.2rem;
+      color: #00d4ff;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .card-content {
+      color: #e0e0e0;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 212, 255, 0.1);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      border-color: #00d4ff;
+      background: rgba(0, 212, 255, 0.1);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 15px #00d4ff;
+    }
+
+    .feature-title {
+      font-size: 1.3rem;
+      color: #00d4ff;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .feature-description {
+      color: #e0e0e0;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .timeline {
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .timeline-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .timeline-date {
+      color: #00ff88;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-title {
+      color: #00d4ff;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .timeline-description {
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+
+    .back-button {
+      display: inline-block;
+      background: linear-gradient(45deg, #666, #888);
+      color: #ffffff;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 2rem;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(136, 136, 136, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .update-card {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="hero-section">
+    <div class="hero-icon">🤖</div>
+    <h1 class="hero-title">OneLastAI</h1>
+    <p class="hero-tagline">Revolutionary AI Platform Development</p>
+    <div class="launch-badge">🚀 LAUNCHING 2026</div>
+  </section>
+
+  <section class="content-section">
+    <div class="update-card">
+      <h2 class="card-title">🌟 The Future of AI is Coming</h2>
+      <p class="card-content">
+        OneLastAI is currently in intensive development, creating the most advanced artificial intelligence platform ever conceived. 
+        Our team of world-class AI researchers and engineers are working around the clock to bring you breakthrough technologies 
+        that will revolutionize how we interact with artificial intelligence.
+      </p>
+      <p class="card-content">
+        <strong>Expected Launch:</strong> 2026 | <strong>Status:</strong> In Active Development | <strong>Updates:</strong> Coming Soon
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3 class="feature-title">Advanced Neural Networks</h3>
+        <p class="feature-description">
+          Next-generation neural architectures with unprecedented learning capabilities and human-like reasoning abilities.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-title">Lightning-Fast Processing</h3>
+        <p class="feature-description">
+          Optimized processing engines delivering real-time responses with millisecond latency across all AI operations.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3 class="feature-title">Universal Integration</h3>
+        <p class="feature-description">
+          Seamless integration with any platform, service, or application through our revolutionary universal API framework.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔮</div>
+        <h3 class="feature-title">Predictive Intelligence</h3>
+        <p class="feature-description">
+          Advanced predictive algorithms that anticipate user needs and provide proactive AI assistance before you even ask.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3 class="feature-title">Quantum Security</h3>
+        <p class="feature-description">
+          Military-grade security protocols with quantum encryption ensuring absolute protection of all data and interactions.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3 class="feature-title">Precision Accuracy</h3>
+        <p class="feature-description">
+          99.9% accuracy across all AI tasks with continuous learning algorithms that improve performance over time.
+        </p>
+      </div>
+    </div>
+
+    <div class="update-card">
+      <h2 class="card-title">📅 Development Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">Q4 2025</div>
+          <h3 class="timeline-title">Core AI Engine Completion</h3>
+          <p class="timeline-description">
+            Finalizing the revolutionary AI core engine with breakthrough neural network architectures and learning algorithms.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Q1 2026</div>
+          <h3 class="timeline-title">Beta Testing Launch</h3>
+          <p class="timeline-description">
+            Closed beta testing with select partners and early adopters to refine features and optimize performance.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Q2 2026</div>
+          <h3 class="timeline-title">Public Launch</h3>
+          <p class="timeline-description">
+            Official public launch of OneLastAI platform with full feature set and global availability.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="update-card">
+      <h2 class="card-title">🔥 Stay Updated</h2>
+      <p class="card-content">
+        Major announcements and breakthrough updates are coming soon! We're working on revolutionary features that will 
+        transform the AI landscape. Subscribe to our newsletter or follow our social channels to be the first to know 
+        about our latest developments and exclusive previews.
+      </p>
+      <p class="card-content">
+        <strong>Follow our progress:</strong> Regular updates will be posted here as we approach the 2026 launch date.
+      </p>
+    </div>
+
+    <div style="text-align: center;">
+      <a href="/news" class="back-button">← Back to News</a>
+    </div>
+  </section>
+</body>
+</html>

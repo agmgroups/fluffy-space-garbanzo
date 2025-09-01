@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Man Army AI - Elite Defense Systems</title>
+
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1a0a0a 0%, #2a1a1a 50%, #3a1a1a 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .hero-section {
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      background: radial-gradient(ellipse at center, rgba(255, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.3) 70%);
+      border-bottom: 2px solid #ff4444;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 20px #ff4444;
+      background: linear-gradient(45deg, #ff4444, #cc0000, #ff6666);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 30px #ff4444;
+    }
+
+    .hero-tagline {
+      font-size: 1.5rem;
+      color: #e0e0e0;
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+
+    .launch-badge {
+      background: linear-gradient(45deg, #ff6b6b, #ff5722);
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border-radius: 25px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 2rem;
+      animation: pulse 2s infinite;
+    }
+
+    .classified-badge {
+      background: linear-gradient(45deg, #ffaa00, #ff8800);
+      color: #000;
+      padding: 0.8rem 2rem;
+      border-radius: 25px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1rem;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0.7; }
+    }
+
+    .content-section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .update-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 68, 68, 0.2);
+      border-radius: 20px;
+      padding: 3rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .update-card:hover {
+      border-color: #ff4444;
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(255, 68, 68, 0.2);
+    }
+
+    .card-title {
+      font-size: 2.2rem;
+      color: #ff4444;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .card-content {
+      color: #e0e0e0;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 68, 68, 0.1);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      border-color: #ff4444;
+      background: rgba(255, 68, 68, 0.1);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 15px #ff4444;
+    }
+
+    .feature-title {
+      font-size: 1.3rem;
+      color: #ff4444;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .feature-description {
+      color: #e0e0e0;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .timeline {
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .timeline-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 68, 68, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .timeline-date {
+      color: #ffaa00;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .timeline-title {
+      color: #ff4444;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .timeline-description {
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+
+    .classified-section {
+      background: rgba(0, 0, 0, 0.3);
+      border: 2px solid #ffaa00;
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .classified-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 170, 0, 0.1), transparent);
+      animation: scan 3s infinite;
+    }
+
+    @keyframes scan {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .back-button {
+      display: inline-block;
+      background: linear-gradient(45deg, #666, #888);
+      color: #ffffff;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 2rem;
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(136, 136, 136, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .update-card {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="hero-section">
+    <div class="hero-icon">⚔️</div>
+    <h1 class="hero-title">One Man Army AI</h1>
+    <p class="hero-tagline">Elite AI Defense Systems & Advanced Warfare Technology</p>
+    <div class="classified-badge">🔒 CLASSIFIED PROJECT</div>
+    <div class="launch-badge">🛡️ LAUNCHING 2026</div>
+  </section>
+
+  <section class="content-section">
+    <div class="classified-section">
+      <h2 style="color: #ffaa00; margin-bottom: 1rem;">⚠️ CLASSIFIED INTELLIGENCE</h2>
+      <p style="color: #e0e0e0; font-size: 1.1rem;">
+        This project contains classified information about advanced AI defense systems. 
+        Details are restricted to authorized personnel only. Proceed with caution.
+      </p>
+    </div>
+
+    <div class="update-card">
+      <h2 class="card-title">🛡️ Elite AI Defense Platform</h2>
+      <p class="card-content">
+        One Man Army AI represents the pinnacle of artificial intelligence defense technology. Currently under development 
+        by our elite team of AI specialists and cybersecurity experts, this platform will revolutionize digital warfare 
+        and protection systems when it launches in 2026.
+      </p>
+      <p class="card-content">
+        <strong>Classification Level:</strong> Top Secret | <strong>Launch Date:</strong> 2026 | <strong>Status:</strong> Active Development
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3 class="feature-title">Precision Targeting</h3>
+        <p class="feature-description">
+          Military-grade targeting systems with 99.9% accuracy, capable of identifying and neutralizing threats in real-time.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3 class="feature-title">Autonomous Defense</h3>
+        <p class="feature-description">
+          Self-operating defense protocols that adapt and respond to threats without human intervention or oversight.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-title">Lightning Response</h3>
+        <p class="feature-description">
+          Millisecond reaction times with quantum-speed processing for instantaneous threat assessment and response.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3 class="feature-title">Deep Intelligence</h3>
+        <p class="feature-description">
+          Advanced intelligence gathering and analysis capabilities with predictive threat modeling and early warning systems.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3 class="feature-title">Global Network</h3>
+        <p class="feature-description">
+          Worldwide deployment capabilities with satellite integration and global command and control infrastructure.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3 class="feature-title">Quantum Encryption</h3>
+        <p class="feature-description">
+          Unbreakable quantum encryption protocols ensuring absolute security and protection against all forms of intrusion.
+        </p>
+      </div>
+    </div>
+
+    <div class="update-card">
+      <h2 class="card-title">📅 Mission Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">Q4 2025</div>
+          <h3 class="timeline-title">Combat AI Core Completion</h3>
+          <p class="timeline-description">
+            Finalization of the advanced combat AI algorithms and autonomous decision-making systems for real-world deployment.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Q1 2026</div>
+          <h3 class="timeline-title">Field Testing Operations</h3>
+          <p class="timeline-description">
+            Classified field testing with military partners and defense contractors to validate combat effectiveness and reliability.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Q2 2026</div>
+          <h3 class="timeline-title">Operational Deployment</h3>
+          <p class="timeline-description">
+            Full operational deployment of One Man Army AI systems to authorized defense networks and strategic locations.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="classified-section">
+      <h2 style="color: #ff4444; margin-bottom: 1rem;">🚨 DEVELOPMENT UPDATES</h2>
+      <p style="color: #e0e0e0; font-size: 1.1rem;">
+        Classified development updates and intelligence briefings will be distributed to authorized personnel only. 
+        Major breakthroughs and system capabilities will be revealed as we approach the 2026 deployment date.
+      </p>
+      <p style="color: #ffaa00; font-size: 0.9rem; margin-top: 1rem;">
+        <strong>Security Clearance Required:</strong> Access to detailed specifications requires Level 5 authorization.
+      </p>
+    </div>
+
+    <div style="text-align: center;">
+      <a href="/news" class="back-button">← Back to News</a>
+    </div>
+  </section>
+</body>
+</html>

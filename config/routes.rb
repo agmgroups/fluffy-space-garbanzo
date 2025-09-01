@@ -457,6 +457,8 @@ Rails.application.routes.draw do
   post '/contact', to: 'pages#contact_submit'
   get '/blog', to: 'pages#blog'
   get '/news', to: 'pages#news'
+  get '/news/onelastai', to: 'pages#news_onelastai'
+  get '/news/onemanarmy', to: 'pages#news_onemanarmy'
   get '/faq', to: 'pages#faq'
   get '/signup', to: 'pages#signup'
   post '/signup', to: 'pages#signup_submit'

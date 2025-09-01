@@ -30,6 +30,10 @@ class PagesController < ApplicationController
 
   def news; end
 
+  def news_onelastai; end
+
+  def news_onemanarmy; end
+
   def faq; end
 
   def signup; end

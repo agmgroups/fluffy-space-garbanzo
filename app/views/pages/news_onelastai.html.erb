@@ -1,336 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OneLastAI News & Updates</title>
-
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-  <%= javascript_importmap_tags %>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
-      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-      color: #ffffff;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .hero-section {
-      padding: 4rem 2rem 3rem;
-      text-align: center;
-      background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.15) 0%, rgba(0, 0, 0, 0.3) 70%);
-      border-bottom: 2px solid #00d4ff;
-    }
-
-    .hero-title {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 20px #00d4ff;
-      background: linear-gradient(45deg, #00d4ff, #0099cc, #66d9ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-icon {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 30px #00d4ff;
-    }
-
-    .hero-tagline {
-      font-size: 1.5rem;
-      color: #e0e0e0;
-      margin-bottom: 1rem;
-      font-weight: 300;
-    }
-
-    .launch-badge {
-      background: linear-gradient(45deg, #ff6b6b, #ff5722);
-      color: #fff;
-      padding: 0.8rem 2rem;
-      border-radius: 25px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      display: inline-block;
-      margin-bottom: 2rem;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    .content-section {
-      padding: 3rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .update-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(0, 212, 255, 0.2);
-      border-radius: 20px;
-      padding: 3rem;
-      margin-bottom: 2rem;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-    }
-
-    .update-card:hover {
-      border-color: #00d4ff;
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
-    }
-
-    .card-title {
-      font-size: 2.2rem;
-      color: #00d4ff;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .card-content {
-      color: #e0e0e0;
-      line-height: 1.8;
-      font-size: 1.1rem;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .feature-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(0, 212, 255, 0.1);
-      border-radius: 15px;
-      padding: 2rem;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-
-    .feature-card:hover {
-      border-color: #00d4ff;
-      background: rgba(0, 212, 255, 0.1);
-    }
-
-    .feature-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      text-shadow: 0 0 15px #00d4ff;
-    }
-
-    .feature-title {
-      font-size: 1.3rem;
-      color: #00d4ff;
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
-
-    .feature-description {
-      color: #e0e0e0;
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-
-    .timeline {
-      position: relative;
-      padding: 2rem 0;
-    }
-
-    .timeline-item {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(0, 212, 255, 0.2);
-      border-radius: 15px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      position: relative;
-    }
-
-    .timeline-date {
-      color: #00ff88;
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-    }
-
-    .timeline-title {
-      color: #00d4ff;
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      font-weight: 600;
-    }
-
-    .timeline-description {
-      color: #e0e0e0;
-      line-height: 1.6;
-    }
-
-    .back-button {
-      display: inline-block;
-      background: linear-gradient(45deg, #666, #888);
-      color: #ffffff;
-      padding: 1rem 2rem;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      margin-top: 2rem;
-    }
-
-    .back-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(136, 136, 136, 0.4);
-    }
-
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 2.5rem;
-      }
-      
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .update-card {
-        padding: 2rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Last AI - Lifestyle AI Companion Suite</title>
+    
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .font-fira {
+            font-family: 'Fira Code', monospace;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #a5b4fc, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .agent-card {
+            background: rgba(31, 41, 55, 0.8);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            height: auto;
+        }
+        .agent-card:hover {
+            transform: translateY(-5px);
+            border-color: #6366f1;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+        }
+        .agent-description {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(31, 41, 55, 0.95);
+            padding: 2rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .agent-card:hover .agent-description {
+            display: flex;
+            opacity: 1;
+        }
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #666, #888);
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 2rem auto;
+        }
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(136, 136, 136, 0.4);
+        }
+    </style>
 </head>
-
 <body>
-  <section class="hero-section">
-    <div class="hero-icon">🤖</div>
-    <h1 class="hero-title">OneLastAI</h1>
-    <p class="hero-tagline">Revolutionary AI Platform Development</p>
-    <div class="launch-badge">🚀 LAUNCHING 2026</div>
-  </section>
 
-  <section class="content-section">
-    <div class="update-card">
-      <h2 class="card-title">🌟 The Future of AI is Coming</h2>
-      <p class="card-content">
-        OneLastAI is currently in intensive development, creating the most advanced artificial intelligence platform ever conceived. 
-        Our team of world-class AI researchers and engineers are working around the clock to bring you breakthrough technologies 
-        that will revolutionize how we interact with artificial intelligence.
-      </p>
-      <p class="card-content">
-        <strong>Expected Launch:</strong> 2026 | <strong>Status:</strong> In Active Development | <strong>Updates:</strong> Coming Soon
-      </p>
-    </div>
+    <div class="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        
+        <!-- Header Section -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl sm:text-5xl font-bold gradient-text mb-2">One Last AI</h1>
+            <h2 class="text-xl sm:text-2xl font-semibold text-gray-300">Lifestyle AI Companion Suite</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-gray-400">
+                AI-based utility modules aimed at enhancing modern digital life. Designed for creators, learners, professionals, and youth audiences.
+            </p>
+            <a href="https://onelast.ai" target="_blank" class="inline-block mt-4 text-indigo-400 hover:text-indigo-300 transition">
+                🔗 onelast.ai
+            </a>
+            
+            <!-- Hero Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
+                <a href="https://onelast.ai" target="_blank" class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    🚀 Visit Official Site
+                </a>
+                <a href="/news" class="bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    📰 Back to News
+                </a>
+            </div>
+        </header>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🧠</div>
-        <h3 class="feature-title">Advanced Neural Networks</h3>
-        <p class="feature-description">
-          Next-generation neural architectures with unprecedented learning capabilities and human-like reasoning abilities.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <h3 class="feature-title">Lightning-Fast Processing</h3>
-        <p class="feature-description">
-          Optimized processing engines delivering real-time responses with millisecond latency across all AI operations.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🌐</div>
-        <h3 class="feature-title">Universal Integration</h3>
-        <p class="feature-description">
-          Seamless integration with any platform, service, or application through our revolutionary universal API framework.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🔮</div>
-        <h3 class="feature-title">Predictive Intelligence</h3>
-        <p class="feature-description">
-          Advanced predictive algorithms that anticipate user needs and provide proactive AI assistance before you even ask.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🛡️</div>
-        <h3 class="feature-title">Quantum Security</h3>
-        <p class="feature-description">
-          Military-grade security protocols with quantum encryption ensuring absolute protection of all data and interactions.
-        </p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">🎯</div>
-        <h3 class="feature-title">Precision Accuracy</h3>
-        <p class="feature-description">
-          99.9% accuracy across all AI tasks with continuous learning algorithms that improve performance over time.
-        </p>
-      </div>
-    </div>
-
-    <div class="update-card">
-      <h2 class="card-title">📅 Development Timeline</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-date">Q4 2025</div>
-          <h3 class="timeline-title">Core AI Engine Completion</h3>
-          <p class="timeline-description">
-            Finalizing the revolutionary AI core engine with breakthrough neural network architectures and learning algorithms.
-          </p>
+        <!-- Details Section -->
+        <div class="max-w-4xl mx-auto bg-gray-800 rounded-2xl p-6 mb-12 shadow-lg border border-gray-700">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="flex items-start space-x-3">
+                    <span class="text-2xl">🚀</span>
+                    <div>
+                        <h3 class="font-semibold text-white">Launch Date</h3>
+                        <p class="text-gray-400">2026 / Update Soon</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                    <span class="text-2xl">🔒</span>
+                    <div>
+                        <h3 class="font-semibold text-white">Access Policy</h3>
+                        <p class="text-gray-400">Early adopters & premium users</p>
+                    </div>
+                </div>
+                <div class="flex items-start space-x-3 sm:col-span-2 lg:col-span-1">
+                     <span class="text-2xl">🎯</span>
+                    <div>
+                        <h3 class="font-semibold text-white">Purpose</h3>
+                        <p class="text-gray-400">Boost creativity, productivity & more</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="timeline-item">
-          <div class="timeline-date">Q1 2026</div>
-          <h3 class="timeline-title">Beta Testing Launch</h3>
-          <p class="timeline-description">
-            Closed beta testing with select partners and early adopters to refine features and optimize performance.
-          </p>
+        <!-- AI Agents Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            
+            <!-- AI Girlfriend -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">01</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">ai-girlfriend</h3>
+                    <p class="text-gray-400 text-sm">AI Companion</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Discover your perfect AI companion. Engage in deep, meaningful conversations, share your dreams, and experience a unique connection built on understanding and emotional support, available 24/7.</p>
+                </div>
+            </div>
+
+            <!-- Demo Repo -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">02</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">demo-repo</h3>
+                    <p class="text-gray-400 text-sm">Development Tools</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Kickstart your web development journey with our collection of ready-to-use HTML project templates. Perfect for learning, prototyping, or building your next great idea from a solid foundation.</p>
+                </div>
+            </div>
+
+            <!-- EmoAI -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">03</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">EmoAI</h3>
+                    <p class="text-gray-400 text-sm">Emotional Intelligence</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Meet an AI that truly understands you. EmoAI analyzes emotional context to provide empathetic, supportive, and incredibly human-like responses, making your digital interactions more meaningful.</p>
+                </div>
+            </div>
+
+            <!-- PDFMind -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">04</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">PDFMind</h3>
+                    <p class="text-gray-400 text-sm">Document Analysis</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Unlock the knowledge within your documents. PDFMind instantly summarizes dense research papers, reports, and books, extracting key insights so you can learn faster and work smarter.</p>
+                </div>
+            </div>
+
+            <!-- ChatRevive -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">05</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">ChatRevive</h3>
+                    <p class="text-gray-400 text-sm">Data Recovery</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Never lose a precious memory again. ChatRevive uses advanced algorithms to recover and restore your lost or deleted conversations from various messaging platforms, bringing your chat history back to life.</p>
+                </div>
+            </div>
+
+            <!-- TokBoost -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">06</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">TokBoost</h3>
+                    <p class="text-gray-400 text-sm">Social Media</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Go viral on TikTok and Instagram. TokBoost analyzes trending content and suggests viral video ideas, optimal posting times, and engaging captions to maximize your social media reach and impact.</p>
+                </div>
+            </div>
+
+            <!-- YouGen -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">07</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">YouGen</h3>
+                    <p class="text-gray-400 text-sm">Identity Creation</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Craft the perfect online identity. YouGen generates compelling, professional, and creative bios for your social media, resumes, or personal websites, ensuring you always make a great first impression.</p>
+                </div>
+            </div>
+
+            <!-- AgentX -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">08</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">AgentX</h3>
+                    <p class="text-gray-400 text-sm">Task Automation</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Automate any task with a personal AI agent. AgentX learns your workflows to handle repetitive tasks, from managing emails to scheduling appointments, with astonishingly human-like efficiency and adaptability.</p>
+                </div>
+            </div>
+
+            <!-- AutoChat -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">09</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">AutoChat</h3>
+                    <p class="text-gray-400 text-sm">Chatbot Platform</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Deploy a brilliant chatbot in minutes. AutoChat provides instant, intelligent, and brand-aligned responses to your customers or personal contacts, ensuring you are always available, day or night.</p>
+                </div>
+            </div>
+
+            <!-- CVSmash -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">10</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">CVSmash</h3>
+                    <p class="text-gray-400 text-sm">Career Tools</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Land your dream job with a CV that stands out. CVSmash analyzes job descriptions and crafts a perfectly tailored, high-impact resume that highlights your strengths and gets you noticed by recruiters.</p>
+                </div>
+            </div>
+
+            <!-- GPT-God -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">11</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">GPT-God</h3>
+                    <p class="text-gray-400 text-sm">Ultimate AI</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Unleash the ultimate creative and analytical power. GPT-God offers next-level reasoning, problem-solving, and content generation capabilities, tackling the most complex challenges with unparalleled intelligence.</p>
+                </div>
+            </div>
+
+            <!-- AIDoctor -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">12</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">AIDoctor</h3>
+                    <p class="text-gray-400 text-sm">Health Companion</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Your personal health companion. AIDoctor provides instant symptom analysis, reliable health information, and confidential preliminary consultations, empowering you to take control of your well-being.</p>
+                </div>
+            </div>
+
+            <!-- AILawyer -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">13</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">AILawyer</h3>
+                    <p class="text-gray-400 text-sm">Legal Assistant</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Navigate the complexities of law with confidence. AILawyer simplifies legal jargon, analyzes contracts for risks, and generates preliminary legal advice, making legal assistance accessible to everyone.</p>
+                </div>
+            </div>
+
+            <!-- AIRapstar -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">14</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">AIRapstar</h3>
+                    <p class="text-gray-400 text-sm">Music Creation</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Become a lyrical genius. AIRapstar crafts fire bars and clever punchlines in the style of your favorite artists or helps you develop your own unique flow, ready for the studio or a rap battle.</p>
+                </div>
+            </div>
+
+            <!-- AISinger -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">15</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">AISinger</h3>
+                    <p class="text-gray-400 text-sm">Vocal Generation</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Create breathtaking music without singing a note. AISinger generates realistic vocal performances and catchy melodies for your tracks, turning your lyrical ideas into fully-fledged songs.</p>
+                </div>
+            </div>
+
+            <!-- AIChef -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">16</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">AIChef</h3>
+                    <p class="text-gray-400 text-sm">Culinary Assistant</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">End food waste and discover delicious new meals. AIChef scans the ingredients you have on hand and instantly generates creative, easy-to-follow recipes tailored to your tastes and dietary needs.</p>
+                </div>
+            </div>
+
+            <!-- FitnessAI -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">17</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">FitnessAI</h3>
+                    <p class="text-gray-400 text-sm">Personal Trainer</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Achieve your fitness goals faster. FitnessAI designs personalized workout routines and diet plans that adapt to your progress, body type, and lifestyle, acting as your dedicated digital personal trainer.</p>
+                </div>
+            </div>
+
+            <!-- LoveBot -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">18</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">LoveBot</h3>
+                    <p class="text-gray-400 text-sm">Relationship Helper</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Ignite the spark in your relationships. LoveBot crafts heartfelt romantic messages, suggests creative date ideas, and helps you express your feelings perfectly, keeping the romance alive and exciting.</p>
+                </div>
+            </div>
+
+            <!-- StockSage -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">19</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">StockSage</h3>
+                    <p class="text-gray-400 text-sm">Investment Analysis</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Invest with data-driven confidence. StockSage analyzes market trends, news sentiment, and financial data to deliver actionable daily insights and predictions, helping you make smarter investment decisions.</p>
+                </div>
+            </div>
+
+            <!-- CryptoWizard -->
+            <div class="agent-card">
+                <div class="text-center">
+                    <span class="text-indigo-400 font-fira text-sm">20</span>
+                    <h3 class="font-bold text-white text-xl font-fira mt-3 mb-2">CryptoWizard</h3>
+                    <p class="text-gray-400 text-sm">Crypto Trading</p>
+                </div>
+                <div class="agent-description">
+                    <p class="text-gray-300">Master the volatile world of cryptocurrency. CryptoWizard monitors the blockchain, identifies emerging trends, and provides timely trading signals to help you navigate the crypto market with an expert edge.</p>
+                </div>
+            </div>
+
         </div>
-
-        <div class="timeline-item">
-          <div class="timeline-date">Q2 2026</div>
-          <h3 class="timeline-title">Public Launch</h3>
-          <p class="timeline-description">
-            Official public launch of OneLastAI platform with full feature set and global availability.
-          </p>
+        
+        <!-- Back to News Button -->
+        <div class="text-center">
+            <a href="/news" class="back-button">← Back to News</a>
         </div>
-      </div>
     </div>
-
-    <div class="update-card">
-      <h2 class="card-title">🔥 Stay Updated</h2>
-      <p class="card-content">
-        Major announcements and breakthrough updates are coming soon! We're working on revolutionary features that will 
-        transform the AI landscape. Subscribe to our newsletter or follow our social channels to be the first to know 
-        about our latest developments and exclusive previews.
-      </p>
-      <p class="card-content">
-        <strong>Follow our progress:</strong> Regular updates will be posted here as we approach the 2026 launch date.
-      </p>
-    </div>
-
-    <div style="text-align: center;">
-      <a href="/news" class="back-button">← Back to News</a>
-    </div>
-  </section>
+    
 </body>
 </html>

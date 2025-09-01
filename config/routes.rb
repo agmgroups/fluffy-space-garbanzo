@@ -71,6 +71,7 @@ Rails.application.routes.draw do
   # NetScope subdomain routes
   constraints subdomain: 'netscope' do
     root 'netscope#index', as: :netscope_root
+    post '/chat', to: 'netscope#chat'
     post '/scan_target', to: 'netscope#scan_target'
     post '/port_scan', to: 'netscope#port_scan'
     post '/whois_lookup', to: 'netscope#whois_lookup'
@@ -103,6 +104,7 @@ Rails.application.routes.draw do
   get '/emotisense/wellness_center', to: 'emotisense#wellness_center'
   post '/emotisense/analyze_voice', to: 'emotisense#analyze_voice'
   get '/emotisense/export_data', to: 'emotisense#export_data'
+  get '/emotisense/status', to: 'emotisense#status'
   post '/emotisense/emotion_detection', to: 'emotisense#emotion_detection'
   post '/emotisense/sentiment_analysis', to: 'emotisense#sentiment_analysis'
   post '/emotisense/mood_tracking', to: 'emotisense#mood_tracking'
@@ -183,6 +185,9 @@ Rails.application.routes.draw do
   post '/memora/memory_optimization', to: 'memora#memory_optimization'
 
   # NetScope specialized endpoints
+  get '/netscope', to: 'netscope#index'
+  post '/netscope', to: 'netscope#index'
+  post '/netscope/chat', to: 'netscope#chat'
   post '/netscope/network_analysis', to: 'netscope#network_analysis'
   post '/netscope/security_monitoring', to: 'netscope#security_monitoring'
   post '/netscope/threat_detection', to: 'netscope#threat_detection'

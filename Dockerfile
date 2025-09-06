@@ -1,5 +1,5 @@
 # OneLastAI Production Dockerfile
-FROM ruby:3.3.0-alpine
+FROM ruby:3.4.0-alpine
 
 # Install system dependencies
 RUN apk add --no-cache \
@@ -45,12 +45,12 @@ RUN mkdir -p /app/log /app/tmp /app/storage && \
 # Switch to non-root user
 USER appuser
 
-# Expose port
+# Expose port (default); Railway will set PORT env at runtime
 EXPOSE 3000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
   CMD curl -f http://localhost:3000/health || exit 1
 
-# Start command
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+# Start command (Puma reads PORT from environment via config/puma.rb)
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]

@@ -241,6 +241,33 @@ curl -X POST https://api.onelastai.com/v1/agents/neochat/chat \
 └── DEPLOYMENT.md          # Deployment guide
 ```
 
+### Agent configuration (per-agent models & behavior)
+
+The file `config/agents.yml` controls per-agent defaults without changing code. Each agent can define:
+
+- `model` one of: `llama32`, `gemma3`, `phi4`, `deepseek`, `gpt_oss` (mapped by `AiModelService`)
+- `temperature`, `max_tokens`, `top_p` generation settings
+- `system_prompt` text that is prepended to the agent’s personality
+
+If an agent is not listed, it inherits from the `default` section. The `AiAgentEngine` reads this file on boot and applies overrides automatically.
+
+Quick example:
+
+```
+default:
+  model: llama32
+  temperature: 0.7
+agents:
+  codemaster:
+    model: phi4
+    temperature: 0.3
+    max_tokens: 3500
+    system_prompt: |
+      You are CodeMaster. Return runnable, secure code with tests.
+```
+
+Tip: ensure the selected `model` is available in your Ollama service and listed by `/ai/status`.
+
 ### **Adding New Agents**
 
 1. **Create Agent Engine**:

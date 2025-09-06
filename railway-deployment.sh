@@ -1,35 +1,34 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-echo "🚀 RAILWAY DEPLOYMENT GUIDE"
-echo "============================"
-echo ""
-echo "⚡ FASTEST PATH TO LIVE SITE (5 minutes!)"
-echo ""
-echo "🎯 STEP 1: Prepare Railway Configuration"
-echo "----------------------------------------"
-echo "✅ Creating railway.json config..."
-echo "✅ Setting up Procfile..."
-echo "✅ Configuring environment variables..."
-echo ""
-echo "🎯 STEP 2: Deploy to Railway"
-echo "----------------------------"
-echo "1. Go to: https://railway.app"
-echo "2. Sign in with GitHub"
-echo "3. Click 'New Project'"
-echo "4. Select 'Deploy from GitHub repo'"
-echo "5. Choose: 1-ManArmy/fluffy-space-garbanzo"
-echo "6. Railway will auto-detect Rails app!"
-echo ""
-echo "🎯 STEP 3: Configure MongoDB"
-echo "-----------------------------"
-echo "1. In Railway dashboard, click '+ Add Service'"
-echo "2. Select 'MongoDB'"
-echo "3. Copy connection string to environment"
-echo ""
-echo "🎯 STEP 4: Go LIVE!"
-echo "-------------------"
-echo "✅ Railway generates live URL: yourapp.railway.app"
-echo "✅ Configure custom domain: onelastai.com"
-echo "✅ SSL automatically enabled!"
-echo ""
-echo "🔥 TOTAL TIME: ~5 MINUTES TO LIVE SITE!"
+echo "🚀 Railway CLI deploy helper"
+
+if ! command -v railway >/dev/null 2>&1; then
+	echo "Installing Railway CLI..."
+	curl -fsSL https://railway.app/install.sh | bash
+	export PATH="$HOME/.railway/bin:$PATH"
+fi
+
+echo "Ensuring login (this may open a browser)..."
+railway login || true
+
+PROJECT_NAME="onelastai"
+SERVICE_NAME="web"
+
+echo "Linking project (creates if missing)..."
+railway init --project "$PROJECT_NAME" -y || true
+
+echo "Setting baseline env vars..."
+railway variables set \
+	RAILS_ENV=production \
+	RAILS_LOG_TO_STDOUT=true \
+	RAILS_SERVE_STATIC_FILES=true \
+	SECRET_KEY_BASE="${SECRET_KEY_BASE:-}" || true
+
+echo "Tip: set MONGODB_URI in Railway dashboard or via CLI:"
+echo "  railway variables set MONGODB_URI=your_mongodb_connection_string"
+
+echo "Deploying current directory..."
+railway up --service "$SERVICE_NAME"
+
+echo "✅ Deployment triggered. Check status: railway status"

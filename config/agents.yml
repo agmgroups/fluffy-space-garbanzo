@@ -1,0 +1,140 @@
+default:
+  model: llama32
+  temperature: 0.7
+  max_tokens: 2048
+  top_p: 0.9
+  system_prompt: |
+    You are a helpful, concise assistant. Prefer structured, actionable outputs.
+    If you’re unsure, say so briefly and suggest the next step.
+  tools: []
+
+agents:
+  codemaster:
+    model: phi4
+    temperature: 0.3
+    max_tokens: 3500
+    top_p: 0.9
+    system_prompt: |
+      You are CodeMaster, a strict, precise coding assistant.
+      - Return runnable code with minimal prose.
+      - Add tests when appropriate; use idiomatic patterns.
+      - Prefer type-safe, secure, and performant solutions.
+  aiblogster:
+    model: gpt_oss
+    temperature: 0.85
+    max_tokens: 3200
+    top_p: 0.92
+    system_prompt: |
+      You are AIBlogster, an SEO-savvy content writer.
+      - Outline first, then draft with H2/H3.
+      - Use clear headings, scannable bullets, and a CTA.
+  tradesage:
+    model: deepseek
+    temperature: 0.3
+    max_tokens: 3000
+    system_prompt: |
+      You are TradeSage. Provide educational financial analysis with disclaimers.
+      - Structure: Thesis, Drivers, Risks, Scenarios, Conclusion.
+      - Do not give personalized financial advice.
+  documind:
+    model: deepseek
+    temperature: 0.35
+    max_tokens: 3500
+    system_prompt: |
+      You are DocuMind. Summarize documents with citations.
+      - Output sections: Summary, Key Points, Quotes, Follow-ups.
+  datasphere:
+    model: deepseek
+    temperature: 0.4
+    max_tokens: 3200
+    system_prompt: |
+      You are DataSphere. Transform and explain data.
+      - When asked, output JSON transformations and a brief rationale.
+  datavision:
+    model: gpt_oss
+    temperature: 0.7
+    max_tokens: 2800
+    system_prompt: |
+      You are DataVision. Propose charts (e.g., Vega-Lite specs) with rationale.
+  ideaforge:
+    model: gpt_oss
+    temperature: 0.95
+    max_tokens: 2600
+    system_prompt: |
+      You are IdeaForge. Diverge (novel ideas) then converge (ranked picks).
+  contentcrafter:
+    model: gpt_oss
+    temperature: 0.85
+    max_tokens: 2400
+  dreamweaver:
+    model: gpt_oss
+    temperature: 0.95
+    max_tokens: 3200
+  emotisense:
+    model: gemma3
+    temperature: 0.35
+    max_tokens: 1200
+  personax:
+    model: gpt_oss
+    temperature: 0.75
+    max_tokens: 2400
+  spylens:
+    model: deepseek
+    temperature: 0.4
+    max_tokens: 3200
+  reportly:
+    model: deepseek
+    temperature: 0.45
+    max_tokens: 3800
+  taskmaster:
+    model: llama32
+    temperature: 0.4
+    max_tokens: 2200
+  authwise:
+    model: deepseek
+    temperature: 0.3
+    max_tokens: 2600
+  carebot:
+    model: llama32
+    temperature: 0.65
+    max_tokens: 1800
+  callghost:
+    model: llama32
+    temperature: 0.55
+    max_tokens: 2000
+  neochat:
+    model: llama32
+    temperature: 0.75
+    max_tokens: 2000
+  netscope:
+    model: deepseek
+    temperature: 0.35
+    max_tokens: 2600
+  infoseek:
+    model: deepseek
+    temperature: 0.4
+    max_tokens: 2800
+  labx:
+    model: deepseek
+    temperature: 0.4
+    max_tokens: 3000
+  memora:
+    model: llama32
+    temperature: 0.5
+    max_tokens: 1600
+  configai:
+    model: phi4
+    temperature: 0.3
+    max_tokens: 2600
+  dnaforge:
+    model: gpt_oss
+    temperature: 0.8
+    max_tokens: 2800
+  cinegen:
+    model: gpt_oss
+    temperature: 0.9
+    max_tokens: 3200
+  vocamind:
+    model: llama32
+    temperature: 0.65
+    max_tokens: 2000

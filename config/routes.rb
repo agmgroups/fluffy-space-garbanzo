@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'home/index'
+  # AI status (Ollama + models)
+  get '/ai/status', to: 'ai_status#show'
   # Agent subdomains
   constraints subdomain: 'neochat' do
     root 'neochat#index', as: :neochat_root

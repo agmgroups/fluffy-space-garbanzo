@@ -6,10 +6,18 @@ class AiAgentEngine
 
   def initialize(agent, options = {})
     @agent = agent
-    @model_name = options[:model_name] || select_default_model
+    # Load per-agent config and apply overrides
+    cfg = self.class.agent_config_for(@agent.agent_type)
+    @model_name = options[:model_name] || cfg[:model] || select_default_model
     @personality = build_personality_prompt
     @capabilities = agent.capabilities || []
     @conversation_memory = {}
+    @gen_overrides = {
+      temperature: cfg[:temperature],
+      max_tokens: cfg[:max_tokens],
+      top_p: cfg[:top_p]
+    }.compact
+    @system_prompt = cfg[:system_prompt]
   end
 
   # Main interaction method
@@ -85,6 +93,30 @@ class AiAgentEngine
 
   private
 
+  # Load agents.yml once and cache
+  def self.agent_config
+    @agent_config ||= begin
+      path = Rails.root.join('config', 'agents.yml')
+      if File.exist?(path)
+        raw = YAML.safe_load(File.read(path), aliases: true) || {}
+        # symbolize shallow keys
+        {
+          default: (raw['default'] || {}).transform_keys(&:to_sym),
+          agents: (raw['agents'] || {}).transform_keys(&:to_sym).transform_values { |v| v.transform_keys(&:to_sym) }
+        }
+      else
+        { default: {}, agents: {} }
+      end
+    end
+  end
+
+  def self.agent_config_for(agent_type)
+    cfg = agent_config
+    (cfg[:default] || {}).merge(cfg[:agents][agent_type.to_s.downcase.to_sym] || {})
+  end
+
+  private_class_method :agent_config, :agent_config_for
+
   def select_default_model
     # Select model based on agent type and capabilities
     case @agent.agent_type
@@ -105,7 +137,9 @@ class AiAgentEngine
     traits = @agent.personality_traits || {}
     config = @agent.configuration || {}
 
-    base_prompt = "You are #{@agent.name}, #{config['tagline'] || 'an AI assistant'}.\n"
+    base_prompt = ''
+    base_prompt += (@system_prompt.to_s.strip + "\n\n") if @system_prompt.present?
+    base_prompt += "You are #{@agent.name}, #{config['tagline'] || 'an AI assistant'}.\n"
 
     if traits.is_a?(Hash)
       if traits['primary_traits']
@@ -163,7 +197,7 @@ class AiAgentEngine
       temperature: 0.7,
       max_tokens: 2048,
       top_p: 0.9
-    }
+    }.merge(@gen_overrides)
   end
 
   def process_response(model_response, input_data, context)

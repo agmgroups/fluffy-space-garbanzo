@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# AI Models Docker Deployment Script
-# This script sets up and starts all AI models for the OneLastAI platform
+# AI Models Deployment Script
+# Preferred: Single Ollama service (see docker-compose.ollama.yml)
+# This legacy script starts multiple Ollama containers + Nginx gateway.
+# For Railway, use Option B: single Ollama. See PRODUCTION_READINESS_REPORT.md.
 
 set -e
 

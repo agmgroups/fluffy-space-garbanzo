@@ -5,10 +5,12 @@ require 'json'
 
 # AI Model Service - Handles communication with Docker-hosted AI models
 class AiModelService
-  # Model configurations
+  # Single Ollama base URL (Option B)
+  OLLAMA_BASE_URL = ENV.fetch('OLLAMA_BASE_URL', 'http://localhost:11434').freeze
+
+  # Logical model mapping to Ollama model names and metadata
   MODELS = {
     'llama32' => {
-      endpoint: 'http://localhost:8080/api/llama32',
       model_name: 'llama3.2:3b',
       description: 'Lightweight general-purpose model (3.21B parameters)',
       strengths: %w[general_conversation quick_responses lightweight],
@@ -16,7 +18,6 @@ class AiModelService
       timeout: 30
     },
     'gemma3' => {
-      endpoint: 'http://localhost:8080/api/gemma3',
       model_name: 'gemma2:2b',
       description: 'Efficient specialized task model (3.88B parameters)',
       strengths: %w[specialized_tasks efficient_processing domain_specific],
@@ -24,7 +25,6 @@ class AiModelService
       timeout: 30
     },
     'phi4' => {
-      endpoint: 'http://localhost:8080/api/phi4',
       model_name: 'phi3:14b',
       description: 'Advanced reasoning and code generation (14.66B parameters)',
       strengths: %w[code_generation complex_reasoning technical_analysis],
@@ -32,7 +32,6 @@ class AiModelService
       timeout: 60
     },
     'deepseek' => {
-      endpoint: 'http://localhost:8080/api/deepseek',
       model_name: 'deepseek-coder:6.7b',
       description: 'Reasoning and analysis specialist (8.03B parameters)',
       strengths: %w[deep_analysis reasoning problem_solving],
@@ -40,7 +39,6 @@ class AiModelService
       timeout: 45
     },
     'gpt_oss' => {
-      endpoint: 'http://localhost:8080/api/gpt-oss',
       model_name: 'mistral:7b',
       description: 'Open source GPT alternative',
       strengths: %w[general_purpose creative_writing conversation],
@@ -58,7 +56,7 @@ class AiModelService
       request_payload = build_request_payload(model_config, prompt, options)
 
       start_time = Time.current
-      response = make_request(model_config[:endpoint], request_payload, model_config[:timeout])
+      response = make_request(ollama_generate_url, request_payload, model_config[:timeout])
       processing_time = ((Time.current - start_time) * 1000).to_i
 
       {
@@ -125,8 +123,8 @@ class AiModelService
       }
     end
 
-    def make_request(endpoint, payload, timeout)
-      uri = URI("#{endpoint}/api/generate")
+    def make_request(url, payload, timeout)
+      uri = URI(url)
 
       http = Net::HTTP.new(uri.host, uri.port)
       http.read_timeout = timeout
@@ -175,13 +173,30 @@ class AiModelService
       return { status: 'unknown', error: 'Model not found' } unless model_config
 
       begin
-        uri = URI("#{model_config[:endpoint]}/api/version")
-        response = Net::HTTP.get_response(uri)
+        # Check Ollama service health
+        version_uri = URI("#{OLLAMA_BASE_URL}/api/version")
+        response = Net::HTTP.get_response(version_uri)
+        service_ok = response.code.to_i == 200
+
+        # Check if the specific model is available in Ollama list
+        models_uri = URI("#{OLLAMA_BASE_URL}/api/tags")
+        models_resp = Net::HTTP.get_response(models_uri)
+        models_ok = models_resp.code.to_i == 200
+        have_model = false
+        if models_ok
+          tags = begin
+            JSON.parse(models_resp.body)['models']
+          rescue StandardError
+            []
+          end
+          have_model = tags.any? { |m| m['name'] == model_config[:model_name] }
+        end
 
         {
-          status: response.code.to_i == 200 ? 'online' : 'offline',
+          status: service_ok && have_model ? 'online' : 'offline',
           model: model_name,
-          endpoint: model_config[:endpoint],
+          endpoint: OLLAMA_BASE_URL,
+          model_name: model_config[:model_name],
           last_checked: Time.current
         }
       rescue StandardError => e
@@ -209,11 +224,16 @@ class AiModelService
     end
 
     def gateway_status
-      uri = URI('http://localhost:8080/health')
+      # With Option B we use a single Ollama service instead of the Nginx gateway
+      uri = URI("#{OLLAMA_BASE_URL}/api/version")
       response = Net::HTTP.get_response(uri)
       response.code.to_i == 200 ? 'online' : 'offline'
     rescue StandardError
       'offline'
+    end
+
+    def ollama_generate_url
+      "#{OLLAMA_BASE_URL}/api/generate"
     end
   end
 end

@@ -6,7 +6,7 @@
 1. **Agent Model Architecture** - Created comprehensive Agent, AgentInteraction, and AgentMemory models
 2. **AI Engine Integration** - Built AiModelService and AiAgentEngine base classes 
 3. **CineGen Specialization** - Implemented CinegenAgentEngine with video-specific capabilities
-4. **Docker AI Models** - Complete Docker setup for 5 AI models (Llama3.2, Gemma3, Phi4, DeepSeek, GPT-OSS)
+4. **Docker AI Models** - Single Ollama service option (Option B) with 5 core models (Llama3.2, Gemma2, Phi3, DeepSeek Coder, Mistral)
 5. **Production Deployment** - Automated scripts for full production deployment
 6. **Controller Integration** - Updated CineGen controller to use new AI engine architecture
 
@@ -15,10 +15,31 @@
 ## 🚀 AI Models Ready for Production
 
 ### Model Configuration
-- **Llama 3.2 (3.21B)** - Port 11434 - General purpose, lightweight responses
+ - **Llama 3.2 (3.21B)** - General purpose, lightweight responses
 - **Gemma 3 (3.88B)** - Port 11435 - Specialized tasks, efficient processing  
 - **Phi-4 (14.66B)** - Port 11436 - Advanced reasoning, code generation
-- **DeepSeek (8.03B)** - Port 11437 - Deep analysis, reasoning specialist
+ - **DeepSeek Coder (6.7B)** - Code-focused reasoning
+
+## Option B: Single Ollama Service (Recommended for Railway)
+
+We support deploying one Ollama service and selecting models by name at runtime. The app now uses `AiModelService` with a single base URL (`OLLAMA_BASE_URL`).
+
+How to run locally:
+
+1) Start Ollama with required models
+
+  docker compose -f docker-compose.ollama.yml up -d
+
+2) Set environment
+
+  OLLAMA_BASE_URL=http://localhost:11434
+
+3) App will call `POST /api/generate` with the chosen model name.
+
+Railway hints:
+- Create a new service from `ollama/ollama:latest`, expose `11434`, and set `OLLAMA_HOST=0.0.0.0`.
+- On first boot, exec into the service and pull models with `ollama pull ...` or bake via a custom start command.
+- Set `OLLAMA_BASE_URL` in the Rails service to the Ollama service URL.
 - **GPT-OSS** - Port 11438 - Creative writing, conversation
 
 ### Gateway & Load Balancing
